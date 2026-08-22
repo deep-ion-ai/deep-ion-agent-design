@@ -200,7 +200,7 @@ the card, such as buttons, not of the card itself).
   this component).
 - Cards in a dashboard grid should have consistent height within the
   same row when content allows (avoiding a "staircase" visual),
-  using `spacing.grid-gap` as the spacing between them.
+  using `spacing.component.grid-gap` as the spacing between them.
 
 ## Tokens used
 

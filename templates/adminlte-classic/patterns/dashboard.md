@@ -27,7 +27,7 @@ restate or modify the shell.
 2. **Metrics row** — a horizontal grid of 2 to 4 blocks, one per key
    metric (e.g. "Orders today", "Revenue", "New users", "Open
    tickets"), sharing equal width and spaced with
-   `spacing.grid-gap`. On screens below the `md` breakpoint, the grid
+   `spacing.component.grid-gap`. On screens below the `md` breakpoint, the grid
    collapses to a single column, stacking them vertically.
 
    The row uses **either** Summary/KPI-variant Cards
@@ -80,7 +80,7 @@ restate or modify the shell.
 |---|---|
 | `color.surface.canvas` | card backgrounds (inherited from Card spec) |
 | `color.text.secondary` | section subtitle |
-| `spacing.grid-gap` | gap between metric cards, and between the metrics row and the detail section |
+| `spacing.component.grid-gap` | gap between metric cards, and between the metrics row and the detail section |
 | `spacing.6` | gap between multiple stacked detail sections, if more than one |
 | `breakpoint.md`, `breakpoint.lg` | layout collapse points described above |
 

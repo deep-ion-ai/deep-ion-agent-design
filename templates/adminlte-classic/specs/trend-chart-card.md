@@ -1,3 +1,22 @@
+---
+component: trend-chart-card
+requires: [foundations/libraries.md, foundations/iconography.md]
+references: [specs/card.md, specs/disclosure.md, specs/data-table.md, specs/dropdown-menu.md]
+referenced_by: [specs/sparkline-strip.md]
+variants:
+  series: [single, multi]
+  mark: [line, area]
+  density: [default, compact]
+states: [default, point-focus, series-hover, loading, empty, partial, error]
+aria:
+  figure: figure + figcaption carrying the text summary
+  plot: focusable surface, its own accessible name, never role=img
+  legend: colour + mark shape + name per series
+keyboard:
+  ArrowLeft: move to the previous period and reveal its values
+  ArrowRight: move to the next period and reveal its values
+---
+
 # Component: Trend Chart Card
 
 ## Purpose

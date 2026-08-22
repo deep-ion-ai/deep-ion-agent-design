@@ -139,7 +139,20 @@ code. Consistency across different projects using the same template
 is the entire point of this repository — silent improvisation
 undermines it.
 
-## 7. Token format
+## 7. A spec's front matter is the machine-readable half
+
+Where a spec opens with YAML front matter, that block holds the facts
+in enumerable form — variants, states, the ARIA contract, the key
+map, and which other specs it depends on. Read it first: it tells you
+what to build. The prose that follows tells you *why*, and where the
+component's boundaries are.
+
+The two never disagree. Where the front matter lists something, the
+prose deliberately does not restate it, so if you find a
+contradiction, it is a bug in this repository — say so rather than
+picking one.
+
+## 8. Token format
 
 Tokens follow the W3C Design Tokens Community Group format (`$value`
 and `$type` keys, with an optional `$description`). Treat `$value` as

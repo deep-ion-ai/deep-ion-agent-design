@@ -1,3 +1,5 @@
+<!-- lint-allow-glyphs: this document quotes emoji in order to forbid them -->
+
 # Foundation: Iconography
 
 ## Purpose

@@ -44,6 +44,71 @@ them. A spec that names a glyph says which glyph and what it means;
 where the glyph comes from and how it is sized is
 `foundations/iconography.md`'s job.
 
+## The two layers of a spec
+
+A spec carries two kinds of content, and keeping them apart is what
+stops them contradicting each other.
+
+**Facts** — the variants matrix, the states, the ARIA contract, the
+key map, which specs reference which. These are enumerable, and they
+belong in the file's **YAML front matter**, where `npm run validate`
+can check them.
+
+**Judgment** — why this component rather than its neighbour, why a
+default was chosen, where we diverge from the reference and what it
+costs, what a person sees. These are prose, and no schema improves
+them: a `rationale:` field is prose in a quoted string with worse
+ergonomics.
+
+**A fact lives in exactly one place.** If the front matter lists the
+key map, the prose must not restate it — it explains the two rows
+that need explaining and points at the table. Two copies of a fact is
+how `role="img"` came to sit four bullets above "data points must be
+focusable" without anyone noticing.
+
+### The front matter subset
+
+Deliberately small, so the repository can read its own specs with no
+dependency: scalars, inline lists (`[a, b]`), and maps nested two
+levels. Anything outside that subset is reported as a parse error
+rather than silently misread. Recognised keys: `component` /
+`pattern`, `requires`, `references`, `referenced_by`, `variants`,
+`states`, `aria`, `keyboard`.
+
+```yaml
+---
+component: dropdown-menu
+requires: [foundations/iconography.md]
+references: [specs/button.md]
+referenced_by: [specs/card.md, specs/navbar.md]
+variants:
+  trigger: [single, split]
+states: [closed, open, item-disabled, loading, empty]
+aria:
+  trigger: button + aria-haspopup=menu + aria-expanded
+keyboard:
+  Escape: close without activating, focus returns to the trigger
+---
+```
+
+### Run the validator
+
+```bash
+npm run validate
+```
+
+It checks that every token path named in any spec, pattern or
+foundation resolves in `tokens/*.json`; that every cross-reference
+points at a file that exists; that `references` and `referenced_by`
+agree in both directions; that `catalog.json` lists exactly what the
+folder holds; and that no document uses emoji as icons.
+
+It found, on its first run, fifteen token paths that had never
+existed — every spec wrote `spacing.component.card-padding` while
+`spacing.json` actually declared that group at the root, as
+`component.card-padding`. Prose review had missed it through every
+PR.
+
 ## Spec file schema
 
 Every file in `templates/<id>/specs/` uses the same eight sections,
@@ -157,6 +222,9 @@ reason. Silent divergence looks like a mistake to the next reader.
 
 ## Checklist for a spec PR
 
+- [ ] `npm run validate` passes
+- [ ] Front matter carries the enumerable facts, and the prose does
+      not restate them
 - [ ] `specs/<component>.md` follows the eight-section schema above
 - [ ] Any new token added to `tokens/*.json` in this same PR
 - [ ] `catalog.json` — the template's `components` array lists the

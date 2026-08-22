@@ -1,0 +1,9 @@
+{
+  "name": "deep-ion-agent-design",
+  "private": true,
+  "description": "Visual identity templates for AI-generated UIs. This package.json exists only to expose the spec validator — the repository ships no runnable code and has no dependencies.",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-specs.mjs"
+  }
+}
