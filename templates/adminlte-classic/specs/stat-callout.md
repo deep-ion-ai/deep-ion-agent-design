@@ -1,7 +1,7 @@
 ---
 component: stat-callout
 requires: [foundations/iconography.md]
-references: [specs/card.md, specs/badge.md]
+references: [specs/card.md, specs/badge.md, specs/progress-bar.md]
 ---
 
 # Component: Stat Callout
@@ -71,6 +71,12 @@ Callouts is a page with no hierarchy.
    the value ("+12% vs. last week"), with a direction glyph. A
    number with no baseline is hard to act on, so this is
    recommended wherever a comparison period exists.
+7. **Progress accessory** (optional) — a `specs/progress-bar.md`,
+   `sm` size, beneath the value and label, for a metric that is
+   itself a fraction of a bound (a quota, a goal) rather than a
+   free-standing count. Mutually exclusive with the trend indicator
+   in the same callout — a block this small has room to make one
+   comparison, not two.
 
 ## Variants
 
@@ -86,6 +92,13 @@ Callouts is a page with no hierarchy.
   one.
 - **With / without glyph** — the glyph is omitted when no icon
   genuinely represents the metric. A vague glyph is worse than none.
+- **With progress accessory** — see Anatomy. When present, the
+  accessory's colour follows the container fill (it sits on an
+  already-saturated background, so it uses
+  `color.overlay.accent-shade` for its track rather than a second
+  hue) rather than `specs/progress-bar.md`'s own colour variants,
+  which assume a `surface.canvas` background this callout does not
+  have.
 
 ## States
 
@@ -193,7 +206,10 @@ the block is not a control.
   rendered as a badge rather than as plain text. In that case the
   badge's own contrast pairing applies on top of the fill, which
   usually means the neutral or subtle badge variant — a solid
-  `success` badge on a `success` fill is unreadable.
+  `success` badge on a `success` fill is unreadable. Also
+  `specs/progress-bar.md`, for the optional progress accessory —
+  see Anatomy and Variants for the on-fill colour override this
+  placement requires.
 
 ## Tokens used
 

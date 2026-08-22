@@ -38,6 +38,7 @@
         "navbar",
         "offcanvas",
         "pagination",
+        "progress-bar",
         "ribbon",
         "select",
         "sidebar",
@@ -46,6 +47,7 @@
         "stat-callout",
         "text-input",
         "timeline",
+        "tooltip",
         "trend-chart-card"
       ],
       "componentPatterns": [

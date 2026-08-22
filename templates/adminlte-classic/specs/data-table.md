@@ -1,7 +1,7 @@
 ---
 component: data-table
 requires: [foundations/iconography.md, foundations/imagery.md]
-references: [specs/pagination.md, specs/badge.md, specs/button.md, specs/card.md, specs/modal.md]
+references: [specs/pagination.md, specs/badge.md, specs/button.md, specs/card.md, specs/modal.md, specs/tooltip.md]
 ---
 
 # Component: Data Table
@@ -27,7 +27,13 @@ a dashboard.
    density.
 4. **Cell** — an individual unit of data. Cells may contain plain
    text, a status badge, an avatar+name pair, or a group of actions
-   (edit/delete icons) when in the last column.
+   (edit/delete icons) when in the last column. A text cell whose
+   content overflows its column's fixed width truncates with an
+   ellipsis rather than wrapping (wrapping breaks row-height
+   alignment across the table) and gains a `specs/tooltip.md`
+   showing the untruncated value on hover/focus — only when
+   truncation has actually occurred, never on a cell that already
+   fits.
 5. **Footer/pagination bar** — below the table body, the Pagination
    component (`specs/pagination.md`): a results summary at the
    leading edge and the page controls at the trailing edge. Its
@@ -155,8 +161,9 @@ relationship has to survive that in the markup, not only visually.
   fields per cell) — editing should open a separate panel or modal;
   must not contain another Data Table nested inside it.
 - **Uses**: `specs/pagination.md` for the footer bar,
-  `specs/badge.md` for status cells, and `specs/button.md` for
-  toolbar and row-action controls.
+  `specs/badge.md` for status cells, `specs/button.md` for
+  toolbar and row-action controls, and `specs/tooltip.md` for a
+  truncated text cell's full-value reveal (see Anatomy).
 - A Data Table may be the body of a Card (see `specs/card.md`) —
   this is the primary composition pattern described in
   `patterns/dashboard.md`. When inside a Card, the table spans the
