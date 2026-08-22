@@ -13,6 +13,7 @@
       "attribution": "templates/adminlte-classic/ATTRIBUTION.md",
       "demo": "templates/adminlte-classic/demo",
       "components": [
+        "badge",
         "card",
         "data-table",
         "dropdown-menu"
