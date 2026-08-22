@@ -53,8 +53,11 @@ its neighbours:
   a message with no severity at all (a hint, a tip). Severity picks
   the icon shape as well as the colour.
 - **Fill: tinted (default) / solid** — tinted renders the message in
-  `text.primary` on a light wash of the status colour with a 1px
-  border in that colour, keeping page text legible at body size.
+  `text.primary` on a light wash of the status colour, with a 1px
+  border and an icon in `color.text.accent.*` (the text-safe
+  darkened counterpart — the raw `status.warning` and `status.info`
+  values are invisible against a light wash), keeping page text
+  legible at body size.
   Solid fills the whole block with the status colour. **Tinted is
   the default**, and deliberately so: this template's pages are
   dense, and a row of solid full-width blocks reads as an emergency
@@ -109,10 +112,12 @@ block a click target hides the real action from keyboard users.
   "Import"). The `warning` variant is the specific case #3 raised
   for filled surfaces, and the same trap applies here.
 - **Contrast, per fill:**
-  - *Tinted*: `text.primary` on a light wash of the status colour.
-    The wash must stay light enough to keep body text at 4.5:1 —
-    verify per colour rather than assuming a single opacity works
-    for all five.
+  - *Tinted*: `text.primary` on a light wash of the status colour;
+    the border, icon and any bold lead-in rendered in the status
+    colour use `color.text.accent.*`, not the raw fill value. The
+    wash must stay light enough to keep body text at 4.5:1 — verify
+    per colour rather than assuming a single opacity works for all
+    five.
   - *Solid*: `color.text.on-accent` over `success` and `danger`;
     `color.text.on-accent-dark` over `warning`, `info` and
     `neutral` — white fails AA over those (1.63:1, 1.96:1, 1.05:1).
@@ -164,7 +169,8 @@ block a click target hides the real action from keyboard users.
 
 | Token | Usage |
 |---|---|
-| `color.status.success` / `danger` / `warning` / `info` | severity colour: border and icon (tinted), fill (solid) |
+| `color.status.success` / `danger` / `warning` / `info` | severity colour: the wash behind a tinted alert, the fill of a solid one |
+| `color.text.accent.*` | border, icon and lead-in of a tinted alert |
 | `color.neutral.light` | neutral variant background |
 | `color.text.primary` | message text, tinted fill |
 | `color.text.on-accent` | message text on solid success / danger |

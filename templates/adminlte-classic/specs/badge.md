@@ -49,9 +49,10 @@ Its neighbours, and the test for telling them apart:
   `radius.pill` for one holding a count (the fully-round shape reads
   as a numeric marker). Both shapes exist for both content kinds;
   the above is the default pairing, not a restriction.
-- **Subtle** — a low-emphasis variant: the status colour is used for
-  the text and a 1px border, with a `surface.canvas` fill instead of
-  a solid one. Used where a row of solid badges would out-shout the
+- **Subtle** — a low-emphasis variant: `color.text.accent.*` — the
+  text-safe darkened counterpart of the status colour, not the raw
+  fill value — is used for the text and a 1px border, with a
+  `surface.canvas` fill instead of a solid one. Used where a row of solid badges would out-shout the
   data around them, e.g. a status column in a dense Data Table.
 - **Overflow count** — a pill badge positioned on the top-right
   corner of a small parent element (an icon button, an avatar),
@@ -151,6 +152,7 @@ specifying:
 | `color.text.on-accent` | text over primary, secondary, success, danger |
 | `color.text.on-accent-dark` | text over warning, info, neutral.light |
 | `color.surface.canvas` | fill of the Subtle variant |
+| `color.text.accent.*` | text and border of the Subtle variant |
 | `radius.sm` | default (word) shape |
 | `radius.pill` | count / overflow shape |
 | `spacing.1` | vertical padding |

@@ -184,10 +184,11 @@ Three kinds, which behave differently and must not be conflated:
   and `light`. White on `warning` is 1.63:1 and on `info` 1.96:1 —
   both fail. For outline and link variants, the accent colour is
   used as *text* on `surface.canvas`, which is a different and
-  stricter test: `status.warning` as text on white is far below
-  4.5:1, so the outline and link variants of `warning` (and `info`)
-  must darken the label rather than use the raw accent. Verify per
-  colour rather than assuming the solid pairing transfers.
+  stricter test — `status.warning` as text on white is 1.63:1. Those
+  variants therefore draw their label and border from
+  `color.text.accent.*`, the darkened text-safe counterparts, never
+  from the raw `brand.*`/`status.*` fill values. The solid pairing
+  does not transfer.
 - **Toggle groups are form controls.** A single-select segmented
   control is a `radiogroup` (native radios visually restyled, or
   `role="radiogroup"` with `role="radio"` and `aria-checked`); a
@@ -240,8 +241,9 @@ Three kinds, which behave differently and must not be conflated:
 
 | Token | Usage |
 |---|---|
-| `color.brand.primary` / `brand.secondary` | fill (solid), border and label (outline, link) |
-| `color.status.*` | the same, by action meaning |
+| `color.brand.primary` / `brand.secondary` | fill (solid) |
+| `color.status.*` | fill (solid), by action meaning |
+| `color.text.accent.*` | label and border of the outline and link variants |
 | `color.neutral.light` / `neutral.dark` | fill of the `light` / `dark` colours |
 | `color.text.on-accent` | label on primary, secondary, success, danger, dark |
 | `color.text.on-accent-dark` | label on warning, info, light |
