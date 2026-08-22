@@ -1,3 +1,8 @@
+---
+pattern: app-shell
+references: [specs/sidebar.md, specs/navbar.md, specs/breadcrumb.md, specs/offcanvas.md, patterns/dashboard.md]
+---
+
 # Pattern: App Shell
 
 ## Purpose

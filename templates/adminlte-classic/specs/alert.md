@@ -1,3 +1,9 @@
+---
+component: alert
+requires: [foundations/iconography.md]
+references: [specs/button.md]
+---
+
 # Component: Alert
 
 ## Purpose

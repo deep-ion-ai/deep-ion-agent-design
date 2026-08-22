@@ -1,3 +1,8 @@
+---
+foundation: typography
+references: [foundations/libraries.md]
+---
+
 # Foundation: Typography
 
 ## Purpose

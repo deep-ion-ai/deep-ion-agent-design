@@ -1,3 +1,9 @@
+---
+component: modal
+requires: [foundations/iconography.md]
+references: [specs/button.md, specs/alert.md, specs/dropdown-menu.md]
+---
+
 # Component: Modal
 
 ## Purpose

@@ -1,3 +1,9 @@
+---
+component: pagination
+requires: [foundations/iconography.md]
+references: [specs/button.md]
+---
+
 # Component: Pagination
 
 ## Purpose

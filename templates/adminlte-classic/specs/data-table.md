@@ -1,3 +1,9 @@
+---
+component: data-table
+requires: [foundations/iconography.md, foundations/imagery.md]
+references: [specs/pagination.md, specs/badge.md, specs/button.md, specs/card.md, specs/modal.md]
+---
+
 # Component: Data Table
 
 ## Purpose

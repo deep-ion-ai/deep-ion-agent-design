@@ -1,3 +1,9 @@
+---
+component: timeline
+requires: [foundations/iconography.md]
+references: [specs/card.md, specs/badge.md, specs/button.md, specs/list-group.md]
+---
+
 # Component: Timeline
 
 ## Purpose

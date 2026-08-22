@@ -1,3 +1,9 @@
+---
+component: button
+requires: [foundations/iconography.md]
+references: [specs/dropdown-menu.md, specs/modal.md, specs/badge.md]
+---
+
 # Component: Button
 
 ## Purpose

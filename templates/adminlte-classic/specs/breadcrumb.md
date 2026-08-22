@@ -1,3 +1,9 @@
+---
+component: breadcrumb
+requires: [foundations/iconography.md]
+references: [patterns/app-shell.md]
+---
+
 # Component: Breadcrumb
 
 ## Purpose

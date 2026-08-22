@@ -1,3 +1,9 @@
+---
+component: stat-callout
+requires: [foundations/iconography.md]
+references: [specs/card.md, specs/badge.md]
+---
+
 # Component: Stat Callout
 
 ## Purpose

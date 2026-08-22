@@ -1,5 +1,9 @@
-<!-- lint-allow-glyphs: this document quotes emoji in order to forbid them -->
+---
+foundation: iconography
+references: [foundations/libraries.md]
+---
 
+<!-- lint-allow-glyphs: this document quotes emoji in order to forbid them -->
 # Foundation: Iconography
 
 ## Purpose

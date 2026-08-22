@@ -1,3 +1,9 @@
+---
+component: sidebar
+requires: [foundations/iconography.md, foundations/imagery.md]
+references: [specs/offcanvas.md, specs/badge.md, specs/navbar.md]
+---
+
 # Component: Sidebar
 
 ## Purpose

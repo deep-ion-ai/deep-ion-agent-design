@@ -1,3 +1,8 @@
+---
+foundation: imagery
+references: [foundations/libraries.md]
+---
+
 # Foundation: Imagery
 
 ## Purpose

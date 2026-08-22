@@ -1,3 +1,9 @@
+---
+component: disclosure
+requires: [foundations/iconography.md]
+references: [specs/button.md, specs/badge.md, specs/card.md]
+---
+
 # Component: Disclosure (Collapse, Accordion, Tabs & Pills)
 
 ## Purpose
