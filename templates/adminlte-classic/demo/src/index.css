@@ -1,0 +1,12 @@
+/* tokens.generated.css is produced by `npm run build-tokens` from
+   ../../tokens/*.json — it does not exist until that script has run. */
+@import "./tokens.generated.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text-primary);
+}
