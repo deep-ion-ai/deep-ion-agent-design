@@ -22,9 +22,12 @@ a dashboard.
 4. **Cell** — an individual unit of data. Cells may contain plain
    text, a status badge, an avatar+name pair, or a group of actions
    (edit/delete icons) when in the last column.
-5. **Footer/pagination bar** — below the table body: a text summary
-   ("Showing 1–10 of 42") on the left and pagination controls
-   (previous/next + page numbers) on the right.
+5. **Footer/pagination bar** — below the table body, the Pagination
+   component (`specs/pagination.md`): a results summary at the
+   leading edge and the page controls at the trailing edge. Its
+   anatomy, truncation, states and accessibility rules are defined
+   there and are not restated here — a table's pagination is the
+   same component a List Group or a card grid uses.
 
 ## Variants
 
@@ -70,9 +73,11 @@ a dashboard.
   inside the `<th>`) with `aria-sort` (`ascending`, `descending`, or
   `none`) on the corresponding `<th>`, updated dynamically as the
   sort state changes.
-- Pagination controls must be focusable elements with clear
-  accessible labels (e.g. `aria-label="Previous page"`), and the
-  current page must be indicated with `aria-current="page"`.
+- Pagination follows `specs/pagination.md` in full, including the
+  `<nav aria-label="Pagination">` landmark, `aria-current="page"` on
+  the current page, and the requirement that a page change be
+  announced. Where a page holds more than one paginated set, each
+  landmark's label names its own set.
 - Per-row actions (edit/delete) must have a descriptive `aria-label`
   that includes the record's context (e.g. "Delete order #1029"),
   since a screen reader lacks the visual context of the row.
@@ -90,6 +95,9 @@ a dashboard.
 - **Must not contain**: complex inline editing forms (multiple
   fields per cell) — editing should open a separate panel or modal;
   must not contain another Data Table nested inside it.
+- **Uses**: `specs/pagination.md` for the footer bar,
+  `specs/badge.md` for status cells, and `specs/button.md` for
+  toolbar and row-action controls.
 - A Data Table may be the body of a Card (see `specs/card.md`) —
   this is the primary composition pattern described in
   `patterns/dashboard.md`. When inside a Card, the table spans the
@@ -114,6 +122,7 @@ a dashboard.
 | `color.brand.primary` | selected row background (low opacity), control focus |
 | `color.status.*` | status badges in a cell |
 | `radius.hairline` | (when the table uses an in-cell progress bar) |
+| (pagination bar) | see `specs/pagination.md` |
 | `spacing.component.table-cell-padding-x` / `table-cell-padding-y` | cell padding |
 | `font.size.sm` | cell and header text |
 | `font.weight.medium` | column header, currently sorted column |
@@ -127,6 +136,7 @@ than the body text. Data rows separated only by a thin, light
 horizontal line — no vertical grid lines. Hovering over a row subtly
 darkens the entire row background. A status column shows small
 colored pill badges (green for "active", gray for "inactive"). In
-the card footer, left-aligned, the text "Showing 1 to 10 of 42
+the card footer, the pagination bar described in
+`specs/pagination.md`: left-aligned, the text "Showing 1 to 10 of 42
 entries"; right-aligned, numbered page buttons with the current page
 highlighted in solid `brand.primary` color and white text.
