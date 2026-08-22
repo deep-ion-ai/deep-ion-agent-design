@@ -50,6 +50,7 @@
       ],
       "componentPatterns": [
         "app-shell",
+        "auth",
         "dashboard"
       ]
     }

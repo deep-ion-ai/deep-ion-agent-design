@@ -146,7 +146,7 @@ Select — a text field invites typos a select cannot have.
   purely decorative (a search glyph, a currency symbol) is not part
   of this component — that composition is `specs/input-group.md`'s.
 - **Referenced by**: `specs/input-group.md` (wraps a Text Input with
-  addons).
+  addons), `patterns/auth.md` (email/username and password fields).
 - Lives inside a form, a filter toolbar, or a Card body. Never inside
   a Dropdown Menu panel or a Badge.
 
