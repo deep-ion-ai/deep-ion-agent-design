@@ -194,6 +194,9 @@ failure here — they are not interchangeable.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: any content in a panel, including Cards, Data
   Tables, forms and other components — with one exception below.
 - **Must not contain**: a nested Accordion or Tabs inside another's

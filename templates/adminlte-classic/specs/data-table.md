@@ -89,6 +89,11 @@ a dashboard.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
+- **Images**: avatars and other imagery follow
+  `foundations/imagery.md`, including the required initials fallback.
 - **May contain** per cell: text, status badges (using
   `color.status.*`), a small avatar + text, a group of up to 2–3
   action icons.

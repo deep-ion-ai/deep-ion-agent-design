@@ -97,6 +97,9 @@ text, nothing that can be pressed or turned on.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: ancestor links, separators, and the current
   page's name.
 - **Must not contain**: actions, a dropdown of sibling pages, the

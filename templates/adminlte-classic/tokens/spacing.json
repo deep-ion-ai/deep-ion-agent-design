@@ -18,6 +18,12 @@
     "grid-gap": { "$value": "1.5rem", "$type": "dimension", "$description": "Default gap between cards/panels in a dashboard grid." },
     "sidebar-padding-x": { "$value": "0.5rem", "$type": "dimension", "$description": "Horizontal inner padding of side navigation items." },
     "sidebar-width": { "$value": "15.625rem", "$type": "dimension", "$description": "250px — default width of the side navigation on large screens." },
+    "icon-sm": { "$value": "1rem", "$type": "dimension", "$description": "Icon box beside font.size.xs text: dense table cells, badges, trailing hints. See foundations/iconography.md." },
+    "icon-md": { "$value": "1.25rem", "$type": "dimension", "$description": "Default icon box, paired with font.size.sm text — most of the interface." },
+    "icon-lg": { "$value": "1.5rem", "$type": "dimension", "$description": "Icon box beside font.size.base or lg text: large buttons, empty states." },
+    "avatar-sm": { "$value": "1.5rem", "$type": "dimension", "$description": "Avatar in a table row or a message thread. See foundations/imagery.md." },
+    "avatar-md": { "$value": "2rem", "$type": "dimension", "$description": "Avatar in the navbar account control and in list items." },
+    "avatar-lg": { "$value": "3rem", "$type": "dimension", "$description": "Avatar in a profile header." },
     "viz-height": { "$value": "13.75rem", "$type": "dimension", "$description": "220px — default height of a fixed-height visualisation area inside a card body: a map canvas, or any other visual whose height cannot be derived from its content. Charts that carry axes use a taller plot (see specs/trend-chart-card.md); compact sparklines use their own smaller height. Fixing this as a token keeps a row of visualisation cards aligned and stops the layout shifting while the visual loads." }
   }
 }

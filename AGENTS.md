@@ -23,6 +23,9 @@ repository. It lists every available template with:
 - `path` — where the template's files live.
 - `components` and `componentPatterns` — what's implemented for that
   template in this POC.
+- `foundations` and `foundationDocs` — the template's cross-cutting
+  rules (iconography, imagery, typography), which apply to every
+  component in it.
 
 Do not assume a template exists or guess its contents — read the
 catalog first, every time.
@@ -34,19 +37,23 @@ Once a template is selected, read, in this order:
 1. `templates/<id>/tokens/*.json` — every token file. These are the
    only source of truth for colors, typography, spacing, border
    radii, shadows, and breakpoints.
-2. `templates/<id>/specs/*.md` — one file per component. Each spec
+2. `templates/<id>/foundations/*.md` — the cross-cutting rules every
+   component depends on: which icon library to draw glyphs from, how
+   the font is shipped and applied, and how images behave. Read these
+   before the component specs, because the specs assume them.
+3. `templates/<id>/specs/*.md` — one file per component. Each spec
    defines purpose, anatomy, variants, states, accessibility rules,
    composition rules, and which tokens apply.
-3. `templates/<id>/patterns/*.md` — page-level composition patterns
+4. `templates/<id>/patterns/*.md` — page-level composition patterns
    that combine multiple components (layout, order, responsive
    behavior).
-4. `templates/<id>/README.md` — general context: personality, when
+5. `templates/<id>/README.md` — general context: personality, when
    to use this template.
-5. `templates/<id>/ATTRIBUTION.md` — provenance and licensing notes.
+6. `templates/<id>/ATTRIBUTION.md` — provenance and licensing notes.
    Useful context, not implementation guidance.
 
 **Do not read `templates/<id>/demo/`** for implementation guidance —
-see rule 4 below.
+see rule 3 below.
 
 ## 3. Generate idiomatic code for the target framework — never copy the demo
 
@@ -73,16 +80,29 @@ repository being framework-agnostic. If asked to build a Vue app, do
 not "translate" the demo's JSX line by line — go back to the tokens
 and specs and build the Vue component from those.
 
-## 4. Never invent values outside the defined tokens
+## 4. Use the libraries the foundations call for
+
+Being framework-agnostic does not mean depending on nothing. A
+template's `foundations/` files require the target project to draw
+its icons from a real icon library, to ship the font family rather
+than merely name it, and to render images as real assets. Satisfy
+those requirements with whatever library is idiomatic for the target
+stack — do not substitute emoji, Unicode glyphs, or hand-drawn paths
+for an icon set, and do not skip loading the font because a fallback
+exists. `foundations/iconography.md` and
+`foundations/typography.md` explain why each of those substitutions
+fails.
+
+## 5. Never invent values outside the defined tokens
 
 Every color, font size, spacing value, border radius, shadow, or
 breakpoint you use when generating code must trace back to a key
 defined in that template's `tokens/*.json` files. Do not introduce a
 new hex color, a random padding value, or a shadow that isn't in the
 token set, even if it "looks close enough." If the visual result
-needs a value the tokens don't cover, that's a gap — see rule 5.
+needs a value the tokens don't cover, that's a gap — see rule 6.
 
-## 5. When a spec is missing information, ask — don't assume
+## 6. When a spec is missing information, ask — don't assume
 
 If you're generating a component or a piece of layout and the spec
 doesn't say what to do (e.g. a state, a breakpoint behavior, or a
@@ -94,7 +114,7 @@ code. Consistency across different projects using the same template
 is the entire point of this repository — silent improvisation
 undermines it.
 
-## 6. Token format
+## 7. Token format
 
 Tokens follow the W3C Design Tokens Community Group format (`$value`
 and `$type` keys, with an optional `$description`). Treat `$value` as

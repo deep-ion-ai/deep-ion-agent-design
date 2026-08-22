@@ -112,6 +112,11 @@ component.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
+- **Images**: avatars and other imagery follow
+  `foundations/imagery.md`, including the required initials fallback.
 - **May contain**: the parts named in Anatomy — one leading element,
   one or two lines of text, one trailing element per item.
 - **Must not contain**: multiple columns of aligned data, several

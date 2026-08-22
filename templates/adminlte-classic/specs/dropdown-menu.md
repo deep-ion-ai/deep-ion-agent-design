@@ -145,6 +145,9 @@ what every consumer inherits. They are requirements, not defaults.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: menu items with text labels, leading icons,
   trailing shortcut/count hints, dividers, and section labels.
 - **Must not contain**: form fields, more than roughly ten items

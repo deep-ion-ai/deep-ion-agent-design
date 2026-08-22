@@ -129,6 +129,9 @@ tree. Everything below is what differs.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: a form, a filter set, a navigation menu, a detail
   summary, an Alert (`specs/alert.md`), Dropdown Menus
   (`specs/dropdown-menu.md`), and Buttons (`specs/button.md`).

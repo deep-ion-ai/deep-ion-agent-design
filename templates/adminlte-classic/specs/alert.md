@@ -142,6 +142,9 @@ block a click target hides the real action from keyboard users.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: one or two sentences of text, an optional bold
   lead-in, an inline list of errors (in a validation summary), at
   most one action, and a dismiss control.

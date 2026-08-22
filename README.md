@@ -37,6 +37,8 @@ without hand-pasting design values into every prompt.
 /templates/
   <template-id>/
     tokens/*.json              — design tokens (W3C Design Tokens format)
+    foundations/*.md           — cross-cutting rules: iconography, imagery,
+                                  typography (read before the specs)
     specs/*.md                 — component specifications
     patterns/*.md              — page composition patterns
     demo/                      — human-facing visual reference app (not source of truth)

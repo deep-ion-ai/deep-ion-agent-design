@@ -210,6 +210,9 @@ Three kinds, which behave differently and must not be conflated:
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: a text label, up to one leading and one trailing
   icon, a busy indicator, and — for a notification count — a Badge
   (`specs/badge.md`), whose count must be folded into the button's

@@ -138,6 +138,9 @@ gains nothing.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: previous/next controls, numbered page controls, a
   truncation ellipsis, a results summary, a page-size selector.
 - **Must not contain**: filters, sort controls, or bulk actions —

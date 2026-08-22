@@ -146,6 +146,10 @@ the third is a menu, and belongs in the Navbar
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
+- **Images**: the brand mark follows `foundations/imagery.md`.
 - **May contain**: the brand area, an optional filter, section
   headings, navigation items, one level of submenu, item Badges
   (`specs/badge.md`), and a footer link.
