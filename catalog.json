@@ -15,6 +15,7 @@
       "components": [
         "alert",
         "badge",
+        "breadcrumb",
         "button",
         "card",
         "data-table",
