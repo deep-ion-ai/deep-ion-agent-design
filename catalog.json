@@ -15,6 +15,7 @@
       "components": [
         "alert",
         "badge",
+        "button",
         "card",
         "data-table",
         "dropdown-menu",
