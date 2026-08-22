@@ -1,0 +1,43 @@
+{
+  "$description": "Typographic scale for the 'adminlte-classic' template (Classic Admin). Obtained by observing the public visual identity of AdminLTE — a humanist sans-serif family and a moderate size scale, without large jumps between levels. Original document — see ATTRIBUTION.md.",
+  "font": {
+    "family": {
+      "base": {
+        "$value": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Primary typeface, used for body text, headings, and UI components. A humanist sans-serif with good legibility at high data density (tables, dashboards)."
+      },
+      "monospace": {
+        "$value": "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+        "$type": "fontFamily",
+        "$description": "Monospaced family for tabular/numeric values, codes, and IDs when vertical digit alignment is needed."
+      }
+    },
+    "size": {
+      "xs": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — metadata, badges, small captions." },
+      "sm": { "$value": "0.875rem", "$type": "dimension", "$description": "14px — supporting text, table cells, form labels." },
+      "base": { "$value": "1rem", "$type": "dimension", "$description": "16px — default body text." },
+      "lg": { "$value": "1.25rem", "$type": "dimension", "$description": "20px — card titles, section subtitles." },
+      "xl": { "$value": "2rem", "$type": "dimension", "$description": "32px — highlighted numbers in summary/KPI cards." }
+    },
+    "heading": {
+      "h1": { "$value": "2.5rem", "$type": "dimension", "$description": "40px" },
+      "h2": { "$value": "2rem", "$type": "dimension", "$description": "32px" },
+      "h3": { "$value": "1.75rem", "$type": "dimension", "$description": "28px" },
+      "h4": { "$value": "1.5rem", "$type": "dimension", "$description": "24px" },
+      "h5": { "$value": "1.25rem", "$type": "dimension", "$description": "20px" },
+      "h6": { "$value": "1rem", "$type": "dimension", "$description": "16px" }
+    },
+    "weight": {
+      "regular": { "$value": "400", "$type": "fontWeight" },
+      "medium": { "$value": "500", "$type": "fontWeight", "$description": "Used in card titles and table headers — emphasis without being as heavy as bold." },
+      "semibold": { "$value": "600", "$type": "fontWeight", "$description": "Used in highlighted numbers (KPIs) and page titles." },
+      "bold": { "$value": "700", "$type": "fontWeight" }
+    },
+    "lineHeight": {
+      "tight": { "$value": "1.25", "$type": "number", "$description": "Headings." },
+      "base": { "$value": "1.5", "$type": "number", "$description": "Body text and paragraphs." },
+      "dense": { "$value": "1.2", "$type": "number", "$description": "Table cells and dense data lists." }
+    }
+  }
+}

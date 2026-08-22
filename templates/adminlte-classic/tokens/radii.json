@@ -1,0 +1,11 @@
+{
+  "$description": "Border radii for the 'adminlte-classic' template (Classic Admin). Obtained by observing the public visual identity of AdminLTE — corners are discreetly rounded on most elements, with one notable exception: progress bars are nearly square. Original document — see ATTRIBUTION.md.",
+  "radius": {
+    "none": { "$value": "0rem", "$type": "dimension" },
+    "sm": { "$value": "0.25rem", "$type": "dimension", "$description": "4px — badges, small inputs." },
+    "base": { "$value": "0.375rem", "$type": "dimension", "$description": "6px — default radius for cards, buttons, tables." },
+    "lg": { "$value": "0.5rem", "$type": "dimension", "$description": "8px — modals, highlighted panels." },
+    "pill": { "$value": "50rem", "$type": "dimension", "$description": "Fully rounded — status badges, circular avatars." },
+    "hairline": { "$value": "0.0625rem", "$type": "dimension", "$description": "1px — used specifically for progress bars, which in AdminLTE are nearly square instead of rounded like the rest of the UI." }
+  }
+}
