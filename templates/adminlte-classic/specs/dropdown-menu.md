@@ -225,7 +225,11 @@ accessible name across states.
 - Lives inside a Card header, a Navbar, a button group, or a Data
   Table row action column. It floats above surrounding content and
   is therefore allowed to visually overflow its container — the
-  container must not clip it.
+  container must not clip it. This holds even on a Card that also
+  carries a Ribbon (`specs/ribbon.md`): the ribbon clips its own
+  small corner box, never the card itself, so a card's overflow is
+  never required to be hidden and this menu's panel is never at
+  risk of truncation.
 - A Dropdown Menu may open from inside a Modal or an Offcanvas
   panel. It closes before the overlay containing it closes, and
   Escape dismisses the menu first, the overlay second.

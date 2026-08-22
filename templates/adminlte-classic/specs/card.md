@@ -36,8 +36,13 @@ body:
    without changing the entire card background.
 5. **Ribbon** (optional) — a diagonal corner banner labelling the
    whole card with one word ("New", "Draft"), defined in
-   `specs/ribbon.md`. It requires the card to clip its overflow, and
-   must not be placed in the same corner as the header toolbar.
+   `specs/ribbon.md`. It clips itself, inside its own corner box —
+   the card supplies only a positioning context, never
+   `overflow: hidden` — precisely so a Ribbon and a header toolbar's
+   Dropdown Menu (`specs/dropdown-menu.md`, which floats past the
+   card's own edge and must not be clipped) can coexist on the same
+   card. A Ribbon must still not be placed in the same corner as the
+   header toolbar — see `specs/ribbon.md`'s Accessibility rules.
 
 ### Header toolbar
 
