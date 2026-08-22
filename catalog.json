@@ -1,0 +1,19 @@
+{
+  "$schema-note": "Root catalog of visual identity templates for AI agents. An AI coding agent should read this file first to discover what templates exist before reading anything else in this repository.",
+  "templates": [
+    {
+      "id": "adminlte-classic",
+      "displayName": "Classic Admin",
+      "description": "A dense, data-forward admin dashboard identity: dark side navigation, clean white cards on a soft blue-gray background, subtle shadows, and compact data tables. Good for internal tools, back-office panels, and analytics dashboards.",
+      "path": "templates/adminlte-classic",
+      "tokens": "templates/adminlte-classic/tokens",
+      "specs": "templates/adminlte-classic/specs",
+      "patterns": "templates/adminlte-classic/patterns",
+      "readme": "templates/adminlte-classic/README.md",
+      "attribution": "templates/adminlte-classic/ATTRIBUTION.md",
+      "demo": "templates/adminlte-classic/demo",
+      "components": ["card", "data-table"],
+      "componentPatterns": ["dashboard"]
+    }
+  ]
+}
