@@ -169,7 +169,7 @@ Tab landing once, then Arrow keys inside it.
 - **Must not contain**: another interactive control inside the label,
   block content, or a Checkbox styled to look like a Switch without
   also behaving like one (see Accessibility rules on `role="switch"`).
-- **Referenced by**: none yet — add a consumer here as it merges.
+- **Referenced by**: `patterns/auth.md` (the "Remember me" and terms-agreement Checkboxes).
 - Lives inside a form, a Card body, a Dropdown Menu item (as
   `menuitemcheckbox`/`menuitemradio`, per `specs/dropdown-menu.md` —
   that variant is defined there, not here), or a table cell for
