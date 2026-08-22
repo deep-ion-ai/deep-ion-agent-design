@@ -214,11 +214,14 @@ accessible name across states.
   than acted on.
 - **Referenced by**: `specs/card.md` (header toolbar dropdown),
   `specs/navbar.md` (account and notification menus),
-  `specs/button.md` (split-button group). Those specs describe
-  *which* items their menu holds and how the trigger is placed;
-  everything about how the menu opens, closes, and responds to the
-  keyboard lives here. When a consuming spec merges, add it to this
-  list.
+  `specs/button.md` (split-button group), `specs/select.md` (custom
+  listbox variant borrows this component's floating-panel
+  positioning and keyboard shape, substituting listbox/option roles
+  for menu/menuitem — see that spec's Accessibility rules). Those
+  specs describe *which* items their menu holds and how the trigger
+  is placed; everything about how the menu opens, closes, and
+  responds to the keyboard lives here. When a consuming spec merges,
+  add it to this list.
 - Lives inside a Card header, a Navbar, a button group, or a Data
   Table row action column. It floats above surrounding content and
   is therefore allowed to visually overflow its container — the

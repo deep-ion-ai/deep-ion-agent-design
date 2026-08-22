@@ -229,10 +229,12 @@ Three kinds, which behave differently and must not be conflated:
 - **Referenced by**: `specs/dropdown-menu.md` (trigger and split
   trigger), `specs/card.md` (header toolbar, footer actions),
   `specs/data-table.md` (toolbar and row actions),
-  `specs/alert.md` (action control), and the modal/offcanvas footer
-  actions in `specs/modal.md`. Those specs choose which buttons
-  appear and where; emphasis, size, states, and the rules above are
-  defined here. Add each consumer as it merges.
+  `specs/alert.md` (action control), the modal/offcanvas footer
+  actions in `specs/modal.md`, `specs/input-group.md` (button addon),
+  and `specs/specialized-inputs.md` (File Input's trigger). Those
+  specs choose which buttons appear and where; emphasis, size,
+  states, and the rules above are defined here. Add each consumer as
+  it merges.
 - **References**: `specs/dropdown-menu.md` for everything about the
   split button's menu — this spec deliberately does not restate the
   menu's keyboard behavior.
