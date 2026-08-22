@@ -42,6 +42,11 @@ export {
   RefreshCw,
   LoaderCircle,
   ArrowRight,
+  Eye,
+  EyeOff,
+  Minus,
+  Upload,
+  FileText,
   // status & meaning
   CircleCheck,
   CircleAlert,
