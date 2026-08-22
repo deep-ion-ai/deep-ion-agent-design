@@ -19,6 +19,8 @@
         "card",
         "data-table",
         "dropdown-menu",
+        "modal",
+        "offcanvas",
         "stat-callout"
       ],
       "componentPatterns": [
