@@ -128,12 +128,13 @@ specifying:
   out of scope for this template), an icon by itself with no label
   or accessible name, or a second badge.
 - **Referenced by**: `specs/data-table.md` (status cells),
-  `specs/card.md` (header status badge), and — once merged —
-  `specs/navbar.md` (unread counts on the notification and message
-  triggers) and `specs/direct-chat.md` (unread count in the card
-  header). Those specs choose the colour and the content; the shape,
-  contrast pairing, and announcement rules are defined here. Add
-  each consumer to this list as it merges.
+  `specs/card.md` (header status badge), `specs/navbar.md` (unread
+  counts on the notification and message triggers),
+  `specs/sidebar.md` (item counts), `specs/disclosure.md` (counts on
+  tabs), and — once merged — `specs/direct-chat.md` (unread count in
+  the card header). Those specs choose the colour and the content;
+  the shape, contrast pairing, and announcement rules are defined
+  here. Add each consumer to this list as it merges.
 - Sits inside: a heading, a table cell, a card header, a button, a
   list item, or on the corner of an icon button or avatar. It is
   always attached to something — a badge alone on a page has no
