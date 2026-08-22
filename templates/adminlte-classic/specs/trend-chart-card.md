@@ -107,10 +107,16 @@ readers.
   to December: rose from 1,200 to 4,050, peaking at 4,600 in
   October"). A chart with `alt="Sales chart"` and nothing else is
   not accessible; it merely names the picture.
-- **The plot itself is exposed as an image with a name**
-  (`role="img"` and an accessible name), so assistive tech announces
-  something meaningful rather than reading out axis tick labels as
-  loose text.
+- **The plot is a captioned figure, and must not be `role="img"`.**
+  Wrapping it in an image role hides everything inside it from
+  assistive tech — including the focusable data points the keyboard
+  requirement below depends on, which makes the two rules
+  contradictory. Put the summary in a `<figcaption>` (visually hidden
+  if it should not be seen), and where the charting library exposes a
+  focusable plot surface of its own, give **that** surface its own
+  accessible name: it is a control, and the caption names the figure,
+  not the control. `role="img"` remains correct only for a chart that
+  is genuinely inert — a sparkline with no tooltip, for example.
 - **Series must not be distinguished by colour alone.** This is a
   deliberate divergence from the reference, which distinguishes its
   two series only by hue and offers no legend at all. Every chart

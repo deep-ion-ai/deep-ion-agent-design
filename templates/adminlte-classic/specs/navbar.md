@@ -122,7 +122,14 @@ not required.
 - **The sidebar toggle carries `aria-expanded` and `aria-controls`
   pointing at the sidebar element**, and its accessible name stays
   constant across states ("Toggle navigation"), with `aria-expanded`
-  carrying the state. Renaming it between "Open" and "Close"
+  carrying the state.
+- **`aria-controls` must reference an element that exists.** Below
+  `breakpoint.lg` the sidebar column is unmounted and the off-canvas
+  panel takes its place, so the id has to follow: give the panel the
+  same id, and where neither is mounted — the panel closed at a
+  narrow width — drop the attribute rather than leave it pointing at
+  nothing. `aria-expanded` stands on its own. A dangling
+  `aria-controls` is an invalid reference, not a harmless one. Renaming it between "Open" and "Close"
   announces the state twice and removes the stable phrase
   voice-control users rely on.
 - **Every icon-only trigger needs an `aria-label`** naming what it

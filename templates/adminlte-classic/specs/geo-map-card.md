@@ -107,12 +107,15 @@ deliberate divergence.
   `specs/disclosure.md` panel beneath the map or on a linked page.
   The map must never be the only route to its own numbers. This is
   the single most important rule in this spec.
-- **The map canvas is exposed as an image with an accessible name**
-  that summarises the finding, not the picture: "Sales by country —
-  highest in Brazil, Germany and Japan; no data for 40 countries",
-  rather than "World map". Where a full summary is too long for a
-  name, the name is short and `aria-describedby` points at the
-  summary text.
+- **The map carries an accessible summary of the finding, not of the
+  picture**: "Sales by country — highest in Brazil, Germany and
+  Japan; no data for 40 countries", rather than "World map".
+- **That summary is a `<figcaption>`, not `role="img"` on the
+  canvas.** Regions are focusable — the keyboard rule below requires
+  it — and an image role hides them, and everything else inside,
+  from assistive tech. The two rules cannot both hold. A map with no
+  interactive regions at all may use `role="img"`; one with them
+  never can.
 - **Colour must not be the only encoding.** A choropleth encodes
   value by lightness along a single hue, so it degrades gracefully
   for colour-blind readers — but a legend, tooltips and the data
