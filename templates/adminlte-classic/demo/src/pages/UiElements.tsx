@@ -467,10 +467,24 @@ export function UiElements() {
           <Card
             title="Forecasting"
             titleText="Forecasting"
-            ribbon={{ label: "Beta", accent: "info", corner: "top-end" }}
+            ribbon={{ label: "Beta", accent: "info", corner: "top-start" }}
+            menuItems={[
+              {
+                id: "refresh",
+                label: "Refresh forecast",
+                icon: <RefreshCw strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+              },
+              {
+                id: "edit",
+                label: "Edit assumptions",
+                icon: <Pencil strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+              },
+            ]}
           >
             <p className="text-sm text-text-secondary">
-              Top-end corner — so this card carries no header toolbar.
+              A ribbon and a header overflow menu, together on one card —
+              the ribbon clips its own corner box now, so the menu panel
+              still opens unclipped instead of the whole card hiding it.
             </p>
           </Card>
         </div>
