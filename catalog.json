@@ -54,7 +54,9 @@
         "app-shell",
         "auth",
         "dashboard",
-        "error-page"
+        "error-page",
+        "profile",
+        "settings"
       ]
     }
   ]
