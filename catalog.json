@@ -28,6 +28,7 @@
         "navbar",
         "offcanvas",
         "pagination",
+        "ribbon",
         "sidebar",
         "sparkline-strip",
         "stat-callout",
