@@ -30,10 +30,15 @@ costing corner space and attention for no signal.
 
 ## Anatomy
 
-1. **Banner** (required) — a diagonal strip crossing one corner of
-   the parent, filled with an accent colour, its ends clipped by the
-   parent's edges so it appears to pass behind them.
-2. **Label** (required) — a very short word, in
+1. **Corner box** (required) — a small square region pinned to one
+   corner of the parent, sized to the banner's diagonal footprint,
+   clipping its own contents. This is what cuts the banner's ends —
+   never the parent's own overflow; see Composition rules for why
+   that distinction matters.
+2. **Banner** (required) — a diagonal strip crossing the corner box,
+   filled with an accent colour, its ends cut by the corner box's
+   edges so it appears to pass behind the card.
+3. **Label** (required) — a very short word, in
    `font.weight.semibold`, rendered along the banner's diagonal.
    Roughly six characters at the default size: a ribbon is not a
    place for a phrase, and text that outgrows the banner is a badge
@@ -113,10 +118,20 @@ Two behaviours still apply:
 
 - **Applies to**: a Card (`specs/card.md`). It is documented there
   as an optional decoration.
-- **Requires** of its parent: a positioning context, and clipped
-  overflow so the banner's ends are cut by the card's rounded
-  corners rather than hanging outside them. A parent that cannot
-  clip its overflow cannot carry a ribbon.
+- **Requires** of its parent: a positioning context only
+  (`position: relative` or equivalent) — never clipped overflow on
+  the parent itself. The banner's ends are cut by its own corner
+  box (see Anatomy), not by the card's edges. This is deliberate:
+  a card's header toolbar can carry a Dropdown Menu
+  (`specs/dropdown-menu.md`), whose panel floats past the card's own
+  boundary and must not be clipped by it — a card that clipped its
+  overflow for the ribbon would truncate that panel too. Clipping
+  the ribbon's own small corner box, rather than the whole card,
+  keeps both working on the same card. Where a target stack renders
+  the Dropdown Menu's panel via a portal or fixed positioning
+  outside the card's DOM subtree entirely, clipping the whole card
+  is also safe — but the self-clipping corner box is the one
+  approach that works on every stack, and is the default.
 - **One ribbon per card.** Two ribbons on one card is two labels for
   one thing, and they compete rather than combine.
 - **Must not contain**: an icon, a count, a link, or more than one
