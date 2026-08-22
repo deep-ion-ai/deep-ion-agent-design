@@ -15,7 +15,9 @@ export interface NavbarProps {
   /** Reflects the SIDEBAR's state, not the toggle's own. */
   sidebarOpen: boolean;
   onToggleSidebar: () => void;
-  sidebarId: string;
+  /** Omitted while the sidebar is unmounted — aria-controls must point
+   *  at an element that exists, and aria-expanded stands alone. */
+  sidebarId?: string;
   notifications?: MenuItem[];
   unreadCount?: number;
   account: { name: string; initials: string; items: MenuItem[] };

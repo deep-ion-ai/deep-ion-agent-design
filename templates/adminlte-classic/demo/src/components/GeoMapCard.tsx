@@ -90,7 +90,8 @@ export function GeoMapCard({
         {loading ? (
           <div className="h-full w-full animate-pulse bg-neutral-light" />
         ) : (
-          <div role="img" aria-label={summary} className="h-full w-full">
+          <figure className="m-0 h-full w-full">
+            <figcaption className="sr-only">{summary}</figcaption>
             <ComposableMap
               projection="geoEqualEarth"
               // Cropped above Antarctica: an empty white band at the foot
@@ -148,7 +149,7 @@ export function GeoMapCard({
                 }
               </Geographies>
             </ComposableMap>
-          </div>
+          </figure>
         )}
       </div>
 

@@ -7,6 +7,8 @@ import { IconButton } from "./Button";
 // Demo scaffolding only — see ../../README.md and /AGENTS.md.
 
 export interface OffcanvasProps {
+  /** Lets a trigger elsewhere point aria-controls at this panel. */
+  id?: string;
   open: boolean;
   onClose: () => void;
   title: string;
@@ -26,6 +28,7 @@ export interface OffcanvasProps {
 }
 
 export function Offcanvas({
+  id,
   open,
   onClose,
   title,
@@ -54,6 +57,7 @@ export function Offcanvas({
         <div className="absolute inset-0 bg-overlay-backdrop" onClick={onClose} aria-hidden />
       )}
       <div
+        id={id}
         ref={ref}
         role="dialog"
         aria-modal={blocking ? "true" : undefined}

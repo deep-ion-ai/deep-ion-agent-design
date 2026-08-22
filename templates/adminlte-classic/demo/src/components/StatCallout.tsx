@@ -60,7 +60,10 @@ export function StatCallout({
 
   return (
     <div
-      className={`relative overflow-hidden rounded shadow-card ${fillBg[accent]} ${onFillText[accent]}`}
+      // A column, so the footer strip pins to the bottom: in a row where
+      // one callout has a trend line and another does not, floating
+      // strips leave the row visibly ragged.
+      className={`relative flex h-full flex-col overflow-hidden rounded shadow-card ${fillBg[accent]} ${onFillText[accent]}`}
       aria-busy={loading || undefined}
     >
       {/* Background texture, not content: several times the large icon
@@ -74,7 +77,7 @@ export function StatCallout({
         </span>
       )}
 
-      <div className="relative p-card-padding">
+      <div className="relative flex-1 p-card-padding">
         {loading ? (
           <div className="animate-pulse space-y-2">
             <div className="h-8 w-24 rounded bg-overlay-accent-shade" />

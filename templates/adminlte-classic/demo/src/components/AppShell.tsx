@@ -87,6 +87,7 @@ export function AppShell({
           Offcanvas — the same component, not a second implementation. */}
       {!wide && (
         <Offcanvas
+          id={SIDEBAR_ID}
           open={offcanvasOpen}
           onClose={() => setOffcanvasOpen(false)}
           title="Navigation"
@@ -104,7 +105,10 @@ export function AppShell({
 
       <div className="flex min-w-0 flex-1 flex-col">
         <Navbar
-          sidebarId={SIDEBAR_ID}
+          // Exists as the persistent column when wide, and as the
+          // offcanvas panel when narrow — but not while that panel is
+          // closed, when the toggle carries aria-expanded alone.
+          sidebarId={wide || offcanvasOpen ? SIDEBAR_ID : undefined}
           sidebarOpen={wide ? true : offcanvasOpen}
           onToggleSidebar={() => setOffcanvasOpen((o) => !o)}
           notifications={notifications}

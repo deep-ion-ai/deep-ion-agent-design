@@ -45,6 +45,9 @@ export interface CardProps {
   onRetry?: () => void;
   /** Removes the body's default padding — for a table or list body. */
   flushBody?: boolean;
+  /** Heading level for the card title. Descends from the page's h1 —
+   *  never skip a level to get a size. */
+  headingLevel?: 2 | 3 | 4 | 5 | 6;
   className?: string;
   children?: ReactNode;
 }
@@ -81,10 +84,12 @@ export function Card(props: CardProps) {
     ribbon,
     clickableHref,
     flushBody,
+    headingLevel = 2,
     className = "",
     children,
   } = props;
 
+  const Heading = `h${headingLevel}` as "h2";
   const bodyId = useId();
   const menuId = useId();
   const [collapsed, setCollapsed] = useState(false);
@@ -147,9 +152,9 @@ export function Card(props: CardProps) {
 
       {title !== undefined && (
         <div className="flex items-center gap-2 border-b border-surface-border px-card-padding py-card-header-y">
-          <h3 className="min-w-0 truncate text-lg font-medium text-text-primary">
+          <Heading className="m-0 min-w-0 truncate text-lg font-medium text-text-primary">
             {title}
-          </h3>
+          </Heading>
           {headerBadge}
           <div className="ml-auto flex shrink-0 items-center gap-1">
             {actions}

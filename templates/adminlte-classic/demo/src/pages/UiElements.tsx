@@ -147,7 +147,9 @@ export function UiElements() {
             title="Import failed"
             liveness="alert"
             action={
-              <a href="#retry" className="font-medium text-text-link hover:underline">
+              // On a tinted wash the colour cannot carry the link —
+              // text.link measures 3.79:1 there — so the underline does.
+              <a href="#retry" className="font-medium text-text-primary underline">
                 Retry import
               </a>
             }
