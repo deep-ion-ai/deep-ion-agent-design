@@ -60,7 +60,42 @@ tone, not just their headings.
 | `## Accessibility rules` | Semantic element, ARIA, keyboard operation, focus management, and any contrast constraint. Written as requirements, not suggestions. |
 | `## Composition rules` | What it may contain, what it must not contain, and which other specs it cross-references in each direction. |
 | `## Tokens used` | A two-column table of token path → usage. Every visual value in the spec traces to a row here. |
+| `## Semantic skeleton` *(optional)* | The structure, roles, states and focus order as a minimal HTML fragment. Include one wherever prose cannot pin the markup down — see below. |
 | `## Reference visual description` | Prose describing what a person sees, in our own words. This is what makes the spec renderable by an agent that cannot see the reference. |
+
+### The semantic skeleton
+
+An accessibility contract *is* structure, roles, attributes and focus
+order — describing it only in prose is a lossy encoding of something
+that has an exact form. Three of the defects found in the first test
+pass of the demo existed because the prose was ambiguous; one of them
+was a spec that required `role="img"` on a plot and, four bullets
+later, focusable data points inside it. In prose that survived several
+readings. In markup, a `role="img"` with a `tabindex="0"` inside it is
+wrong at a glance.
+
+So: **include a skeleton in any spec whose markup is contested** —
+anything interactive, anything with ARIA, anything where the reading
+order matters. A Badge does not need one; a Dropdown Menu does.
+
+The rules that keep it from becoming a second `demo/`:
+
+- **Structure, roles, states and focus order. Nothing else.** No
+  classes, no inline styles, no CSS, no framework syntax, no token
+  values. There is nothing to copy because nothing visual is in it.
+- **Say it is a contract, not a snippet.** Every skeleton opens with
+  a line to that effect, and with how to read it on a platform that
+  has no DOM: map the roles onto that platform's accessibility API.
+- **Keep it short** — roughly 25 lines. A skeleton that needs more is
+  a component that needs splitting.
+- **Comment the invariants** that markup cannot show: which item
+  holds the roving tabindex, that the panel is absent rather than
+  hidden, that focus returns to the trigger.
+- **Close with what the skeleton cannot express** — Escape handling,
+  focus restoration, animation — so nobody reads its absence as
+  permission.
+- **It never contradicts the prose.** Where they disagree, one of
+  them is a bug; fix both in the same change.
 
 Copy-pasteable skeleton:
 
@@ -76,6 +111,8 @@ Copy-pasteable skeleton:
 ## States
 
 ## Accessibility rules
+
+## Semantic skeleton   <!-- optional; see above -->
 
 ## Composition rules
 

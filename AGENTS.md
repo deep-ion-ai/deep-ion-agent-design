@@ -80,6 +80,22 @@ repository being framework-agnostic. If asked to build a Vue app, do
 not "translate" the demo's JSX line by line — go back to the tokens
 and specs and build the Vue component from those.
 
+### A spec's "Semantic skeleton" is a contract, not a snippet
+
+Some specs carry a `## Semantic skeleton` section: a minimal HTML
+fragment giving the structure, roles, states and focus order. It
+exists because an accessibility contract has an exact form that prose
+describes only approximately — not as markup to paste.
+
+Reproduce its **structure, roles, states and focus order** in the
+idiom of the target stack. It carries no classes, no styles and no
+framework syntax, so there is nothing else in it to copy. On a
+platform without a DOM (React Native, for example), map each role
+onto that platform's own accessibility API rather than looking for an
+HTML equivalent — the skeleton tells you *what the thing is* and
+*what can be focused in what order*, which every platform can
+express.
+
 ## 4. Use the libraries the foundations call for
 
 Being framework-agnostic does not mean depending on nothing. A
