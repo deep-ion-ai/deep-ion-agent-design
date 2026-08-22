@@ -17,6 +17,7 @@
     "table-cell-padding-y": { "$value": "0.5rem", "$type": "dimension", "$description": "Vertical padding of a table cell — compact, to fit more visible rows." },
     "grid-gap": { "$value": "1.5rem", "$type": "dimension", "$description": "Default gap between cards/panels in a dashboard grid." },
     "sidebar-padding-x": { "$value": "0.5rem", "$type": "dimension", "$description": "Horizontal inner padding of side navigation items." },
-    "sidebar-width": { "$value": "15.625rem", "$type": "dimension", "$description": "250px — default width of the side navigation on large screens." }
+    "sidebar-width": { "$value": "15.625rem", "$type": "dimension", "$description": "250px — default width of the side navigation on large screens." },
+    "viz-height": { "$value": "13.75rem", "$type": "dimension", "$description": "220px — default height of a fixed-height visualisation area inside a card body: a map canvas, or any other visual whose height cannot be derived from its content. Charts that carry axes use a taller plot (see specs/trend-chart-card.md); compact sparklines use their own smaller height. Fixing this as a token keeps a row of visualisation cards aligned and stops the layout shifting while the visual loads." }
   }
 }
