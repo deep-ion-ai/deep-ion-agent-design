@@ -24,7 +24,9 @@
       "primary": { "$value": "#212529", "$type": "color", "$description": "Default body text, on light backgrounds." },
       "secondary": { "$value": "#6c757d", "$type": "color", "$description": "Supporting text, captions, metadata, placeholders." },
       "inverse": { "$value": "#ffffff", "$type": "color", "$description": "Text on dark backgrounds or on top of the primary color." },
-      "link": { "$value": "#0d6efd", "$type": "color", "$description": "Default color for text links, same as the primary color." }
+      "link": { "$value": "#0d6efd", "$type": "color", "$description": "Default color for text links, same as the primary color." },
+      "on-accent": { "$value": "#ffffff", "$type": "color", "$description": "Text and icons placed directly on top of a saturated accent fill. Use ONLY over accents dark enough to carry white text at 4.5:1 or better: brand.primary (4.50:1), brand.secondary (4.69:1), status.success (4.53:1), status.danger (4.53:1), neutral.dark (15.43:1). Over any other fill use text.on-accent-dark." },
+      "on-accent-dark": { "$value": "#212529", "$type": "color", "$description": "Text and icons placed directly on top of a LIGHT accent fill, where text.on-accent would fail WCAG AA. Required over status.warning (white is only 1.63:1; this token is 9.46:1), status.info (white is 1.96:1; this token is 7.88:1) and neutral.light (14.63:1). Every filled-surface component (Stat Callout, Badge, Alert, Button) must pick between this token and text.on-accent based on the accent it renders on — never default to white." }
     },
     "chrome": {
       "sidebar-bg": { "$value": "#212529", "$type": "color", "$description": "Background of the dark side navigation — a signature trait of the classic 'admin dashboard' look." },
@@ -33,6 +35,16 @@
       "sidebar-item-hover-bg": { "$value": "rgba(255, 255, 255, 0.1)", "$type": "color", "$description": "Background of a side navigation item on hover — a translucent white overlay on top of the dark background, the same pattern used for the active state." },
       "sidebar-item-active-bg": { "$value": "rgba(255, 255, 255, 0.1)", "$type": "color", "$description": "Background of the selected/active side navigation item." },
       "topbar-bg": { "$value": "#ffffff", "$type": "color", "$description": "Background of the top bar (topbar) — light, contrasting with the dark sidebar." }
+    },
+    "chart": {
+      "series-1": { "$value": "#0d6efd", "$type": "color", "$description": "First data series in a chart. Matches brand.primary so the dominant series reads as the page's primary accent." },
+      "series-2": { "$value": "#20c997", "$type": "color", "$description": "Second data series — a teal that separates from series-1 in hue and lightness. Color alone must never be the only way series are told apart: a chart using two or more series requires a legend or a per-series shape/pattern, since blue and teal are hard to separate under deuteranopia." },
+      "series-3": { "$value": "#fd7e14", "$type": "color", "$description": "Third data series — a warm orange, reserved for charts that genuinely need a third line. Prefer splitting into two charts over adding a fourth series." },
+      "grid": { "$value": "#dee2e6", "$type": "color", "$description": "Axis lines, gridlines and tick marks inside a chart canvas. Same value as surface.border so chart chrome recedes to the same weight as the surrounding surface dividers." },
+      "sparkline": { "$value": "#6c757d", "$type": "color", "$description": "Line and fill color of a compact sparkline that carries no axes or legend. Deliberately muted (matches text.secondary) so a strip of sparklines reads as supporting detail rather than competing with the primary chart on the same page." }
+    },
+    "overlay": {
+      "backdrop": { "$value": "rgba(33, 37, 41, 0.5)", "$type": "color", "$description": "Dimming layer painted behind a modal, offcanvas panel, or off-canvas sidebar. Built from neutral.dark at 50% opacity so page content stays faintly readable while clearly demoted; the overlay surface itself sits on surface.canvas above it." }
     }
   }
 }
