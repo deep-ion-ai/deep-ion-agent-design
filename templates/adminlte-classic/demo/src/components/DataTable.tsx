@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { Pagination } from "./Pagination";
+import { Badge } from "./Badge";
 
 // Visual reference implementation of templates/adminlte-classic/specs/data-table.md.
 // This is demo scaffolding only — a real project should regenerate this
@@ -29,6 +31,8 @@ export interface DataTableProps<Row> {
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;
+  /** Names the paginated set — a page may hold more than one. */
+  paginationLabel?: string;
 }
 
 function SortIcon({ direction }: { direction: SortDirection }) {
@@ -52,10 +56,8 @@ export function DataTable<Row>({
   loading,
   error,
   onRetry,
+  paginationLabel = "Pagination",
 }: DataTableProps<Row>) {
-  const firstItem = totalCount === 0 ? 0 : (page - 1) * pageSize + 1;
-  const lastItem = Math.min(page * pageSize, totalCount);
-
   return (
     <div>
       <div className="overflow-x-auto">
@@ -110,14 +112,14 @@ export function DataTable<Row>({
             {!loading && error && (
               <tr>
                 <td colSpan={columns.length} className="px-cell-x py-6 text-center">
-                  <p className="text-sm text-status-danger">
+                  <p className="text-sm text-text-accent-danger">
                     Something went wrong loading this table.
                   </p>
                   {onRetry && (
                     <button
                       type="button"
                       onClick={onRetry}
-                      className="mt-1 text-sm font-medium text-brand-primary hover:underline"
+                      className="mt-1 text-sm font-medium text-text-accent-primary hover:underline"
                     >
                       Retry
                     </button>
@@ -152,46 +154,18 @@ export function DataTable<Row>({
         </table>
       </div>
 
-      {!loading && !error && totalCount > 0 && (
-        <div className="mt-4 flex items-center justify-between text-sm text-text-secondary">
-          <span>
-            Showing {firstItem}–{lastItem} of {totalCount} entries
-          </span>
-          <nav className="flex items-center gap-1" aria-label="Pagination">
-            <button
-              type="button"
-              aria-label="Previous page"
-              disabled={page <= 1}
-              onClick={() => onPageChange(page - 1)}
-              className="rounded px-2 py-1 hover:bg-neutral-light disabled:opacity-40"
-            >
-              ‹
-            </button>
-            {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
-              <button
-                key={p}
-                type="button"
-                aria-current={p === page ? "page" : undefined}
-                onClick={() => onPageChange(p)}
-                className={`rounded px-3 py-1 ${
-                  p === page
-                    ? "bg-brand-primary text-text-inverse"
-                    : "hover:bg-neutral-light"
-                }`}
-              >
-                {p}
-              </button>
-            ))}
-            <button
-              type="button"
-              aria-label="Next page"
-              disabled={page >= pageCount}
-              onClick={() => onPageChange(page + 1)}
-              className="rounded px-2 py-1 hover:bg-neutral-light disabled:opacity-40"
-            >
-              ›
-            </button>
-          </nav>
+      {!loading && !error && (
+        <div className="mt-4">
+          {/* The footer bar is specs/pagination.md — the same component a
+              List Group or a card grid uses. */}
+          <Pagination
+            page={page}
+            pageCount={pageCount}
+            onPageChange={onPageChange}
+            totalCount={totalCount}
+            pageSize={pageSize}
+            label={paginationLabel}
+          />
         </div>
       )}
     </div>
@@ -199,14 +173,11 @@ export function DataTable<Row>({
 }
 
 export function StatusBadge({ status }: { status: "active" | "inactive" | "pending" }) {
-  const styles: Record<typeof status, string> = {
-    active: "bg-status-success/10 text-status-success",
-    inactive: "bg-neutral-light text-text-secondary",
-    pending: "bg-status-warning/10 text-status-warning",
-  };
+  // Subtle variant: a column of solid badges out-shouts the data around it.
+  const accent = status === "active" ? "success" : status === "pending" ? "warning" : "neutral";
   return (
-    <span className={`inline-block rounded-pill px-2 py-0.5 text-xs font-medium ${styles[status]}`}>
+    <Badge accent={accent} shape="pill" subtle>
       {status}
-    </span>
+    </Badge>
   );
 }

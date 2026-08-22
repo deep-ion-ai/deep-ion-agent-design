@@ -1,8 +1,18 @@
 # Classic Admin — demo (visual reference only)
 
-This is a minimal React + Tailwind CSS app that renders the Card,
-Data Table, and Dashboard pattern from this template, so a human can
-see what "Classic Admin" looks like before choosing it.
+This is a React + Tailwind CSS app that renders every component this
+template specifies, inside the app shell, so a human can see what
+"Classic Admin" looks like before choosing it.
+
+Two pages, reachable from the sidebar:
+
+- **Overview** — `patterns/dashboard.md`: a metrics row of Stat
+  Callouts, a trend chart, a region map, a sparkline strip, a chat
+  widget, an activity timeline, and the orders Data Table.
+- **UI elements** — a gallery of the primitives: buttons and button
+  groups, badges, alerts, a dropdown menu, modal and offcanvas
+  overlays, tabs/pills/accordion/collapse, the three List Group
+  variants, a timeline, pagination, and ribbons.
 
 **This app is not the source of truth for the template**, and an AI
 agent generating code for a real project must never copy markup,
@@ -45,11 +55,41 @@ npm install
 npm run dev
 ```
 
-This starts a Vite dev server rendering the Dashboard pattern (four
-metric cards + a paginated, sortable orders table) at whatever local
-URL Vite prints.
+This starts a Vite dev server at whatever local URL Vite prints.
 
 ```bash
 npm run build    # production build to dist/
 npm run preview  # preview the production build locally
 ```
+
+## Charts and the map
+
+The trend chart, sparklines and region map are drawn as inline SVG
+with no charting or mapping library. That is deliberate: those specs
+are explicitly library-agnostic, and shipping a library here would
+read as the template endorsing one. The map's geography in particular
+is a simplified stylised outline, not a cartographically accurate
+map — a real project supplies its own.
+
+What the demo does implement faithfully are the parts those specs
+insist on: the legend and per-series mark shapes, the text
+equivalents, the tabular fallback behind a disclosure, the "no data"
+tone distinct from the value scale, and the map's error state, which
+keeps the numbers reachable when the picture fails.
+
+## What to look at
+
+A few behaviours are easier to check by hand than to read:
+
+- **Keyboard** — Tab from the top of the page hits "Skip to content"
+  first. Arrow keys move within the dropdown menu, the tabs, the
+  segmented control and the selectable list; Tab leaves them.
+- **Overlays** — the modal opens with focus on *Cancel*, not on
+  *Delete order*; Escape closes it and focus returns to the trigger.
+- **Contrast** — the `warning` and `info` Stat Callouts render dark
+  text, not white. White on those fills is 1.63:1 and 1.96:1.
+- **Failure states** — "Simulate a map failure" on the Overview page
+  replaces the map with a message, a retry, and the same data as a
+  table.
+- **Narrow viewports** — below 992px the sidebar leaves the layout
+  and returns as a focus-trapping offcanvas panel.
