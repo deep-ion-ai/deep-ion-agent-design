@@ -531,6 +531,35 @@ export function UiElements() {
           </Card>
         </div>
       </Section>
+
+      <Section title="Page patterns">
+        <p className="mb-3 text-sm text-text-secondary">
+          Two page-composition patterns render outside this shell entirely —
+          see <code>patterns/auth.md</code> and <code>patterns/error-page.md</code>.
+          Sign out (account menu, top right) reaches the Auth pattern; these
+          links reach the Error page pattern's two variants.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            emphasis="outline"
+            accent="secondary"
+            onClick={() => {
+              window.location.hash = "#error/404";
+            }}
+          >
+            View 404 page
+          </Button>
+          <Button
+            emphasis="outline"
+            accent="secondary"
+            onClick={() => {
+              window.location.hash = "#error/500";
+            }}
+          >
+            View 500 page
+          </Button>
+        </div>
+      </Section>
     </>
   );
 }

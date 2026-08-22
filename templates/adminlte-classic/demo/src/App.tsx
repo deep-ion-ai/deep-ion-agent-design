@@ -16,6 +16,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { UiElements } from "./pages/UiElements";
 import { Forms } from "./pages/Forms";
 import { Auth, type AuthVariant } from "./pages/Auth";
+import { ErrorPage, type ErrorVariant } from "./pages/ErrorPage";
 import type { SidebarItem } from "./components/Sidebar";
 
 /** patterns/auth.md renders with no shell — this is the one place that
@@ -88,6 +89,11 @@ const AUTH_VARIANT: Record<string, AuthVariant> = {
   "#auth/forgot": "forgot",
 };
 
+const ERROR_VARIANT: Record<string, ErrorVariant> = {
+  "#error/404": "404",
+  "#error/500": "500",
+};
+
 export default function App() {
   const [current, setCurrent] = useState("dashboard");
   const hash = useHashRoute();
@@ -96,6 +102,20 @@ export default function App() {
     return (
       <Auth
         variant={AUTH_VARIANT[hash]}
+        onNavigate={(next) => {
+          window.location.hash = next;
+        }}
+      />
+    );
+  }
+
+  // patterns/error-page.md renders with no shell too — see ErrorPage.tsx.
+  // Any hash under #error/ that isn't one of the two known variants also
+  // lands on 404, the same way an unmatched application route would.
+  if (hash.startsWith("#error/")) {
+    return (
+      <ErrorPage
+        variant={ERROR_VARIANT[hash] ?? "404"}
         onNavigate={(next) => {
           window.location.hash = next;
         }}
