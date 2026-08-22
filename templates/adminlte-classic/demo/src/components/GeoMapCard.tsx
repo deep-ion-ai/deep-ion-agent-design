@@ -1,28 +1,22 @@
 import { useState } from "react";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import geoData from "world-atlas/countries-110m.json";
 import { Card } from "./Card";
 import { Collapse } from "./Disclosure";
 
 // Visual reference implementation of specs/geo-map-card.md.
 // Demo scaffolding only — see ../../README.md and /AGENTS.md.
 //
-// The geography below is a deliberately simplified, stylised outline drawn
-// inline, NOT a cartographically accurate map and not a mapping library.
-// The spec is library-agnostic; a real project supplies its own map. What
-// this demo does implement faithfully are the parts the spec insists on:
-// the "no data" tone, the legend, the tabular equivalent, and the error
-// state that keeps the numbers reachable when the picture fails.
-
-export interface Region {
-  id: string;
-  name: string;
-  /** Rough blob, in the 0 0 400 200 viewBox. */
-  d: string;
-  value: number | null;
-}
+// A real projection over real geography, as the spec requires:
+// react-simple-maps over Natural Earth data (world-atlas), bundled
+// rather than fetched. Both are the DEMO'S choice — see
+// foundations/libraries.md — and both are ISC/BSD-licensed public-domain
+// derived data. No tile server, so nothing is requested at render time.
 
 export interface GeoMapCardProps {
   title: string;
-  regions: Region[];
+  /** Country name (as in the geography data) → value. */
+  values: Record<string, number>;
   formatValue?: (n: number) => string;
   loading?: boolean;
   error?: boolean;
@@ -31,39 +25,42 @@ export interface GeoMapCardProps {
 
 export function GeoMapCard({
   title,
-  regions,
+  values,
   formatValue = (n) => n.toLocaleString(),
   loading,
   error,
   onRetry,
 }: GeoMapCardProps) {
-  const [hovered, setHovered] = useState<Region | null>(null);
-  const values = regions.map((r) => r.value ?? 0);
-  const max = Math.max(1, ...values);
+  const [hovered, setHovered] = useState<{ name: string; value: number | null } | null>(null);
+
+  const named = Object.entries(values).sort((a, b) => b[1] - a[1]);
+  const max = Math.max(1, ...named.map(([, v]) => v));
 
   const dataTable = (
     <table className="w-full border-collapse text-sm">
       <thead>
         <tr className="bg-neutral-light">
-          <th scope="col" className="px-cell-x py-cell-y text-left">Region</th>
-          <th scope="col" className="px-cell-x py-cell-y text-left">Value</th>
+          <th scope="col" className="px-cell-x py-cell-y text-left">
+            Country
+          </th>
+          <th scope="col" className="px-cell-x py-cell-y text-left">
+            Sales
+          </th>
         </tr>
       </thead>
       <tbody>
-        {regions.map((r) => (
-          <tr key={r.id} className="border-t border-surface-border">
-            <td className="px-cell-x py-cell-y">{r.name}</td>
-            <td className="px-cell-x py-cell-y">
-              {r.value === null ? "No data" : formatValue(r.value)}
-            </td>
+        {named.map(([name, value]) => (
+          <tr key={name} className="border-t border-surface-border">
+            <td className="px-cell-x py-cell-y">{name}</td>
+            <td className="px-cell-x py-cell-y">{formatValue(value)}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
 
-  // A map that fails to load must not leave a blank rectangle: the numbers
-  // are still available even when the picture is not.
+  // A map that fails to load must not leave a blank rectangle: the
+  // numbers are still available even when the picture is not.
   if (error) {
     return (
       <Card title={title} titleText={title} collapsible>
@@ -82,9 +79,10 @@ export function GeoMapCard({
     );
   }
 
-  const named = regions.filter((r) => r.value !== null).sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
-  const noData = regions.filter((r) => r.value === null).length;
-  const summary = `${title}. Highest in ${named.slice(0, 3).map((r) => r.name).join(", ")}. No data for ${noData} regions.`;
+  const summary = `${title}. Highest in ${named
+    .slice(0, 3)
+    .map(([n]) => n)
+    .join(", ")}. No data for the remaining countries.`;
 
   return (
     <Card title={title} titleText={title} collapsible>
@@ -92,32 +90,65 @@ export function GeoMapCard({
         {loading ? (
           <div className="h-full w-full animate-pulse bg-neutral-light" />
         ) : (
-          <svg role="img" aria-label={summary} viewBox="0 0 400 200" className="h-full w-full">
-            {regions.map((r) => {
-              const t = r.value === null ? null : (r.value ?? 0) / max;
-              return (
-                <path
-                  key={r.id}
-                  d={r.d}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`${r.name}: ${r.value === null ? "no data" : formatValue(r.value)}`}
-                  onMouseEnter={() => setHovered(r)}
-                  onMouseLeave={() => setHovered(null)}
-                  onFocus={() => setHovered(r)}
-                  onBlur={() => setHovered(null)}
-                  fill={t === null ? "var(--color-neutral-light)" : "var(--color-chart-series-1)"}
-                  fillOpacity={t === null ? 1 : 0.25 + t * 0.75}
-                  stroke={
-                    t === null ? "var(--color-text-secondary)" : "var(--color-chart-grid)"
-                  }
-                  strokeDasharray={t === null ? "3 2" : undefined}
-                  strokeWidth={1}
-                  className="outline-none focus-visible:stroke-brand-primary focus-visible:stroke-2"
-                />
-              );
-            })}
-          </svg>
+          <div role="img" aria-label={summary} className="h-full w-full">
+            <ComposableMap
+              projection="geoEqualEarth"
+              // Cropped above Antarctica: an empty white band at the foot
+              // of the card is a fifth of the map area spent on nothing.
+              projectionConfig={{ scale: 175, center: [0, 14] }}
+              width={800}
+              height={330}
+              style={{ width: "100%", height: "100%" }}
+            >
+              <Geographies geography={geoData}>
+                {({ geographies }) =>
+                  geographies.map((geo) => {
+                    const name = geo.properties.name as string;
+                    const value = values[name] ?? null;
+                    const t = value === null ? null : value / max;
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        tabIndex={value === null ? -1 : 0}
+                        role="button"
+                        aria-label={`${name}: ${
+                          value === null ? "no data" : formatValue(value)
+                        }`}
+                        onMouseEnter={() => setHovered({ name, value })}
+                        onMouseLeave={() => setHovered(null)}
+                        onFocus={() => setHovered({ name, value })}
+                        onBlur={() => setHovered(null)}
+                        style={{
+                          default: {
+                            fill:
+                              t === null
+                                ? "var(--color-neutral-light)"
+                                : "var(--color-chart-series-1)",
+                            fillOpacity: t === null ? 1 : 0.3 + t * 0.7,
+                            stroke: "var(--color-chart-grid)",
+                            strokeWidth: 0.4,
+                            outline: "none",
+                          },
+                          hover: {
+                            fill:
+                              t === null
+                                ? "var(--color-neutral-light)"
+                                : "var(--color-chart-series-1)",
+                            fillOpacity: t === null ? 1 : 0.45 + t * 0.55,
+                            stroke: "var(--color-text-primary)",
+                            strokeWidth: 0.8,
+                            outline: "none",
+                          },
+                          pressed: { outline: "none" },
+                        }}
+                      />
+                    );
+                  })
+                }
+              </Geographies>
+            </ComposableMap>
+          </div>
         )}
       </div>
 
@@ -129,18 +160,18 @@ export function GeoMapCard({
             className="inline-block h-3 w-24 rounded-hairline"
             style={{
               background:
-                "linear-gradient(to right, color-mix(in srgb, var(--color-chart-series-1) 25%, white), var(--color-chart-series-1))",
+                "linear-gradient(to right, color-mix(in srgb, var(--color-chart-series-1) 30%, white), var(--color-chart-series-1))",
             }}
           />
           High
         </span>
         <span className="flex items-center gap-2">
+          {/* Named in the legend, and NOT the lightest shade of the scale,
+              which would read as a low value rather than as absent. */}
           <span
             aria-hidden
             className="inline-block h-3 w-3 border border-dashed border-text-secondary bg-neutral-light"
           />
-          {/* Named in the legend, and NOT the lightest shade of the scale,
-              which would read as a low value rather than as absent. */}
           No data
         </span>
         {hovered && (

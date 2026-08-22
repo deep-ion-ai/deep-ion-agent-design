@@ -65,34 +65,47 @@ npm run preview  # preview the production build locally
 ## The libraries it depends on
 
 Per the template's `foundations/`, an interface is not
-framework-agnostic by depending on nothing. Three dependencies exist
-because the foundations require what they provide — each is a
-**demo-local choice**, not part of the template:
+framework-agnostic by depending on nothing. Each dependency below
+exists because a foundation or a spec requires what it provides —
+and each is a **demo-local choice**, not part of the template.
+`foundations/libraries.md` lists alternatives per ecosystem as
+suggestions; a project picks whatever fits its stack.
 
-| Dependency | Why | Foundation |
+| Dependency | Why | Required by |
 |---|---|---|
-| `lucide-react` | one coherent, stroke-based icon family, rendered inline as SVG so it inherits `currentColor` | `foundations/iconography.md` |
-| `@fontsource-variable/source-sans-3` | ships the family the tokens name, self-hosted and versioned rather than assumed present | `foundations/typography.md` |
-| `@dicebear/core` + `/collection` | the demo has no real user photographs, so avatars are generated deterministically from each name rather than faked with a glyph | `foundations/imagery.md` |
+| `lucide-react` | one coherent, stroke-based icon family, inline SVG inheriting `currentColor` | `foundations/iconography.md` |
+| `@fontsource-variable/source-sans-3` | ships the family the tokens name, self-hosted and versioned | `foundations/typography.md` |
+| `@dicebear/core` + `/collection` | the demo has no real photographs, so avatars are generated per name rather than faked with a glyph | `foundations/imagery.md` |
+| `recharts` | the trend chart and the sparklines — scales, ticks, hit-testing and keyboard navigation, rather than hand-plotted paths | `specs/trend-chart-card.md`, `specs/sparkline-strip.md` |
+| `react-simple-maps` + `world-atlas` | a real projection over real geography, bundled rather than fetched — no tile server, nothing requested at render time | `specs/geo-map-card.md` |
 
 Icons are re-exported from `src/components/icons.ts`, so the set can
 be swapped in one place. No emoji or Unicode characters are used as
-icons anywhere — see the foundation for why that matters.
+icons anywhere.
+
+Every library is wrapped in a component of this demo's own, which is
+where the parts the library does not provide are added: the chart's
+figure caption and text summary, the map's "no data" tone and
+tabular fallback, the accessible names on both.
 
 ## Charts and the map
 
-The trend chart, sparklines and region map are drawn as inline SVG
-with no charting or mapping library. That is deliberate: those specs
-are explicitly library-agnostic, and shipping a library here would
-read as the template endorsing one. The map's geography in particular
-is a simplified stylised outline, not a cartographically accurate
-map — a real project supplies its own.
+The chart is drawn by a charting library and the map by a mapping
+library, as their specs require — hand-plotting a chart means
+reinventing scales, ticks and hit-testing, and a hand-drawn world is
+not a map. What the specs fix is the contract those libraries have to
+satisfy, and the wrappers here enforce it:
 
-What the demo does implement faithfully are the parts those specs
-insist on: the legend and per-series mark shapes, the text
-equivalents, the tabular fallback behind a disclosure, the "no data"
-tone distinct from the value scale, and the map's error state, which
-keeps the numbers reachable when the picture fails.
+- the plot is **focusable and driven by the arrow keys**, so every
+  value the pointer can reveal is reachable without one;
+- the chart carries a **legend pairing each colour with a mark
+  shape**, plus a `<figcaption>` summary naming each series'
+  direction and extremes, and a **data table** behind a disclosure;
+- colours come from `color.chart.*`, never the libraries' defaults;
+- animation is disabled under `prefers-reduced-motion`;
+- the map gives every country an accessible name and a value, marks
+  countries with no data distinctly from a low value, and keeps the
+  numbers reachable as a table when the picture fails.
 
 ## What to look at
 
@@ -113,5 +126,7 @@ A few behaviours are easier to check by hand than to read:
 - **Failure states** — "Simulate a map failure" on the Overview page
   replaces the map with a message, a retry, and the same data as a
   table.
+- **Chart by keyboard** — Tab to the plot and press the arrow keys:
+  the tooltip follows, month by month.
 - **Narrow viewports** — below 992px the sidebar leaves the layout
   and returns as a focus-trapping offcanvas panel.

@@ -67,47 +67,22 @@ const columns: Column<Order>[] = [
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// A deliberately simplified, stylised world — see GeoMapCard.tsx and
-// foundations/imagery.md. Not cartographically accurate, and not a
-// mapping library: a real project supplies its own.
-const REGIONS = [
-  {
-    id: "na",
-    name: "North America",
-    value: 4820,
-    d: "M28,42 L92,26 L124,32 L120,54 L104,62 L98,80 L84,94 L72,74 L58,66 L40,58 Z",
-  },
-  {
-    id: "sa",
-    name: "South America",
-    value: 2140,
-    d: "M116,98 L142,92 L152,106 L146,126 L134,152 L122,156 L118,134 L110,116 Z",
-  },
-  {
-    id: "eu",
-    name: "Europe",
-    value: 5310,
-    d: "M186,34 L214,26 L234,34 L230,50 L212,58 L194,52 L184,44 Z",
-  },
-  {
-    id: "af",
-    name: "Africa",
-    value: 940,
-    d: "M186,64 L224,58 L248,68 L240,88 L226,112 L212,140 L200,132 L194,106 L188,84 Z",
-  },
-  {
-    id: "as",
-    name: "Asia",
-    value: 6180,
-    d: "M236,26 L302,18 L342,28 L360,46 L344,64 L316,72 L296,90 L272,84 L252,66 L238,48 Z",
-  },
-  {
-    id: "oc",
-    name: "Oceania",
-    value: null,
-    d: "M330,112 L362,106 L374,118 L364,136 L340,138 L328,126 Z",
-  },
-];
+// Values by country name, as they appear in the bundled Natural Earth
+// geography (world-atlas). Everything not listed renders as "no data".
+const SALES_BY_COUNTRY: Record<string, number> = {
+  "United States of America": 4820,
+  Brazil: 2140,
+  Germany: 5310,
+  "United Kingdom": 3180,
+  France: 2760,
+  Spain: 1490,
+  Nigeria: 940,
+  India: 6180,
+  Japan: 3260,
+  Australia: 1870,
+  Canada: 2240,
+  Mexico: 1320,
+};
 
 export function Dashboard() {
   const [page, setPage] = useState(1);
@@ -207,8 +182,8 @@ export function Dashboard() {
 
         <div>
           <GeoMapCard
-            title="Sales by region, last 30 days"
-            regions={REGIONS}
+            title="Sales by country, last 30 days"
+            values={SALES_BY_COUNTRY}
             error={mapError}
             onRetry={() => setMapError(false)}
           />

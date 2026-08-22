@@ -1,20 +1,35 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { Card } from "./Card";
 import { Collapse } from "./Disclosure";
+import { usePrefersReducedMotion } from "./motion";
 
 // Visual reference implementation of specs/trend-chart-card.md.
 // Demo scaffolding only — see ../../README.md and /AGENTS.md.
 //
-// Deliberately hand-drawn SVG rather than a charting library: the spec is
-// library-agnostic, and shipping a library here would read as the template
-// endorsing one. A real project plugs in whatever it already uses.
+// Drawn with a charting library, as the spec requires. Recharts is the
+// DEMO'S choice, not the template's: foundations/libraries.md lists
+// starting points per ecosystem, and a project's existing library wins.
+// Everything the spec fixes — the accessible summary, keyboard-reachable
+// values, the legend with per-series marks, token colours, no animation
+// under reduced motion — is enforced here in the wrapper.
+
+export type SeriesMark = "circle" | "square" | "triangle";
 
 export interface Series {
   id: string;
   name: string;
   values: number[];
   /** The second, non-colour signal: a mark shape per series. */
-  mark: "circle" | "square" | "triangle";
+  mark: SeriesMark;
   colorVar: string;
 }
 
@@ -28,15 +43,50 @@ export interface TrendChartCardProps {
   emptyMessage?: string;
 }
 
-const W = 640;
-const H = 260;
-const PAD = { top: 16, right: 16, bottom: 28, left: 44 };
+function MarkGlyph({
+  mark,
+  x,
+  y,
+  fill,
+  size = 4,
+}: {
+  mark: SeriesMark;
+  x: number;
+  y: number;
+  fill: string;
+  size?: number;
+}) {
+  if (mark === "square")
+    return (
+      <rect
+        x={x - size}
+        y={y - size}
+        width={size * 2}
+        height={size * 2}
+        fill={fill}
+      />
+    );
+  if (mark === "triangle")
+    return (
+      <polygon
+        points={`${x},${y - size - 1} ${x + size + 1},${y + size} ${x - size - 1},${y + size}`}
+        fill={fill}
+      />
+    );
+  return <circle cx={x} cy={y} r={size} fill={fill} />;
+}
 
-function Mark({ shape, x, y, fill }: { shape: Series["mark"]; x: number; y: number; fill: string }) {
-  if (shape === "square") return <rect x={x - 3} y={y - 3} width={6} height={6} fill={fill} />;
-  if (shape === "triangle")
-    return <polygon points={`${x},${y - 4} ${x + 4},${y + 3} ${x - 4},${y + 3}`} fill={fill} />;
-  return <circle cx={x} cy={y} r={3.5} fill={fill} />;
+function seriesDot(mark: SeriesMark, colorVar: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (props: any) => (
+    <MarkGlyph
+      mark={mark}
+      x={props.cx}
+      y={props.cy}
+      fill={`var(${colorVar})`}
+      size={3}
+    />
+  );
 }
 
 export function TrendChartCard({
@@ -47,22 +97,17 @@ export function TrendChartCard({
   loading,
   emptyMessage,
 }: TrendChartCardProps) {
-  const [active, setActive] = useState<number | null>(null);
+  const reduceMotion = usePrefersReducedMotion();
 
-  const { max, points, ticks } = useMemo(() => {
-    const all = series.flatMap((s) => s.values);
-    const rawMax = Math.max(1, ...all);
-    const max = Math.ceil(rawMax / 1000) * 1000 || rawMax;
-    const innerW = W - PAD.left - PAD.right;
-    const innerH = H - PAD.top - PAD.bottom;
-    const x = (i: number) => PAD.left + (innerW * i) / Math.max(1, labels.length - 1);
-    const y = (v: number) => PAD.top + innerH - (innerH * v) / max;
-    return {
-      max,
-      points: series.map((s) => s.values.map((v, i) => ({ x: x(i), y: y(v), v }))),
-      ticks: [0, 0.25, 0.5, 0.75, 1].map((f) => ({ v: max * f, y: y(max * f) })),
-    };
-  }, [series, labels.length]);
+  const data = useMemo(
+    () =>
+      labels.map((label, i) => {
+        const row: Record<string, string | number> = { label };
+        series.forEach((s) => (row[s.id] = s.values[i]));
+        return row;
+      }),
+    [labels, series],
+  );
 
   // The text equivalent: name, period, start, end, direction, extremes.
   const summary = series
@@ -79,122 +124,109 @@ export function TrendChartCard({
   if (emptyMessage) {
     return (
       <Card title={title} titleText={title} collapsible>
-        <p className="py-8 text-center text-sm text-text-secondary">{emptyMessage}</p>
+        <p className="py-8 text-center text-sm text-text-secondary">
+          {emptyMessage}
+        </p>
       </Card>
     );
   }
 
   return (
     <Card title={title} titleText={title} collapsible loading={loading}>
-      {/* Legend: required, because colour alone does not separate series. */}
+      {/* Legend: required, and pairs each colour with its mark shape, so
+          identity never rests on colour alone. */}
       <ul className="m-0 mb-3 flex list-none flex-wrap gap-4 p-0">
         {series.map((s) => (
-          <li key={s.id} className="flex items-center gap-2 text-sm text-text-secondary">
+          <li
+            key={s.id}
+            className="flex items-center gap-2 text-sm text-text-secondary"
+          >
             <svg width="14" height="14" aria-hidden>
-              <Mark shape={s.mark} x={7} y={7} fill={`var(${s.colorVar})`} />
+              <MarkGlyph
+                mark={s.mark}
+                x={7}
+                y={7}
+                fill={`var(${s.colorVar})`}
+              />
             </svg>
             {s.name}
           </li>
         ))}
       </ul>
 
-      <div className="overflow-x-auto">
-        <svg
-          role="img"
-          aria-label={`${title}. ${summary}`}
-          viewBox={`0 0 ${W} ${H}`}
-          className="h-[260px] w-full min-w-[32rem]"
-          onMouseLeave={() => setActive(null)}
-        >
-          {ticks.map((t) => (
-            <g key={t.v}>
-              <line
-                x1={PAD.left}
-                x2={W - PAD.right}
-                y1={t.y}
-                y2={t.y}
+      {/* The summary carries the chart's content for anyone who cannot see
+          it. It is a figcaption rather than role="img" on the plot: the
+          plot is keyboard-operable, and role="img" would hide the very
+          interaction the spec requires from assistive tech. */}
+      <figure className="m-0">
+        <figcaption className="sr-only">
+          {title}. {summary}
+        </figcaption>
+        <div className="h-[260px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={data}
+              margin={{ top: 8, right: 12, bottom: 0, left: 0 }}
+              // Makes the plot focusable and driven by the arrow keys, so
+              // every value the pointer can reveal is reachable without one.
+              accessibilityLayer
+              // That focusable surface is role="application", so it needs a
+              // name of its own — the figcaption names the figure, not the
+              // control inside it.
+              aria-label={`${title}, interactive chart. Use the arrow keys to move between months.`}
+            >
+              <CartesianGrid
                 stroke="var(--color-chart-grid)"
-                strokeWidth={1}
+                vertical={false}
               />
-              <text
-                x={PAD.left - 8}
-                y={t.y + 4}
-                textAnchor="end"
-                fontSize="10"
-                fill="var(--color-text-secondary)"
-              >
-                {formatValue(Math.round(t.v))}
-              </text>
-            </g>
-          ))}
-
-          {labels.map((lb, i) =>
-            i % Math.ceil(labels.length / 12) === 0 ? (
-              <text
-                key={lb}
-                x={points[0]?.[i]?.x ?? 0}
-                y={H - 8}
-                textAnchor={i === 0 ? "start" : i === labels.length - 1 ? "end" : "middle"}
-                fontSize="10"
-                fill="var(--color-text-secondary)"
-              >
-                {lb}
-              </text>
-            ) : null,
-          )}
-
-          {series.map((s, si) => (
-            <g key={s.id}>
-              <polyline
-                fill="none"
-                stroke={`var(${s.colorVar})`}
-                strokeWidth={2}
-                points={points[si].map((p) => `${p.x},${p.y}`).join(" ")}
+              <XAxis
+                dataKey="label"
+                tick={{ fill: "var(--color-text-secondary)", fontSize: 12 }}
+                tickLine={false}
+                axisLine={{ stroke: "var(--color-chart-grid)" }}
               />
-              {points[si].map((p, i) => (
-                <Mark key={i} shape={s.mark} x={p.x} y={p.y} fill={`var(${s.colorVar})`} />
+              <YAxis
+                width={56}
+                tick={{ fill: "var(--color-text-secondary)", fontSize: 12 }}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(v: number) => formatValue(v)}
+              />
+              <Tooltip
+                cursor={{ stroke: "var(--color-chart-grid)" }}
+                formatter={(value, name) => [
+                  formatValue(Number(value)),
+                  String(name),
+                ]}
+                contentStyle={{
+                  background: "var(--color-surface-canvas)",
+                  border: "1px solid var(--color-surface-border)",
+                  borderRadius: "var(--radius-base)",
+                  boxShadow: "var(--shadow-raised)",
+                  fontSize: "var(--font-size-sm)",
+                }}
+                labelStyle={{
+                  color: "var(--color-text-primary)",
+                  fontWeight: 500,
+                }}
+              />
+              {series.map((s) => (
+                <Line
+                  key={s.id}
+                  type="monotone"
+                  dataKey={s.id}
+                  name={s.name}
+                  stroke={`var(${s.colorVar})`}
+                  strokeWidth={2}
+                  dot={seriesDot(s.mark, s.colorVar)}
+                  activeDot={{ r: 5 }}
+                  isAnimationActive={!reduceMotion}
+                />
               ))}
-            </g>
-          ))}
-
-          {/* One focusable hit area per period, so every value the pointer
-              can reveal is reachable by keyboard too. */}
-          {labels.map((lb, i) => (
-            <rect
-              key={lb}
-              x={(points[0]?.[i]?.x ?? 0) - 12}
-              y={PAD.top}
-              width={24}
-              height={H - PAD.top - PAD.bottom}
-              fill="transparent"
-              tabIndex={0}
-              role="button"
-              aria-label={`${lb}: ${series.map((s) => `${s.name} ${formatValue(s.values[i])}`).join(", ")}`}
-              onMouseEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
-              onBlur={() => setActive(null)}
-            />
-          ))}
-
-          {active !== null && (
-            <line
-              x1={points[0][active].x}
-              x2={points[0][active].x}
-              y1={PAD.top}
-              y2={H - PAD.bottom}
-              stroke="var(--color-chart-grid)"
-              strokeWidth={1}
-            />
-          )}
-        </svg>
-      </div>
-
-      {active !== null && (
-        <p className="mt-2 rounded border border-surface-border bg-surface-canvas px-3 py-2 text-sm shadow-raised">
-          <strong className="font-medium">{labels[active]}</strong>{" "}
-          {series.map((s) => `· ${s.name} ${formatValue(s.values[active])}`).join(" ")}
-        </p>
-      )}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </figure>
 
       <div className="mt-3 border-t border-surface-border pt-3">
         <Collapse label="View data table">
@@ -205,7 +237,11 @@ export function TrendChartCard({
                   Month
                 </th>
                 {series.map((s) => (
-                  <th key={s.id} scope="col" className="px-cell-x py-cell-y text-left">
+                  <th
+                    key={s.id}
+                    scope="col"
+                    className="px-cell-x py-cell-y text-left"
+                  >
                     {s.name}
                   </th>
                 ))}
