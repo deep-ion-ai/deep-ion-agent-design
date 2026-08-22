@@ -9,22 +9,22 @@ a quick read of key metrics followed by a detailed listing.
 
 This is a composition pattern, not a new component: it does not
 introduce anatomy or states of its own beyond what the two
-components already define. It only describes layout, order, and how
-the page's surrounding chrome (page background, spacing) relates to
-the tokens.
+components already define. It only describes layout and order.
+
+**This pattern describes the content region only.** The frame around
+it — the dark Sidebar, the Navbar, the content region's background
+and padding, the page header and breadcrumb — is
+`patterns/app-shell.md`, which every page in the application shares.
+A dashboard is what fills the shell's content region, and must not
+restate or modify the shell.
 
 ## Page structure
 
-1. **Page background** — the full page area uses
-   `color.surface.muted` as background, so that the white cards
-   (`color.surface.canvas`) visually float above it. This contrast is
-   central to the template's identity: content never sits directly
-   on a white page background.
-2. **Page header** — a short title (`h1`, using `font.heading.h1` /
-   `font.weight.semibold`) at the top of the content area, optionally
-   with a one-line description below it in `color.text.secondary`.
-   Page margins use `spacing.8` on the sides on large screens.
-3. **Metrics row** — a horizontal grid of 2 to 4 blocks, one per key
+1. **Page header** — provided by the shell
+   (`patterns/app-shell.md`): the page title, an optional one-line
+   description, and the breadcrumb. A dashboard adds nothing to it
+   beyond supplying the title.
+2. **Metrics row** — a horizontal grid of 2 to 4 blocks, one per key
    metric (e.g. "Orders today", "Revenue", "New users", "Open
    tickets"), sharing equal width and spaced with
    `spacing.grid-gap`. On screens below the `md` breakpoint, the grid
@@ -38,7 +38,7 @@ the tokens.
    dense and colourful, and Stat Callouts when the page needs a
    strong entry point and the colour can carry meaning about each
    number.
-4. **Detail section** — below the metrics row, a single full-width
+3. **Detail section** — below the metrics row, a single full-width
    Default-variant Card whose body contains a Data Table (see
    `specs/data-table.md`) listing the underlying records for the
    metrics above (e.g. the list of recent orders). The Card header
@@ -78,19 +78,17 @@ the tokens.
 
 | Token | Usage |
 |---|---|
-| `color.surface.muted` | page background |
 | `color.surface.canvas` | card backgrounds (inherited from Card spec) |
-| `font.heading.h1` + `font.weight.semibold` | page title |
-| `color.text.secondary` | page description, section subtitle |
-| `spacing.8` | page horizontal margins on large screens |
+| `color.text.secondary` | section subtitle |
 | `spacing.grid-gap` | gap between metric cards, and between the metrics row and the detail section |
 | `spacing.6` | gap between multiple stacked detail sections, if more than one |
 | `breakpoint.md`, `breakpoint.lg` | layout collapse points described above |
 
 ## Reference visual description
 
-A page with a soft blue-gray background. At the top, a page title in
-dark, semi-bold text. Below it, four evenly-spaced white cards in a
+The content region of the app shell, on its soft blue-gray
+background, beneath the page title the shell provides. Four
+evenly-spaced white cards in a
 row, each showing a small label and a large number, with a subtle
 icon in the corner — these summarize the page's key numbers at a
 glance. Beneath that row, a single wide white card spans the full
