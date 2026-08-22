@@ -37,6 +37,9 @@ A project whose platform has no such package (a native app, for
 example) bundles the font files by the platform's own mechanism. The
 requirement is that the family is *shipped*, not how.
 
+`foundations/libraries.md` lists starting points per ecosystem, as
+suggestions rather than requirements.
+
 ### Which weights to ship
 
 Only those the tokens use: `font.weight.regular` (400),

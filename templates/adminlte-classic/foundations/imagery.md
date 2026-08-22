@@ -34,6 +34,9 @@ a consistent line weight and palette, chosen to sit alongside the
 icon set rather than to compete with it. A single mismatched
 illustration is more noticeable than none at all.
 
+For generated avatars and image tooling, `foundations/libraries.md`
+lists starting points per ecosystem — suggestions, not requirements.
+
 ## Avatars
 
 1. **Shape** — a circle (`radius.pill`). Squares are acceptable for

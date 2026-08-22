@@ -85,13 +85,22 @@ and specs and build the Vue component from those.
 Being framework-agnostic does not mean depending on nothing. A
 template's `foundations/` files require the target project to draw
 its icons from a real icon library, to ship the font family rather
-than merely name it, and to render images as real assets. Satisfy
-those requirements with whatever library is idiomatic for the target
-stack — do not substitute emoji, Unicode glyphs, or hand-drawn paths
-for an icon set, and do not skip loading the font because a fallback
-exists. `foundations/iconography.md` and
-`foundations/typography.md` explain why each of those substitutions
-fails.
+than merely name it, to render images as real assets, and to draw
+charts and maps with a real charting or mapping library. Do not
+substitute emoji, Unicode glyphs, or hand-drawn paths for an icon
+set; do not skip loading the font because a fallback exists; do not
+hand-plot a chart.
+
+**Which library is the target project's decision, not the
+template's.** `foundations/libraries.md` lists suggestions per
+ecosystem — they are starting points to evaluate, never a
+requirement, and a library the project already depends on that meets
+the spec's requirements always wins. What the specs do fix is the
+contract the library must satisfy (keyboard-reachable tooltips, an
+accessible name on a plot, and so on): check a candidate against it
+before adopting, and wrap it in a component of your own so the
+contract lives in one place. When more than one candidate fits,
+propose rather than assume — see rule 6.
 
 ## 5. Never invent values outside the defined tokens
 

@@ -7,12 +7,21 @@ over a period, so the reader can see the shape of a trend rather
 than a single number. It is the "how did we get here" companion to
 the Stat Callout's "where are we now".
 
-The spec is **charting-library agnostic** and must stay that way. It
-describes what the chart must show, what it must never rely on, and
-what it must expose to a reader who cannot see it — not which
-library draws it. A consuming project may already own a charting
-library; a generating agent must be able to satisfy this spec with
-whichever one is in use.
+**Use a charting library.** A chart is scales, ticks, layout,
+hit-testing and responsive behaviour, and hand-drawing those is how a
+chart ends up with a broken axis at the eleventh data point. Which
+library is the consuming project's choice — this spec names none, and
+a library the project already uses always wins;
+`foundations/libraries.md` lists starting points per ecosystem as
+suggestions.
+
+What this spec does fix is the **contract the library has to
+satisfy**, listed under Accessibility rules below. Check a candidate
+against it before adopting: a library that cannot produce a
+keyboard-reachable tooltip or an accessible name on its plot is
+disqualified here, however good it looks. Wrap whatever is chosen in
+a component of your own, so this contract is enforced in one place
+and the library stays replaceable.
 
 Reach for it when the *shape over time* is the message. When only
 the latest value matters, a Stat Callout (`specs/stat-callout.md`)
@@ -107,9 +116,14 @@ readers.
   two series only by hue and offers no legend at all. Every chart
   here carries a legend, and each series carries a second
   distinguishing signal — a mark shape at its data points, a dash
-  pattern, or a direct label at the end of the line. `series-1`
-  (blue) and `series-2` (teal) are not reliably separable under
-  deuteranopia, as `tokens/colors.json` records.
+  pattern, or a direct label at the end of the line. The reason is
+  measured rather than assumed: the three `color.chart.series-*`
+  values clear colour-vision separation (worst adjacent pair, ΔE
+  12.7 under deuteranopia), but `series-2` and `series-3` sit at
+  2.07:1 and 2.5:1 against a light chart surface — below the 3:1 a
+  mark needs to carry identity on its own. The legend, the labels
+  and the data-table equivalent are what discharge that, which is
+  why all three are required here.
 - **Colours come from `color.chart.series-*`**, in order, and are
   assigned consistently: the same measure keeps the same colour
   across every chart on the page and between pages. Re-colouring the
@@ -147,7 +161,9 @@ readers.
   itself.
 - **Uses**: `specs/card.md`, `specs/disclosure.md` (summary),
   `specs/data-table.md` (tabular equivalent),
-  `specs/dropdown-menu.md` (period switcher, via the card toolbar).
+  `specs/dropdown-menu.md` (period switcher, via the card toolbar),
+  and a charting library of the project's choosing — see
+  `foundations/libraries.md`.
 - **Placement**: in the content region of `patterns/app-shell.md`,
   typically beside or below the metrics row of
   `patterns/dashboard.md`. A chart card spans at least half the

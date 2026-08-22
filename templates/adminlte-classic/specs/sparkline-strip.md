@@ -123,7 +123,13 @@ attention it does not repay.
 - **Relationship to Trend Chart Card**: where a single measure
   deserves a scale, an axis and a tooltip, it is a Trend Chart Card.
   A sparkline is a summary, not a smaller chart.
-- **Uses**: `specs/card.md` (container and error state).
+- **Uses**: `specs/card.md` (container and error state), and — where
+  the project prefers it — the same charting library the Trend Chart
+  Card uses. A sparkline is the one chart in this template small
+  enough that a hand-drawn path is a reasonable alternative to a
+  library: no axes, no ticks, no legend, no hit-testing. Either way
+  the accessible name required above is not optional. See
+  `foundations/libraries.md`.
 
 ## Tokens used
 
