@@ -1,0 +1,10 @@
+{
+  "$description": "Breakpoints responsivos do template 'adminlte-classic' (Classic Admin). Extraídos por observação da identidade visual pública do AdminLTE, que segue a escala responsiva padrão do Bootstrap 5. A navegação lateral colapsa para um menu recolhido/off-canvas abaixo do breakpoint 'lg'. Documento original — ver ATTRIBUTION.md.",
+  "breakpoint": {
+    "sm": { "$value": "36rem", "$type": "dimension", "$description": "576px — celulares em paisagem." },
+    "md": { "$value": "48rem", "$type": "dimension", "$description": "768px — tablets." },
+    "lg": { "$value": "62rem", "$type": "dimension", "$description": "992px — ponto em que a sidebar deixa de ficar fixa/expandida e passa a se comportar como off-canvas." },
+    "xl": { "$value": "75rem", "$type": "dimension", "$description": "1200px — desktops." },
+    "xxl": { "$value": "87.5rem", "$type": "dimension", "$description": "1400px — telas largas." }
+  }
+}

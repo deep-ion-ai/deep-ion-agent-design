@@ -1,0 +1,22 @@
+{
+  "$description": "Escala de espaçamento do template 'adminlte-classic' (Classic Admin). Extraída por observação da identidade visual pública do AdminLTE — escala baseada em incrementos de 4px/8px sobre uma base de 16px, típica de dashboards densos em dados. Documento original — ver ATTRIBUTION.md.",
+  "spacing": {
+    "0": { "$value": "0rem", "$type": "dimension" },
+    "1": { "$value": "0.25rem", "$type": "dimension", "$description": "4px — espaçamento mínimo, entre ícone e texto adjacente." },
+    "2": { "$value": "0.5rem", "$type": "dimension", "$description": "8px — padding interno de itens pequenos (badges, botões compactos)." },
+    "3": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — padding de célula de tabela." },
+    "4": { "$value": "1rem", "$type": "dimension", "$description": "16px — unidade base. Padding padrão de card, gap entre elementos de um grupo." },
+    "5": { "$value": "1.5rem", "$type": "dimension", "$description": "24px — gap entre cards em um grid, padding de seções de página." },
+    "6": { "$value": "2rem", "$type": "dimension", "$description": "32px — separação entre blocos maiores de layout." },
+    "8": { "$value": "3rem", "$type": "dimension", "$description": "48px — margens de página, respiro entre header e conteúdo principal." }
+  },
+  "component": {
+    "card-padding": { "$value": "1rem", "$type": "dimension", "$description": "Padding interno padrão do corpo do card." },
+    "card-header-padding-y": { "$value": "0.75rem", "$type": "dimension", "$description": "Padding vertical do cabeçalho do card." },
+    "table-cell-padding-x": { "$value": "0.75rem", "$type": "dimension", "$description": "Padding horizontal de célula de tabela." },
+    "table-cell-padding-y": { "$value": "0.5rem", "$type": "dimension", "$description": "Padding vertical de célula de tabela — compacto, para permitir mais linhas visíveis." },
+    "grid-gap": { "$value": "1.5rem", "$type": "dimension", "$description": "Gap padrão entre cards/painéis em um grid de dashboard." },
+    "sidebar-padding-x": { "$value": "0.5rem", "$type": "dimension", "$description": "Padding horizontal interno dos itens de navegação lateral." },
+    "sidebar-width": { "$value": "15.625rem", "$type": "dimension", "$description": "250px — largura padrão da navegação lateral em telas grandes." }
+  }
+}

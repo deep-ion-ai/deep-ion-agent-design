@@ -1,0 +1,38 @@
+{
+  "$description": "Paleta de cores do template 'adminlte-classic' (Classic Admin). Valores extraídos por observação da identidade visual pública do projeto AdminLTE (ColorlibHQ) — ver ATTRIBUTION.md. Este é um documento original, não um arquivo do AdminLTE.",
+  "color": {
+    "brand": {
+      "primary": { "$value": "#0d6efd", "$type": "color", "$description": "Cor de ação primária: botões principais, links, itens de navegação ativos, foco de elementos interativos." },
+      "secondary": { "$value": "#6c757d", "$type": "color", "$description": "Cor de ação secundária/neutra: botões secundários, texto auxiliar de ênfase média." }
+    },
+    "status": {
+      "success": { "$value": "#198754", "$type": "color", "$description": "Confirmação, estado concluído, valores positivos." },
+      "danger": { "$value": "#dc3545", "$type": "color", "$description": "Erro, exclusão, valores críticos/negativos." },
+      "warning": { "$value": "#ffc107", "$type": "color", "$description": "Alerta, estado pendente de atenção." },
+      "info": { "$value": "#0dcaf0", "$type": "color", "$description": "Informação neutra, dicas, badges informativos." }
+    },
+    "neutral": {
+      "light": { "$value": "#f8f9fa", "$type": "color", "$description": "Neutro claro: fundos sutis, hover de linhas de tabela, divisores de seção." },
+      "dark": { "$value": "#212529", "$type": "color", "$description": "Neutro escuro: texto de alto contraste, fundo de elementos escuros (ex.: sidebar)." }
+    },
+    "surface": {
+      "canvas": { "$value": "#ffffff", "$type": "color", "$description": "Fundo padrão de superfícies de conteúdo: cards, tabelas, painéis." },
+      "muted": { "$value": "#f4f6f9", "$type": "color", "$description": "Fundo da área de conteúdo por trás dos cards/painéis — leve cinza-azulado que separa a superfície do card do restante da página." },
+      "border": { "$value": "#dee2e6", "$type": "color", "$description": "Cor padrão de bordas e divisores entre elementos de superfície." }
+    },
+    "text": {
+      "primary": { "$value": "#212529", "$type": "color", "$description": "Texto padrão de corpo, sobre fundos claros." },
+      "secondary": { "$value": "#6c757d", "$type": "color", "$description": "Texto de apoio, legendas, metadados, placeholders." },
+      "inverse": { "$value": "#ffffff", "$type": "color", "$description": "Texto sobre fundos escuros ou sobre a cor primária." },
+      "link": { "$value": "#0d6efd", "$type": "color", "$description": "Cor padrão de links de texto, igual à cor primária." }
+    },
+    "chrome": {
+      "sidebar-bg": { "$value": "#212529", "$type": "color", "$description": "Fundo da navegação lateral escura — traço de identidade característico do estilo 'admin dashboard' clássico." },
+      "sidebar-text": { "$value": "#c2c7d0", "$type": "color", "$description": "Texto padrão dos itens de navegação lateral, em repouso, sobre o fundo escuro." },
+      "sidebar-text-active": { "$value": "#ffffff", "$type": "color", "$description": "Texto do item de navegação lateral em hover, foco ou estado ativo." },
+      "sidebar-item-hover-bg": { "$value": "rgba(255, 255, 255, 0.1)", "$type": "color", "$description": "Fundo do item de navegação lateral em hover — sobreposição branca translúcida sobre o fundo escuro, mesmo padrão usado no estado ativo." },
+      "sidebar-item-active-bg": { "$value": "rgba(255, 255, 255, 0.1)", "$type": "color", "$description": "Fundo do item de navegação lateral selecionado/ativo." },
+      "topbar-bg": { "$value": "#ffffff", "$type": "color", "$description": "Fundo da barra superior (topbar) — clara, contrastando com a sidebar escura." }
+    }
+  }
+}

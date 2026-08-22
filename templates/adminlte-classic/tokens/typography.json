@@ -1,0 +1,43 @@
+{
+  "$description": "Escala tipográfica do template 'adminlte-classic' (Classic Admin). Extraída por observação da identidade visual pública do AdminLTE — família de fonte humanista sans-serif e escala de tamanhos moderada, sem grandes saltos entre níveis. Documento original — ver ATTRIBUTION.md.",
+  "font": {
+    "family": {
+      "base": {
+        "$value": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Família tipográfica principal, usada em corpo de texto, títulos e componentes de UI. Fonte humanista sans-serif com boa legibilidade em densidade de dados alta (tabelas, dashboards)."
+      },
+      "monospace": {
+        "$value": "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+        "$type": "fontFamily",
+        "$description": "Família monoespaçada para valores tabulares/numéricos, códigos e IDs quando alinhamento vertical de dígitos é necessário."
+      }
+    },
+    "size": {
+      "xs": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — metadados, badges, legendas pequenas." },
+      "sm": { "$value": "0.875rem", "$type": "dimension", "$description": "14px — texto de apoio, células de tabela, labels de formulário." },
+      "base": { "$value": "1rem", "$type": "dimension", "$description": "16px — corpo de texto padrão." },
+      "lg": { "$value": "1.25rem", "$type": "dimension", "$description": "20px — títulos de card, subtítulos de seção." },
+      "xl": { "$value": "2rem", "$type": "dimension", "$description": "32px — números de destaque em cards de resumo/KPI." }
+    },
+    "heading": {
+      "h1": { "$value": "2.5rem", "$type": "dimension", "$description": "40px" },
+      "h2": { "$value": "2rem", "$type": "dimension", "$description": "32px" },
+      "h3": { "$value": "1.75rem", "$type": "dimension", "$description": "28px" },
+      "h4": { "$value": "1.5rem", "$type": "dimension", "$description": "24px" },
+      "h5": { "$value": "1.25rem", "$type": "dimension", "$description": "20px" },
+      "h6": { "$value": "1rem", "$type": "dimension", "$description": "16px" }
+    },
+    "weight": {
+      "regular": { "$value": "400", "$type": "fontWeight" },
+      "medium": { "$value": "500", "$type": "fontWeight", "$description": "Usado em títulos de card e cabeçalhos de tabela — ênfase sem ser tão pesado quanto bold." },
+      "semibold": { "$value": "600", "$type": "fontWeight", "$description": "Usado em números de destaque (KPIs) e títulos de página." },
+      "bold": { "$value": "700", "$type": "fontWeight" }
+    },
+    "lineHeight": {
+      "tight": { "$value": "1.25", "$type": "number", "$description": "Títulos e headings." },
+      "base": { "$value": "1.5", "$type": "number", "$description": "Corpo de texto e parágrafos." },
+      "dense": { "$value": "1.2", "$type": "number", "$description": "Células de tabela e listas densas de dados." }
+    }
+  }
+}

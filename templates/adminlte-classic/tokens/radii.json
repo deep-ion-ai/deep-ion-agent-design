@@ -1,0 +1,11 @@
+{
+  "$description": "Raios de borda do template 'adminlte-classic' (Classic Admin). Extraídos por observação da identidade visual pública do AdminLTE — cantos discretamente arredondados na maioria dos elementos, com uma exceção notável: barras de progresso praticamente retas. Documento original — ver ATTRIBUTION.md.",
+  "radius": {
+    "none": { "$value": "0rem", "$type": "dimension" },
+    "sm": { "$value": "0.25rem", "$type": "dimension", "$description": "4px — badges, inputs pequenos." },
+    "base": { "$value": "0.375rem", "$type": "dimension", "$description": "6px — raio padrão de card, botão, tabela." },
+    "lg": { "$value": "0.5rem", "$type": "dimension", "$description": "8px — modais, painéis de destaque." },
+    "pill": { "$value": "50rem", "$type": "dimension", "$description": "Totalmente arredondado — badges de status, avatares circulares." },
+    "hairline": { "$value": "0.0625rem", "$type": "dimension", "$description": "1px — usado especificamente em barras de progresso, que no AdminLTE são quase retas em vez de arredondadas como o restante da UI." }
+  }
+}
