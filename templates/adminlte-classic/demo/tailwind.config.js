@@ -41,6 +41,29 @@ export default {
           secondary: "var(--color-text-secondary)",
           inverse: "var(--color-text-inverse)",
           link: "var(--color-text-link)",
+          // Text sitting ON a saturated accent fill.
+          "on-accent": "var(--color-text-on-accent)",
+          "on-accent-dark": "var(--color-text-on-accent-dark)",
+          // The accents darkened for use AS text on a light surface.
+          "accent-primary": "var(--color-text-accent-primary)",
+          "accent-secondary": "var(--color-text-accent-secondary)",
+          "accent-success": "var(--color-text-accent-success)",
+          "accent-danger": "var(--color-text-accent-danger)",
+          "accent-warning": "var(--color-text-accent-warning)",
+          "accent-info": "var(--color-text-accent-info)",
+        },
+        chart: {
+          "series-1": "var(--color-chart-series-1)",
+          "series-2": "var(--color-chart-series-2)",
+          "series-3": "var(--color-chart-series-3)",
+          grid: "var(--color-chart-grid)",
+          sparkline: "var(--color-chart-sparkline)",
+        },
+        overlay: {
+          backdrop: "var(--color-overlay-backdrop)",
+          "accent-shade": "var(--color-overlay-accent-shade)",
+          "accent-glyph": "var(--color-overlay-accent-glyph)",
+          "accent-glyph-dark": "var(--color-overlay-accent-glyph-dark)",
         },
         chrome: {
           "sidebar-bg": "var(--color-chrome-sidebar-bg)",
@@ -95,6 +118,13 @@ export default {
         "grid-gap": "var(--spacing-component-grid-gap)",
         "sidebar-x": "var(--spacing-component-sidebar-padding-x)",
         "sidebar-w": "var(--spacing-component-sidebar-width)",
+        "viz-h": "var(--spacing-component-viz-height)",
+        "icon-sm": "var(--spacing-component-icon-sm)",
+        "icon-md": "var(--spacing-component-icon-md)",
+        "icon-lg": "var(--spacing-component-icon-lg)",
+        "avatar-sm": "var(--spacing-component-avatar-sm)",
+        "avatar-md": "var(--spacing-component-avatar-md)",
+        "avatar-lg": "var(--spacing-component-avatar-lg)",
       },
       borderRadius: {
         none: "var(--radius-none)",
