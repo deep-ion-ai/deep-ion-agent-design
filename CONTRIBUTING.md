@@ -29,8 +29,15 @@ shipped and applied, how images behave. They are not components and
 do not follow the eight-section schema below.
 
 Write a foundation document when a rule would otherwise have to be
-repeated — and drift — across many specs. Keep them few: three is
-about right, and a fourth should have to argue for itself.
+repeated — and drift — across many specs. Keep them few.
+
+`foundations/libraries.md` is the one place where specific packages
+are named, and everything in it is a **suggestion**. A spec never
+mandates a library: it states the capability and the contract the
+library has to satisfy, and the consuming project chooses. When you
+add a requirement that a library will satisfy, add the contract to
+the spec and the starting points to that file — not a package name
+to the spec.
 
 A component spec **assumes** the foundations rather than restating
 them. A spec that names a glyph says which glyph and what it means;

@@ -11,11 +11,25 @@ read accurately — and for ranking ("which five countries sell most")
 a sorted Data Table answers better in less space. Use a map when the
 spatial pattern itself is the finding: clustering, spread, gaps.
 
-Like `specs/trend-chart-card.md`, this spec is **mapping-library
-agnostic**. It describes what must be shown, what must never be
-relied on, and what must exist for a reader who cannot see or cannot
-use the map. It never assumes a particular library, projection, or
-tile source.
+**Use a mapping library.** A world map is geography data plus a
+projection; approximating it with hand-drawn shapes produces
+something that is not a map, and a wrong map is worse than a table.
+Which library is the consuming project's choice — this spec names
+none, and `foundations/libraries.md` lists starting points per
+ecosystem as suggestions. For a card showing values per country or
+region, a projection-only choropleth is usually the right weight: no
+tile server, no attribution overlay, no network dependency at render
+time.
+
+What this spec fixes is the **contract the library must satisfy**,
+under Accessibility rules below — an accessible name summarising the
+finding, per-region values reachable without a pointer, a distinct
+"no data" treatment, and no scroll hijacking. Check a candidate
+against it before adopting, and wrap it in a component of your own so
+the contract lives in one place.
+
+Check the licence of both the library **and the geography data**, and
+honour whatever attribution the tiles or data require.
 
 ## Anatomy
 
@@ -145,7 +159,8 @@ deliberate divergence.
 - **Uses**: `specs/card.md`, `specs/data-table.md` (data
   equivalent), `specs/disclosure.md` (revealing it),
   `specs/dropdown-menu.md` (period/measure switcher via the card
-  toolbar).
+  toolbar), and a mapping library of the project's choosing — see
+  `foundations/libraries.md`.
 - **Placement**: in the content region of `patterns/app-shell.md`.
   A map card needs at least half the content width; narrower, the
   geography is unreadable and the card should be a Data Table

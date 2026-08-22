@@ -65,8 +65,10 @@ the choice — the set must:
    letters.
 
 Widely used sets that satisfy all four exist for every major
-framework; the demo in this repository uses one, and its choice is
-demo-local, not part of the template.
+framework — `foundations/libraries.md` lists starting points per
+ecosystem, as suggestions to evaluate rather than requirements. The
+demo in this repository picks one, and that choice is demo-local, not
+part of the template.
 
 ## Sizing
 
