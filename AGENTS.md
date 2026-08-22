@@ -139,18 +139,19 @@ code. Consistency across different projects using the same template
 is the entire point of this repository — silent improvisation
 undermines it.
 
-## 7. A spec's front matter is the machine-readable half
+## 7. A spec's front matter is its dependency graph
 
-Where a spec opens with YAML front matter, that block holds the facts
-in enumerable form — variants, states, the ARIA contract, the key
-map, and which other specs it depends on. Read it first: it tells you
-what to build. The prose that follows tells you *why*, and where the
-component's boundaries are.
+Every spec, pattern and foundation opens with a small YAML block
+naming what it `requires` (foundations) and what it `references`
+(other documents). Read it first: it tells you which other files you
+must read before you can implement this one, and it is the only part
+of a spec a machine checks.
 
-The two never disagree. Where the front matter lists something, the
-prose deliberately does not restate it, so if you find a
-contradiction, it is a bug in this repository — say so rather than
-picking one.
+It carries nothing else. Variants, states, keyboard behaviour and
+ARIA rules are in the prose sections, once each, in the words that
+explain them — do not expect a schema to enumerate them for you, and
+do not treat their absence from the front matter as their absence
+from the spec.
 
 ## 8. Token format
 

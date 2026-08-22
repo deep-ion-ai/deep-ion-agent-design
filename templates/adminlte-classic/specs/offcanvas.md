@@ -1,3 +1,9 @@
+---
+component: offcanvas
+requires: [foundations/iconography.md]
+references: [specs/modal.md, specs/button.md, specs/alert.md, specs/dropdown-menu.md]
+---
+
 # Component: Offcanvas
 
 ## Purpose

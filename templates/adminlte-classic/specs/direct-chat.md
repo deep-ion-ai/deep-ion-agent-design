@@ -1,3 +1,9 @@
+---
+component: direct-chat
+requires: [foundations/iconography.md, foundations/imagery.md]
+references: [specs/card.md, specs/badge.md, specs/button.md, specs/dropdown-menu.md]
+---
+
 # Component: Direct Chat
 
 ## Purpose

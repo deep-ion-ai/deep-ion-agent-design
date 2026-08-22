@@ -1,3 +1,9 @@
+---
+component: geo-map-card
+requires: [foundations/iconography.md, foundations/libraries.md]
+references: [specs/card.md, specs/data-table.md, specs/disclosure.md, specs/dropdown-menu.md, specs/sparkline-strip.md]
+---
+
 # Component: Geo Map Card
 
 ## Purpose

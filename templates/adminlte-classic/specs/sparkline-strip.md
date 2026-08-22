@@ -1,3 +1,9 @@
+---
+component: sparkline-strip
+requires: [foundations/iconography.md, foundations/libraries.md]
+references: [specs/card.md, specs/geo-map-card.md, specs/trend-chart-card.md]
+---
+
 # Component: Sparkline Strip
 
 ## Purpose

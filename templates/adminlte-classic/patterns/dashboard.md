@@ -1,3 +1,8 @@
+---
+pattern: dashboard
+references: [specs/card.md, specs/data-table.md, specs/stat-callout.md, patterns/app-shell.md]
+---
+
 # Pattern: Dashboard
 
 ## Purpose

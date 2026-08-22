@@ -21,13 +21,9 @@ const TOKEN_ROOTS = ["color", "spacing", "radius", "shadow", "font", "breakpoint
 const FRONT_MATTER_KEYS = new Set([
   "component",
   "pattern",
+  "foundation",
   "requires",
   "references",
-  "referenced_by",
-  "variants",
-  "states",
-  "aria",
-  "keyboard",
 ]);
 
 function parseFrontMatter(text, rel) {
@@ -140,16 +136,18 @@ async function main() {
     for (const doc of docs) {
       // 0. front matter, where a doc carries it
       const fm = parseFrontMatter(doc.text, doc.rel);
+      if (!fm) fail(doc.rel, "has no front matter — every document opens with its dependency graph");
       if (fm) {
         meta.set(doc.rel, fm);
         for (const key of Object.keys(fm)) {
           if (!FRONT_MATTER_KEYS.has(key)) fail(doc.rel, `unknown front matter key "${key}"`);
         }
         const name = path.basename(doc.rel, ".md");
-        if ((fm.component ?? fm.pattern) !== name) {
-          fail(doc.rel, `front matter names "${fm.component ?? fm.pattern}" but the file is ${name}.md`);
+        const declared = fm.component ?? fm.pattern ?? fm.foundation;
+        if (declared !== name) {
+          fail(doc.rel, `front matter names "${declared}" but the file is ${name}.md`);
         }
-        for (const ref of [...(fm.requires ?? []), ...(fm.references ?? []), ...(fm.referenced_by ?? [])]) {
+        for (const ref of [...(fm.requires ?? []), ...(fm.references ?? [])]) {
           if (!known.has(ref)) fail(doc.rel, `front matter points at \`${ref}\`, which does not exist`);
         }
       }
@@ -173,18 +171,44 @@ async function main() {
       }
     }
 
-    // 4. the reference graph agrees with itself in both directions
+    // 4. prose that claims to be referenced must match the graph.
+    //    The inverse itself is derived, never stored — a stored inverse
+    //    is a second copy of a fact, which is what drifts.
+    const inverse = new Map();
     for (const [rel, fm] of meta) {
-      for (const other of fm.references ?? []) {
-        const theirs = meta.get(other);
-        if (theirs && !(theirs.referenced_by ?? []).includes(rel)) {
-          fail(rel, `references \`${other}\`, but that spec does not list it back in referenced_by`);
-        }
+      for (const target of [...(fm.requires ?? []), ...(fm.references ?? [])]) {
+        if (!inverse.has(target)) inverse.set(target, new Set());
+        inverse.get(target).add(rel);
       }
-      for (const other of fm.referenced_by ?? []) {
-        const theirs = meta.get(other);
-        if (theirs && !(theirs.references ?? []).includes(rel)) {
-          fail(rel, `claims \`${other}\` references it, but that spec does not say so`);
+    }
+    if (process.argv.includes("--graph")) {
+      console.log(`\n${id} — who depends on what (derived; nothing below is stored)\n`);
+      for (const rel of [...meta.keys()].sort()) {
+        const dependents = [...(inverse.get(rel) ?? [])].sort();
+        console.log(`  ${rel}`);
+        console.log(
+          dependents.length
+            ? `    ← ${dependents.join(", ")}`
+            : "    ← nothing depends on this yet",
+        );
+      }
+      console.log("");
+    }
+
+    for (const doc of docs) {
+      const claimed = doc.text
+        .split("**Referenced by**")
+        .slice(1)
+        .join(" ")
+        .split("\n- ")[0];
+      for (const m of claimed.matchAll(/`((?:specs|patterns|foundations)\/[a-z0-9-]+\.md)`/g)) {
+        const other = m[1];
+        if (!meta.has(other)) continue;
+        if (!(inverse.get(doc.rel) ?? new Set()).has(other)) {
+          fail(
+            doc.rel,
+            `prose says \`${other}\` references it, but that file's front matter does not`,
+          );
         }
       }
     }
@@ -202,6 +226,7 @@ async function main() {
       }
     }
   }
+
 
   if (problems.length === 0) {
     console.log("specs: all token paths, cross-references and catalog entries check out");

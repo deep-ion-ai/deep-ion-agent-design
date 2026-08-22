@@ -1,3 +1,8 @@
+---
+foundation: libraries
+references: [foundations/iconography.md, foundations/typography.md, foundations/imagery.md]
+---
+
 # Foundation: Suggested libraries
 
 ## Purpose

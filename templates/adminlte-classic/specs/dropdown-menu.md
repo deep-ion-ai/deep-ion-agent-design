@@ -2,27 +2,6 @@
 component: dropdown-menu
 requires: [foundations/iconography.md]
 references: [specs/button.md, specs/modal.md]
-referenced_by: [specs/card.md, specs/navbar.md, specs/button.md, specs/data-table.md, specs/trend-chart-card.md]
-variants:
-  trigger: [single, split]
-  align: [start, end]
-  placement: [below, above]
-states: [closed, open, item-hover, item-focus, item-active, item-disabled, item-destructive, loading, empty]
-aria:
-  trigger: button + aria-haspopup=menu + aria-expanded
-  panel: role=menu + aria-labelledby=trigger
-  item: role=menuitem, roving tabindex
-  divider: role=separator, never focusable
-keyboard:
-  Enter: open and focus the first item / activate the focused item
-  Space: same as Enter
-  ArrowDown: open at the first item / move to the next enabled item
-  ArrowUp: open at the last item / move to the previous enabled item
-  Home: move to the first item
-  End: move to the last item
-  printable: move to the next item whose label starts with it
-  Escape: close without activating, focus returns to the trigger
-  Tab: close and move to the element after the trigger
 ---
 
 # Component: Dropdown Menu
@@ -144,17 +123,20 @@ what every consumer inherits. They are requirements, not defaults.
   visually. A divider is `role="separator"`; a section label is
   associated with its group via `role="group"` and
   `aria-labelledby`.
-- **The key map is the `keyboard` block in this file's front matter.**
-  It is a table of facts, and restating it in prose is how two
-  versions of it drift apart. What a table cannot say is why two of
-  its rows read the way they do:
-  - **Tab closes the menu** and moves past the trigger rather than
-    stepping through the items. A menu is one control, not a
-    sub-document; tabbing into it strands a keyboard user in a list
-    they then have to Tab all the way out of.
-  - **Escape activates nothing.** It is the reader saying "I opened
-    this by mistake", and a menu that acts on the way out cannot be
-    dismissed safely.
+- **Keyboard, on the trigger:** Enter, Space, or Down Arrow opens
+  the menu and moves focus to the first item. Up Arrow opens it and
+  moves focus to the last.
+- **Keyboard, inside the panel:** Up/Down Arrow move between enabled
+  items and wrap at the ends. Home/End jump to the first/last item.
+  Typing a printable character moves focus to the next item whose
+  label starts with it. Enter or Space activates the focused item
+  and closes the menu. Escape closes the menu without activating
+  anything — it is the reader saying "I opened this by mistake", and
+  a menu that acts on the way out cannot be dismissed safely. Tab
+  closes the menu and moves focus onward to the next element after
+  the trigger: a menu is one control, not a sub-document, and tabbing
+  into it strands a keyboard user in a list they then have to Tab all
+  the way out of.
 - **Focus management:** exactly one item is in the tab order at a
   time (roving tabindex) — arrow keys, not Tab, move between items.
   When the menu closes for any reason other than a navigation that

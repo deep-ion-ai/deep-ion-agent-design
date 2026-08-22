@@ -1,3 +1,9 @@
+---
+component: navbar
+requires: [foundations/iconography.md, foundations/imagery.md]
+references: [specs/dropdown-menu.md, specs/badge.md, specs/button.md, specs/alert.md, specs/sidebar.md]
+---
+
 # Component: Navbar
 
 ## Purpose

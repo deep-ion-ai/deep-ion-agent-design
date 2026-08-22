@@ -1,3 +1,8 @@
+---
+component: badge
+requires: [foundations/iconography.md]
+---
+
 # Component: Badge
 
 ## Purpose

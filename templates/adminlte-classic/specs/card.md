@@ -1,3 +1,9 @@
+---
+component: card
+requires: [foundations/iconography.md]
+references: [specs/dropdown-menu.md, specs/button.md, specs/badge.md, specs/ribbon.md, specs/list-group.md, specs/modal.md, specs/alert.md]
+---
+
 # Component: Card (list item / summary card)
 
 ## Purpose

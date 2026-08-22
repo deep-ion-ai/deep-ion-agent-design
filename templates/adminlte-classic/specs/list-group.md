@@ -1,3 +1,9 @@
+---
+component: list-group
+requires: [foundations/iconography.md, foundations/imagery.md]
+references: [specs/badge.md, specs/pagination.md, specs/card.md, specs/offcanvas.md, specs/timeline.md]
+---
+
 # Component: List Group
 
 ## Purpose

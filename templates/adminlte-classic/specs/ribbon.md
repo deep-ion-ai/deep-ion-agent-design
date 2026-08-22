@@ -1,3 +1,9 @@
+---
+component: ribbon
+requires: [foundations/iconography.md]
+references: [specs/card.md, specs/badge.md]
+---
+
 # Component: Ribbon
 
 ## Purpose
