@@ -1,7 +1,7 @@
 ---
 component: specialized-inputs
 requires: [foundations/iconography.md]
-references: [specs/button.md, specs/input-group.md, specs/form-validation.md]
+references: [specs/button.md, specs/input-group.md, specs/form-validation.md, specs/progress-bar.md]
 ---
 
 # Component: Specialized Inputs
@@ -91,6 +91,13 @@ Slider.
 - **Selected** (File only) — readout shows the filename(s); a
   trailing remove control (a small `specs/button.md` icon button)
   clears the selection back to Empty.
+- **Uploading** (File only) — once a selection is handed off to an
+  actual upload rather than merely chosen, the readout row gains a
+  `specs/progress-bar.md`, `sm` size, beneath the filename, tracking
+  the transfer. On success it either clears to Selected or, briefly,
+  shows the bar recoloured to `status.success` per that spec's
+  Complete state — this control does not invent a second progress
+  indicator of its own.
 - **Invalid** — defined once in `specs/form-validation.md`; most
   relevant to File (wrong type, size over limit) and Range (value
   outside an application-level bound narrower than the control's own
@@ -144,6 +151,9 @@ Slider.
   that composition, `specs/input-group.md`'s Button-addon variant
   governs the seam, and this spec governs the trigger's own
   behavior.
+- **References**: `specs/progress-bar.md` for the Uploading state's
+  transfer indicator — this spec decides when the bar appears and at
+  what size; everything about the bar itself lives there.
 - **Referenced by**: none yet — add a consumer here as it merges.
 
 ## Tokens used

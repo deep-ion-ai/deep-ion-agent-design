@@ -1,7 +1,7 @@
 ---
 component: button
 requires: [foundations/iconography.md]
-references: [specs/dropdown-menu.md, specs/modal.md, specs/badge.md]
+references: [specs/dropdown-menu.md, specs/modal.md, specs/badge.md, specs/tooltip.md]
 ---
 
 # Component: Button
@@ -95,6 +95,12 @@ where a labelled button does not fit — a card header toolbar, a
 table row's action column. Requires an `aria-label`; see
 Accessibility rules. Do not use it merely to save space in a
 context that has room for words.
+
+Pair it with a `specs/tooltip.md` whose text matches the
+`aria-label` — the icon-only variant is exactly the case that spec
+calls out: the tooltip gives a sighted mouse user the same
+information the accessible name already gives a screen reader,
+rather than adding anything new.
 
 ### Button group
 
