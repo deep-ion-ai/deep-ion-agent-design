@@ -142,7 +142,13 @@ in a low-contrast overlay colour, explicitly not content.
   `specs/pagination.md` (steppers), `specs/timeline.md` (markers),
   `specs/data-table.md` (sort indicators, row actions),
   `specs/list-group.md`, `specs/direct-chat.md`,
-  `specs/stat-callout.md` — draws it from the set defined here. Those
+  `specs/stat-callout.md`, `specs/text-input.md` (password
+  show/hide), `specs/select.md` (caret, chip removal),
+  `specs/checkbox-radio-switch.md` (check and indeterminate marks),
+  `specs/input-group.md` (icon addons),
+  `specs/specialized-inputs.md` (File Input trigger),
+  `specs/form-validation.md` (valid/invalid marks) — draws it from
+  the set defined here. Those
   specs say *which* glyph and *what it means*; this document says
   where it comes from and how it behaves.
 - **One set per project.** Mixing two icon libraries in one interface
