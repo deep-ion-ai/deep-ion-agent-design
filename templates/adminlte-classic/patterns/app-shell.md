@@ -30,12 +30,16 @@ sits — it changes in this file and every page inherits it.
    background, horizontal padding of `spacing.8` on large screens
    and `spacing.4` below `breakpoint.md`. This is the only region a
    page pattern controls.
-4. **Content header** — at the top of the content region, the page
-   title (`h1`, `font.heading.h1`, `font.weight.semibold`) with an
-   optional one-line description in `color.text.secondary`, and the
-   Breadcrumb (`specs/breadcrumb.md`) placed above or beside it as
-   that spec defines. Page-level actions, when a page has them, sit
-   at the trailing edge of this header, aligned with the title.
+4. **Content header** — at the top of the content region, in this
+   order: the Breadcrumb (`specs/breadcrumb.md`) when the product's
+   pages nest deeply enough to warrant one, then the page title
+   (`h1`, `font.heading.h1`, `font.weight.semibold`), then an
+   optional one-line description in `color.text.secondary`.
+   Page-level actions, when a page has them, sit at the trailing
+   edge of this header, aligned with the title. The breadcrumb is
+   above the title rather than beside it, so the title keeps the
+   full width of the header and the reading order is
+   location-then-page.
 5. **Skip link** — the page's first focusable element, visually
    hidden until focused, moving focus past the sidebar and navbar to
    the content region. Required; see Composition rules.
@@ -84,7 +88,7 @@ sits — it changes in this file and every page inherits it.
 | `color.surface.muted` | content region background |
 | `color.surface.border` | divider beneath the navbar |
 | `font.heading.h1` + `font.weight.semibold` | page title |
-| `color.text.secondary` | page description |
+| `color.text.secondary` | page description, breadcrumb ancestors |
 | `spacing.component.sidebar-width` | sidebar column width |
 | `spacing.8` | content region horizontal padding, large screens |
 | `spacing.4` | content region horizontal padding below `breakpoint.md` |
