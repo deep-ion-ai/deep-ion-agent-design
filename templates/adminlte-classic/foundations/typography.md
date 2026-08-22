@@ -47,6 +47,15 @@ covering that range is preferred — one file, every weight.
 Italic is not part of this template's scale. Where emphasis is
 needed, it comes from weight or colour.
 
+### The variable family is named separately
+
+Font packages ship variable families under their own name — "Source
+Sans 3 Variable" rather than "Source Sans 3" — so `font.family.base`
+lists **both**, variable first, before the system fallbacks. A stack
+that names only the static family silently renders in the fallback on
+a project that shipped the variable one, which is the failure this
+whole document exists to prevent.
+
 ### Loading behaviour
 
 - Fonts load with `font-display: swap` (or the platform equivalent),
