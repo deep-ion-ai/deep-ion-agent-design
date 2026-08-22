@@ -53,7 +53,8 @@
       "componentPatterns": [
         "app-shell",
         "auth",
-        "dashboard"
+        "dashboard",
+        "error-page"
       ]
     }
   ]
