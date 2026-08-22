@@ -71,9 +71,11 @@ needs words belongs in the card footer or in the dropdown menu.
   (`font.size.sm`, `text.secondary`) and, optionally, a themed icon
   aligned to the right. Used in metric grids at the top of a
   dashboard.
-- **List** — the body contains a vertical column of items (e.g. the
-  items of a listing), each with `spacing.3` vertical spacing and a
-  `surface.border` separator between items.
+- **List** — the body contains a List Group
+  (`specs/list-group.md`): a vertical column of single-column items
+  separated by `surface.border` dividers. The card provides the
+  surface and the outline; the List Group spec defines the items,
+  their states and their semantics, and is not restated here.
 - **Status accent** — a variant with the side accent bar colored by
   one of the `status.*` colors.
 
