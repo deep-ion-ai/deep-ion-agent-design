@@ -102,6 +102,9 @@ attention it does not repay.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **Lives inside**: a Card (`specs/card.md`) — its footer, where it
   summarises measures related to the card's main content, or its
   body, where the strip is the card's content. It is **not** a

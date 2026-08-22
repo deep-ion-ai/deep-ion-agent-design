@@ -150,6 +150,9 @@ overlay behavior", it means everything below.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: a short form, a confirmation message, a summary
   of what an action will do, a Data Table too small to warrant a
   page, an Alert (`specs/alert.md`) reporting the result of an

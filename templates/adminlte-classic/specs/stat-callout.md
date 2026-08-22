@@ -162,6 +162,9 @@ the block is not a control.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: exactly the parts named in Anatomy. Nothing else.
 - **Must not contain**: a chart, a table, a second metric, multiple
   actions, or free text beyond the label and trend. A callout that

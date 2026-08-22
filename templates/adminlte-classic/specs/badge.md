@@ -121,6 +121,9 @@ specifying:
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: a short text label, a number, an optional leading
   icon.
 - **Must not contain**: an interactive element, a dismiss control (a

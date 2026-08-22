@@ -174,6 +174,9 @@ the card, such as buttons, not of the card itself).
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
 - **May contain**: text, highlighted numbers, icons, Badges
   (`specs/badge.md`), lists, a full Data Table, a limited number of
   action buttons (1–2 in the footer) and a header toolbar of up to

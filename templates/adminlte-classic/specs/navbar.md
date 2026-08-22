@@ -164,6 +164,11 @@ not required.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
+- **Images**: avatars and other imagery follow
+  `foundations/imagery.md`, including the required initials fallback.
 - **May contain**: the sidebar toggle, page context, a search input,
   icon-only Dropdown Menu triggers with Badges, interface toggles,
   and the account control.

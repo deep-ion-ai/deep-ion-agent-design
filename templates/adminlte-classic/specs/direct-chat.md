@@ -132,6 +132,11 @@ attachments — none of which this component specifies.
 
 ## Composition rules
 
+- **Glyphs**: every icon this spec names is drawn from the icon set
+  defined in `foundations/iconography.md` — never an emoji or a
+  Unicode character — and sized from the scale there.
+- **Images**: avatars and other imagery follow
+  `foundations/imagery.md`, including the required initials fallback.
 - **Is a**: Card, with a scrolling body and a composer in the
   footer.
 - **May contain**: messages, day dividers, a contacts pane, and a

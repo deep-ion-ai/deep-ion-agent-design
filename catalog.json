@@ -8,10 +8,16 @@
       "path": "templates/adminlte-classic",
       "tokens": "templates/adminlte-classic/tokens",
       "specs": "templates/adminlte-classic/specs",
+      "foundations": "templates/adminlte-classic/foundations",
       "patterns": "templates/adminlte-classic/patterns",
       "readme": "templates/adminlte-classic/README.md",
       "attribution": "templates/adminlte-classic/ATTRIBUTION.md",
       "demo": "templates/adminlte-classic/demo",
+      "foundationDocs": [
+        "iconography",
+        "imagery",
+        "typography"
+      ],
       "components": [
         "alert",
         "badge",

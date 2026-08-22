@@ -21,6 +21,22 @@ the repository stops being framework-agnostic.
 
 Practical consequence: a spec PR and a demo PR are separate PRs.
 
+## Foundations come before specs
+
+`templates/<id>/foundations/*.md` holds the rules that cut across
+every component: which icon library glyphs come from, how the font is
+shipped and applied, how images behave. They are not components and
+do not follow the eight-section schema below.
+
+Write a foundation document when a rule would otherwise have to be
+repeated — and drift — across many specs. Keep them few: three is
+about right, and a fourth should have to argue for itself.
+
+A component spec **assumes** the foundations rather than restating
+them. A spec that names a glyph says which glyph and what it means;
+where the glyph comes from and how it is sized is
+`foundations/iconography.md`'s job.
+
 ## Spec file schema
 
 Every file in `templates/<id>/specs/` uses the same eight sections,
@@ -101,7 +117,11 @@ reason. Silent divergence looks like a mistake to the next reader.
 - [ ] Any new token added to `tokens/*.json` in this same PR
 - [ ] `catalog.json` — the template's `components` array lists the
       new component id (this is how a consuming agent discovers it;
-      a spec missing from the catalog is invisible)
+      a spec missing from the catalog is invisible), or
+      `foundationDocs` for a foundation document
+- [ ] Glyphs, images and type follow `foundations/*.md` rather than
+      being re-specified — and no spec introduces emoji or Unicode
+      characters as icons
 - [ ] Cross-references updated **in both directions** — if this spec
       defers to another, the other one links back
 - [ ] `patterns/*.md` updated if the component changes a page
@@ -112,6 +132,9 @@ reason. Silent divergence looks like a mistake to the next reader.
 
 - [ ] Every component it renders has a merged spec
 - [ ] It introduces no visual value that is not a token
+- [ ] Icons come from a real icon library, the font family is
+      actually shipped, and images are real assets — never emoji or
+      Unicode stand-ins
 - [ ] It does not extend, reinterpret, or "improve on" the spec — if
       building it revealed a gap, fix the spec in its own PR first
 - [ ] Reviewed by a human before merge
