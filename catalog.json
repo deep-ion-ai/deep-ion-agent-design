@@ -17,7 +17,8 @@
         "badge",
         "card",
         "data-table",
-        "dropdown-menu"
+        "dropdown-menu",
+        "stat-callout"
       ],
       "componentPatterns": [
         "dashboard"
