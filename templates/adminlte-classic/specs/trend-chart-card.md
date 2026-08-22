@@ -151,6 +151,52 @@ readers.
   *label*, it takes `color.text.accent.*`, not the raw series
   colour.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework, and nothing about the charting library beyond
+where its output sits. Reproduce the shape in the target stack's
+idiom; on a platform without a DOM, map the roles onto its own
+accessibility API.
+
+```html
+<figure>
+  <!-- The legend pairs each colour with its mark shape, so identity
+       never rests on colour alone. -->
+  <ul>
+    <li><svg aria-hidden="true"><!-- circle --></svg> Online</li>
+    <li><svg aria-hidden="true"><!-- square --></svg> Retail</li>
+  </ul>
+
+  <!-- The text equivalent. Visually hidden is fine; absent is not. -->
+  <figcaption class="visually-hidden">
+    Sales, last 12 months. Online: rose from 1,200 to 4,050, peaking
+    at 4,600 in October. Retail: rose from 900 to 2,140.
+  </figcaption>
+
+  <!-- The library's plot surface. It is FOCUSABLE, so it is a control
+       and carries its own name — which is why the figure must not be
+       role="img": that would hide this and everything in it. -->
+  <svg role="application"
+       tabindex="0"
+       aria-label="Sales, last 12 months, interactive chart. Use the
+                   arrow keys to move between months.">
+    <!-- plotted series -->
+  </svg>
+</figure>
+
+<!-- The tabular equivalent, behind a disclosure. -->
+<button type="button" aria-expanded="false" aria-controls="sales-table">
+  View data table
+</button>
+<table id="sales-table"><!-- month × series --></table>
+```
+
+Not visible in the markup, and required all the same: the arrow keys
+move between periods and reveal the same values the pointer does;
+series colours come from `color.chart.*`; animation is skipped under
+a reduced-motion preference.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

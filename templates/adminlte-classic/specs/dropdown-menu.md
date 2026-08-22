@@ -143,6 +143,51 @@ what every consumer inherits. They are requirements, not defaults.
 - Item hit targets are at least 2.75rem tall on touch platforms,
   regardless of the visual density used on pointer platforms.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. This is the shape the markup has to take, not
+markup to paste: reproduce it in the idiom of the target stack, and
+on a platform without a DOM, map the roles onto that platform's own
+accessibility API.
+
+```html
+<button type="button"
+        id="card-actions"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-label="Actions for recent orders">
+  <svg aria-hidden="true"><!-- glyph --></svg>
+</button>
+
+<!-- Rendered only while open. Not hidden — absent. -->
+<div role="menu" aria-labelledby="card-actions">
+  <!-- Roving tabindex: exactly one item is 0, the rest -1.
+       Arrow keys move it; Tab leaves the menu entirely. -->
+  <button type="button" role="menuitem" tabindex="0">Edit order</button>
+  <button type="button" role="menuitem" tabindex="-1">Duplicate</button>
+
+  <!-- A divider is a separator, never a focusable item. -->
+  <hr role="separator" />
+
+  <!-- Disabled items stay in the reading order and are announced
+       as disabled, rather than disappearing. -->
+  <button type="button" role="menuitem" tabindex="-1" aria-disabled="true">
+    Archive
+  </button>
+
+  <!-- Destructive last, below a divider, naming its object. -->
+  <button type="button" role="menuitem" tabindex="-1">
+    Delete order #1029
+  </button>
+</div>
+```
+
+Not visible in the markup, and required all the same: Escape closes
+without activating; focus returns to the trigger on close;
+`aria-expanded` flips with the panel; the trigger keeps its
+accessible name across states.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set
