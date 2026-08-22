@@ -118,6 +118,14 @@ block a click target hides the real action from keyboard users.
     wash must stay light enough to keep body text at 4.5:1 — verify
     per colour rather than assuming a single opacity works for all
     five.
+  - *An inline action inside a tinted alert takes
+    `color.text.primary`, with an underline* — not `color.text.link`
+    and not the severity accent. Measured against a danger wash,
+    `text.link` is 3.80:1 and `text.accent.*` 4.21:1: both fail,
+    because the wash is already tinted toward the link's own hue.
+    The underline, not the colour, is what marks it as a link there,
+    which is the general rule anyway for a link that is not
+    distinguishable by colour alone.
   - *Solid*: `color.text.on-accent` over `success` and `danger`;
     `color.text.on-accent-dark` over `warning`, `info` and
     `neutral` — white fails AA over those (1.63:1, 1.96:1, 1.05:1).
@@ -178,7 +186,8 @@ block a click target hides the real action from keyboard users.
 | `color.text.primary` | message text, tinted fill |
 | `color.text.on-accent` | message text on solid success / danger |
 | `color.text.on-accent-dark` | message text on solid warning / info / neutral |
-| `color.text.link` | inline action link |
+| `color.text.primary` | inline action link on a tinted fill (with an underline) |
+| `color.text.link` | inline action link on an untinted surface |
 | `radius.base` | container corners |
 | `spacing.3` | vertical padding, gap between stacked alerts |
 | `spacing.4` | horizontal padding |

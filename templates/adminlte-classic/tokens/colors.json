@@ -22,7 +22,7 @@
     },
     "text": {
       "primary": { "$value": "#212529", "$type": "color", "$description": "Default body text, on light backgrounds." },
-      "secondary": { "$value": "#6c757d", "$type": "color", "$description": "Supporting text, captions, metadata, placeholders." },
+      "secondary": { "$value": "#687078", "$type": "color", "$description": "Supporting text, captions, metadata, placeholders. Verified against every light surface this template puts text on, because most secondary text sits on the page background rather than on a card: 5.03:1 on surface.canvas, 4.77:1 on neutral.light, 4.64:1 on surface.muted. The previous #6c757d cleared only surface.canvas (4.69:1) and failed on the other two (4.45:1 and 4.33:1) — which is where the page description, the breadcrumb and table hover rows live." },
       "inverse": { "$value": "#ffffff", "$type": "color", "$description": "Text on dark backgrounds or on top of the primary color." },
       "link": { "$value": "#0d6efd", "$type": "color", "$description": "Default color for text links, same as the primary color." },
       "on-accent": { "$value": "#ffffff", "$type": "color", "$description": "Text and icons placed directly on top of a saturated accent fill. Use ONLY over accents dark enough to carry white text at 4.5:1 or better: brand.primary (4.50:1), brand.secondary (4.69:1), status.success (4.53:1), status.danger (4.53:1), neutral.dark (15.43:1). Over any other fill use text.on-accent-dark." },
