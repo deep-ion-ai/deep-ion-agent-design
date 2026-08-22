@@ -32,6 +32,7 @@ without hand-pasting design values into every prompt.
 ```
 /catalog.json                 — index of available templates
 /AGENTS.md                    — rules for AI agents using this repo
+/CONTRIBUTING.md              — how to write specs/tokens for this repo
 /LICENSE                      — MIT, covers all original content here
 /templates/
   <template-id>/
