@@ -168,8 +168,9 @@ accessibility API.
     <li><svg aria-hidden="true"><!-- square --></svg> Retail</li>
   </ul>
 
-  <!-- The text equivalent. Visually hidden is fine; absent is not. -->
-  <figcaption class="visually-hidden">
+  <!-- The text equivalent. May be visually hidden — how is the
+       consuming project's business; absent is not an option. -->
+  <figcaption>
     Sales, last 12 months. Online: rose from 1,200 to 4,050, peaking
     at 4,600 in October. Retail: rose from 900 to 2,140.
   </figcaption>
