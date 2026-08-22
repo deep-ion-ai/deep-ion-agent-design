@@ -28,6 +28,10 @@ body:
    the card's left border, used to informally signal the nature of
    the content (e.g. an alert card with a `status.danger` bar)
    without changing the entire card background.
+5. **Ribbon** (optional) — a diagonal corner banner labelling the
+   whole card with one word ("New", "Draft"), defined in
+   `specs/ribbon.md`. It requires the card to clip its overflow, and
+   must not be placed in the same corner as the header toolbar.
 
 ### Header toolbar
 
@@ -174,6 +178,10 @@ the card, such as buttons, not of the card itself).
   (`specs/badge.md`), lists, a full Data Table, a limited number of
   action buttons (1–2 in the footer) and a header toolbar of up to
   four icon-only Buttons (`specs/button.md`).
+- **May be decorated with**: a Ribbon (`specs/ribbon.md`), a
+  corner banner labelling the whole card. One per card, and its word
+  must be folded into the card's accessible name or description —
+  see that spec.
 - **References**: `specs/dropdown-menu.md` for the header toolbar's
   overflow menu — this spec describes only where the trigger sits
   and which actions belong in it, never how the menu behaves;
