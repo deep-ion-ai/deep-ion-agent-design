@@ -133,6 +133,41 @@ tree. Everything below is what differs.
   behave as one, backdrop and focus trap included, regardless of the
   blocking/non-blocking choice made for wider screens.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- Blocking variant. The non-blocking one drops the backdrop AND
+     aria-modal: declaring it without trapping focus tells assistive
+     tech the page is unavailable when it is not. -->
+<div aria-hidden="true"><!-- backdrop --></div>
+
+<div role="dialog" aria-modal="true" aria-labelledby="panel-title">
+  <h2 id="panel-title">Filter orders</h2>
+  <button type="button" aria-label="Close Filter orders">
+    <svg aria-hidden="true"><!-- glyph --></svg>
+  </button>
+
+  <div><!-- body; scrolls independently --></div>
+
+  <!-- Pinned: a submit that scrolls out of reach is the usual way a
+       long panel fails. -->
+  <div>
+    <button type="button">Reset</button>
+    <button type="button">Apply filters</button>
+  </div>
+</div>
+```
+
+Everything else follows `specs/modal.md`'s shared overlay behaviour.
+The one structural rule this skeleton cannot show: a non-blocking
+panel sits in the DOM next to the content it affects, so tabbing out
+of it lands somewhere sensible instead of at the top of the document.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

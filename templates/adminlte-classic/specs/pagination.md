@@ -142,6 +142,42 @@ gains nothing.
   visible box if the visual density is tighter. Small adjacent
   numeric targets are among the easiest controls to mis-tap.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<nav aria-label="Orders pagination">
+  <ol>
+    <li>
+      <!-- Stays in place, disabled, at the boundary: a control that
+           vanishes moves every other control in the row. -->
+      <button type="button" aria-label="Previous page" disabled>
+        <svg aria-hidden="true"><!-- chevron --></svg>
+      </button>
+    </li>
+    <li><button type="button" aria-label="Page 1" aria-current="page">1</button></li>
+    <li><button type="button" aria-label="Page 2">2</button></li>
+    <!-- Stands for omitted numbers: meaningful visually, noise aloud. -->
+    <li aria-hidden="true">…</li>
+    <li><button type="button" aria-label="Page 24">24</button></li>
+    <li><button type="button" aria-label="Next page">
+      <svg aria-hidden="true"><!-- chevron --></svg>
+    </button></li>
+  </ol>
+</nav>
+```
+
+`<button>` here because these pages have no address of their own;
+where each page does, they are `<a href>` and gain the browser's
+affordances back. The current page stays an enabled button — a
+disabled one cannot be focused, which takes away the marker for where
+the reader is. Not visible in the markup: a page change moves focus
+to the new content or announces itself in a polite live region.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

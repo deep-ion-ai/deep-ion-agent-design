@@ -93,6 +93,54 @@ a dashboard.
   `data-label` associated through CSS `content` or equivalent
   markup), not just visually.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<table>
+  <thead>
+    <tr>
+      <!-- aria-sort lives on the th; the button inside it is what the
+           reader activates. Never simulate a table with divs. -->
+      <th scope="col" aria-sort="ascending">
+        <button type="button">
+          Customer
+          <svg aria-hidden="true"><!-- direction glyph --></svg>
+        </button>
+      </th>
+      <th scope="col" aria-sort="none"><button type="button">Total</button></th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ava Torres</td>
+      <td>$196.40</td>
+      <td><span>Active</span></td>
+      <td>
+        <!-- Row actions name their record: a screen reader has none
+             of the row's visual context. -->
+        <button type="button" aria-label="Delete order #1024">
+          <svg aria-hidden="true"><!-- glyph --></svg>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- The footer bar is specs/pagination.md, unchanged. -->
+```
+
+Not visible in the markup: `aria-sort` updates as the sort changes,
+and only ever on one column; the loading state sets `aria-busy` on
+the body while skeleton rows stand in; and where the table collapses
+to stacked blocks on a narrow screen, each cell's label→value
+relationship has to survive that in the markup, not only visually.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

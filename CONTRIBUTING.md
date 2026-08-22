@@ -127,6 +127,12 @@ So: **include a skeleton in any spec whose markup is contested** —
 anything interactive, anything with ARIA, anything where the reading
 order matters. A Badge does not need one; a Dropdown Menu does.
 
+Fourteen specs carry one today. The seven that do not — Badge, Card,
+Ribbon, Stat Callout, Timeline, Sparkline Strip, Trend Chart Card's
+siblings — are either static, or their markup is already pinned by a
+spec they defer to. If you find yourself unsure how to mark one of
+those up, that is the signal it needs a skeleton after all.
+
 The rules that keep it from becoming a second `demo/`:
 
 - **Structure, roles, states and focus order. Nothing else.** No

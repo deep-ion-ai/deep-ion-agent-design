@@ -150,6 +150,47 @@ the third is a menu, and belongs in the Navbar
   icon-only rail variant, the accessible name must survive the
   labels being hidden.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<nav aria-label="Main navigation">
+  <a href="/"><!-- brand mark + product name --></a>
+
+  <ul>
+    <li>
+      <a href="/orders" aria-current="page">
+        <svg aria-hidden="true"><!-- glyph --></svg>
+        Orders
+      </a>
+      <!-- An item that navigates AND has children is split: one
+           control cannot do both jobs without one becoming
+           unreachable. -->
+      <button type="button" aria-expanded="true"
+              aria-controls="sub-orders" aria-label="Toggle Orders submenu">
+        <svg aria-hidden="true"><!-- chevron --></svg>
+      </button>
+      <!-- Nested list, so the nesting is announced rather than
+           implied by indentation. Absent when collapsed. -->
+      <ul id="sub-orders">
+        <li><a href="/orders/open">Open</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+```
+
+Tab moves between items — this is navigation, not a menubar, and
+`role="menubar"` would take every item out of the tab order readers
+already know. Not visible in the markup: below `breakpoint.lg` the
+whole `<nav>` becomes the blocking variant of `specs/offcanvas.md`,
+and the current page's item needs a second signal beyond its
+background, which is the same token value as hover.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

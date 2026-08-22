@@ -175,6 +175,52 @@ not required.
   the top edge of a phone screen is among the easiest things to
   mis-tap.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<header>
+  <!-- aria-controls must point at an element that exists: the column
+       when wide, the offcanvas panel when narrow, and the attribute
+       is dropped when neither is mounted. -->
+  <button type="button" aria-label="Toggle navigation"
+          aria-expanded="true" aria-controls="app-sidebar">
+    <svg aria-hidden="true"><!-- glyph --></svg>
+  </button>
+
+  <div role="search">
+    <!-- Visually hidden — how is the consuming project's business.
+         A placeholder is not a label: it leaves on the first keystroke. -->
+    <label for="q">Search orders</label>
+    <input id="q" type="search" placeholder="Search orders" />
+  </div>
+
+  <nav aria-label="Account and notifications">
+    <!-- The count lives in the trigger's NAME; the badge is hidden,
+         so it is never announced twice. -->
+    <button type="button" aria-label="Notifications, 9 unread"
+            aria-haspopup="menu" aria-expanded="false">
+      <svg aria-hidden="true"><!-- bell --></svg>
+      <span aria-hidden="true">9</span>
+    </button>
+
+    <button type="button" aria-label="Account menu"
+            aria-haspopup="menu" aria-expanded="false">
+      <img src="…" alt="" /> Jane Cooper
+    </button>
+  </nav>
+</header>
+```
+
+Menu behaviour is `specs/dropdown-menu.md` in full. Not visible in the
+markup: the toggle reflects the sidebar's state rather than its own,
+and a count that changes without the reader acting needs a polite
+live region.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

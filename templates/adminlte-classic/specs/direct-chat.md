@@ -136,6 +136,49 @@ attachments — none of which this component specifies.
 - **Timestamps must not be the only separator** between messages
   sent far apart; the day divider carries that, and is announced.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- Polite, additions only. Assertive would interrupt on every
+     message; re-announcing the whole thread is worse than nothing. -->
+<ol aria-live="polite" aria-relevant="additions">
+  <li>
+    <!-- Author, time and text are one unit: three fragments per
+         message make a thread incomprehensible aloud. -->
+    <p>
+      <img src="…" alt="" />
+      Ava Torres · <time datetime="2026-08-20T15:04">Yesterday 15:04</time>
+    </p>
+    <p>Order #1029 hasn’t arrived yet.</p>
+  </li>
+  <li>
+    <p>You · <time datetime="2026-08-21T09:10">09:10</time> · not sent</p>
+    <p>Refund issued — sorry about that.</p>
+    <!-- The text stays recoverable: a message that vanishes on
+         failure loses what the person wrote. -->
+    <p>Couldn’t send. <button type="button">Retry</button></p>
+  </li>
+</ol>
+
+<form>
+  <label for="composer">Message Support chat</label>
+  <input id="composer" placeholder="Type a message" />
+  <button type="submit" aria-label="Send message to Support chat">Send</button>
+</form>
+```
+
+The avatar is `alt=""` because the name is beside it; where it is the
+only identification, the name becomes its alternative text. Not
+visible in the markup: a new message moves the view only if the
+reader is already at the foot of the thread, loading older messages
+must not move their position, and the composer is never disabled
+while a send is in flight.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set
