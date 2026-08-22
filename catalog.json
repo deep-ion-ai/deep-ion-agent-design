@@ -31,6 +31,7 @@
         "sidebar",
         "sparkline-strip",
         "stat-callout",
+        "timeline",
         "trend-chart-card"
       ],
       "componentPatterns": [
