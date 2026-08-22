@@ -3,7 +3,7 @@
   "font": {
     "family": {
       "base": {
-        "$value": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$value": "'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
         "$type": "fontFamily",
         "$description": "Primary typeface, used for body text, headings, and UI components. A humanist sans-serif with good legibility at high data density (tables, dashboards)."
       },
