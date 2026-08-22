@@ -9,13 +9,28 @@ import {
   ICON_STROKE,
   iconSize,
 } from "./components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppShell } from "./components/AppShell";
 import { Badge } from "./components/Badge";
 import { Dashboard } from "./pages/Dashboard";
 import { UiElements } from "./pages/UiElements";
 import { Forms } from "./pages/Forms";
+import { Auth, type AuthVariant } from "./pages/Auth";
 import type { SidebarItem } from "./components/Sidebar";
+
+/** patterns/auth.md renders with no shell — this is the one place that
+ *  decides whether to mount AppShell at all, rather than a page-level
+ *  choice, so the frame is never accidentally reachable with the sidebar
+ *  merely hidden. */
+function useHashRoute() {
+  const [hash, setHash] = useState(() => window.location.hash);
+  useEffect(() => {
+    const onChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onChange);
+    return () => window.removeEventListener("hashchange", onChange);
+  }, []);
+  return hash;
+}
 
 const icon = (Glyph: typeof LayoutDashboard) => (
   <Glyph strokeWidth={ICON_STROKE} className={iconSize.md} />
@@ -67,8 +82,27 @@ const PAGES: Record<string, { title: string; description?: string; crumbs: strin
   },
 };
 
+const AUTH_VARIANT: Record<string, AuthVariant> = {
+  "#auth": "login",
+  "#auth/register": "register",
+  "#auth/forgot": "forgot",
+};
+
 export default function App() {
   const [current, setCurrent] = useState("dashboard");
+  const hash = useHashRoute();
+
+  if (hash in AUTH_VARIANT) {
+    return (
+      <Auth
+        variant={AUTH_VARIANT[hash]}
+        onNavigate={(next) => {
+          window.location.hash = next;
+        }}
+      />
+    );
+  }
+
   const page = PAGES[current] ?? {
     title: NAV.flatMap((n) => [n, ...(n.children ?? [])]).find((n) => n.id === current)?.label ?? "Page",
     description: "This section is not part of the demo.",
@@ -98,7 +132,13 @@ export default function App() {
         items: [
           { id: "profile", label: "Profile" },
           { id: "prefs", label: "Preferences" },
-          { id: "signout", label: "Sign out" },
+          {
+            id: "signout",
+            label: "Sign out",
+            onSelect: () => {
+              window.location.hash = "#auth";
+            },
+          },
         ],
       }}
     >
