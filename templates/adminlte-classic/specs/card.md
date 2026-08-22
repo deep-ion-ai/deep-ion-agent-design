@@ -129,7 +129,11 @@ the card, such as buttons, not of the card itself).
   not be focusable in that case.
 - The header title, when present, must use a semantic heading tag
   (`h2`–`h6`, at the level appropriate to the page hierarchy) to
-  allow screen-reader navigation via heading landmarks.
+  allow screen-reader navigation via heading landmarks. **The level
+  descends from the page's `h1` without skipping** — a card sitting
+  directly in the content region is an `h2`. Choosing a level for the
+  size it renders at is the common way this breaks: size comes from
+  `font.size.lg`, and the level from the position in the document.
 - Loading states must be announced via `aria-busy="true"` on the
   card container while the placeholder is visible.
 

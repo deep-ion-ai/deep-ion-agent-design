@@ -77,7 +77,11 @@ attention it does not repay.
   "Visitors, 4,050 this week, rising" — rather than being left as a
   decorative graphic. The chart element itself is `role="img"` with
   that name, or `aria-hidden="true"` with the equivalent text
-  supplied visually or visually-hidden beside it.
+  supplied visually or visually-hidden beside it. `role="img"` is
+  correct here precisely because a sparkline is inert: it has no
+  tooltip and nothing inside it to focus. The moment an item becomes
+  interactive, the image role has to go — see
+  `specs/trend-chart-card.md`.
 - **The value is not decorative.** In the default variant it is real
   text, readable by assistive tech, not baked into the chart's
   rendering.

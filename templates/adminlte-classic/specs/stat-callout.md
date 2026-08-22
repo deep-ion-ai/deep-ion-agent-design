@@ -174,7 +174,10 @@ the block is not a control.
   Three or four per row on wide viewports, stacking to two and then
   one as the viewport narrows. All callouts in a row keep equal
   height regardless of whether some have a footer strip and others
-  do not.
+  do not — **and the strip is pinned to the bottom of the block, not
+  placed after the content**. Where one callout carries a trend line
+  and its neighbour does not, a strip that simply follows the content
+  leaves the row visibly ragged even though the boxes match.
 - **Not nested.** A Stat Callout never sits inside a Card, and a
   Card never sits inside a Stat Callout. Where a metric belongs
   inside page content rather than at the top of the page, the
