@@ -154,6 +154,40 @@ block a click target hides the real action from keyboard users.
   Live regions are announced without focus; making the block
   focusable adds a stop in the tab order that does nothing.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- role: absent when the alert is already on the page at load;
+     "status" when it appears after something the user did;
+     "alert" only for a time-sensitive failure — it interrupts. -->
+<div role="status">
+  <!-- The icon SHAPE differs per severity: it is the non-colour
+       carrier of the meaning. -->
+  <svg aria-hidden="true"><!-- severity glyph --></svg>
+
+  <p><strong>Import failed.</strong> Three rows could not be read.</p>
+
+  <!-- At most one action. On a tinted fill it is underlined, because
+       colour cannot carry it there. -->
+  <a href="/imports/42">Retry import</a>
+
+  <button type="button" aria-label="Dismiss import error">
+    <svg aria-hidden="true"><!-- glyph --></svg>
+  </button>
+</div>
+```
+
+Not visible in the markup: the live region has to exist before the
+message is put into it, or nothing is announced; dismissing removes
+the element rather than hiding it; and if focus is inside when it
+goes, focus moves to a sensible neighbour rather than to the removed
+node.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

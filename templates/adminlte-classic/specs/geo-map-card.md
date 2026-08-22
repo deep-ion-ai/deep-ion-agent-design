@@ -146,6 +146,45 @@ deliberate divergence.
   against the card's.
 - **Respect reduced motion**: no fly-to or zoom animation on load.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<figure>
+  <!-- The summary states the finding, not the picture. It is a
+       caption and not role="img" on the canvas: the regions below are
+       focusable, and an image role would hide them. -->
+  <figcaption>
+    Sales by country — highest in India, Germany and the United
+    States; no data for the remaining countries.
+  </figcaption>
+
+  <svg><!-- projection -->
+    <path tabindex="0" role="button" aria-label="Germany: 5,310" />
+    <!-- A region with no value is not focusable and is drawn in a
+         tone of its own, never the lightest step of the value scale,
+         which would read as a low value rather than as absent. -->
+    <path tabindex="-1" aria-hidden="true" />
+  </svg>
+</figure>
+
+<!-- Required in every state, not only on failure: the map must never
+     be the only route to its own numbers. -->
+<button type="button" aria-expanded="false" aria-controls="map-table">
+  View as table
+</button>
+<table id="map-table"><!-- region × value --></table>
+```
+
+Not visible in the markup: when the map fails to load, the canvas is
+replaced by a message, a retry and this same table — never a blank
+rectangle; and an interactive map must not hijack the page's scroll
+to zoom.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

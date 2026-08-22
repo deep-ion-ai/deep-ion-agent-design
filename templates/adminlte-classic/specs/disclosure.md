@@ -198,6 +198,48 @@ failure here — they are not interchangeable.
   `<a>` elements in a `<nav>`, without any tab roles at all. Making
   that call is part of using this component.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- Collapse and Accordion: disclosure semantics. -->
+<h3>
+  <button type="button" aria-expanded="false" aria-controls="sec-returns">
+    Returns
+    <svg aria-hidden="true"><!-- chevron --></svg>
+  </button>
+</h3>
+<!-- Absent when collapsed, not clipped: clipping leaves focusable
+     contents reachable by Tab with nothing on screen. -->
+<div id="sec-returns"><!-- panel --></div>
+
+<!-- Tabs & Pills: TAB semantics. Not interchangeable with the above. -->
+<div role="tablist" aria-label="Order details">
+  <!-- Roving tabindex: only the selected tab is reachable by Tab;
+       Left/Right move between them. -->
+  <button type="button" role="tab" id="t-details"
+          aria-selected="true" aria-controls="p-details" tabindex="0">
+    Details
+  </button>
+  <button type="button" role="tab" id="t-comments"
+          aria-selected="false" aria-controls="p-comments" tabindex="-1"
+          aria-label="Comments, 4">
+    Comments <span aria-hidden="true">4</span>
+  </button>
+</div>
+<div role="tabpanel" id="p-details" aria-labelledby="t-details"><!-- … --></div>
+```
+
+The difference the markup makes plain: an accordion trigger moves by
+**Tab** and toggles `aria-expanded`; a tab moves by **arrow key** and
+toggles `aria-selected`. A tabpanel takes `tabindex="0"` only when it
+holds nothing focusable of its own. Activating either leaves focus on
+the trigger.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

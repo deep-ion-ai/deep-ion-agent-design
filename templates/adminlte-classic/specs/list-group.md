@@ -116,6 +116,46 @@ component.
   announcement, so an item reads as one unit.
 - **Dividers are presentational** and must not be list items.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- Navigational: one link spanning the whole row. -->
+<nav aria-label="Settings sections">
+  <ul>
+    <li>
+      <a href="/settings/billing" aria-current="page">
+        <svg aria-hidden="true"><!-- leading glyph --></svg>
+        Billing
+        <span>3 unread</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Selectable: a form control, not a row of links. A link that
+     merely looks different is not perceivable as a choice. -->
+<ul role="listbox" aria-label="Report period">
+  <li role="option" aria-selected="true" tabindex="0">Weekly</li>
+  <li role="option" aria-selected="false" tabindex="-1">Monthly</li>
+</ul>
+
+<!-- Static: a plain list. No roles at all. -->
+<ul>
+  <li>Plan <span>Business</span></li>
+</ul>
+```
+
+One interactive element per item: an item that is itself a link and
+also contains a button is a nested control that cannot be activated
+unambiguously. The whole row is the target, not just its text, and a
+trailing count is folded into the item's accessible name rather than
+left as an orphan number.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

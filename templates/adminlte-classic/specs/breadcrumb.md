@@ -101,6 +101,33 @@ text, nothing that can be pressed or turned on.
   vertical padding taking its hit area to at least 2.75rem on touch,
   even though the line itself is visually tighter.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <!-- Separators are drawn, never text in the DOM: otherwise a
+         screen reader says "Home slash Orders slash Order 1029". -->
+    <li><a href="/orders">Orders</a></li>
+    <li><span aria-current="page">Order #1029</span></li>
+  </ol>
+</nav>
+
+<h1>Order #1029</h1>
+```
+
+The last item is both `aria-current="page"` and not a link: a link to
+the page already showing does nothing, and an unmarked last item
+leaves the sequence with no end. The trail sits before the `h1` in
+the DOM as well as visually, so the reading order is
+location-then-page — and it never replaces the `h1`.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set

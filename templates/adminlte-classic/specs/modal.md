@@ -154,6 +154,40 @@ overlay behavior", it means everything below.
   `specs/button.md`'s minimum size — the close control especially,
   since it is small and sits at a viewport edge on mobile.
 
+## Semantic skeleton
+
+Structure, roles, states and focus order only — no classes, no
+styles, no framework. A contract to reproduce in the target stack's
+idiom, not markup to paste; on a platform without a DOM, map the
+roles onto its own accessibility API.
+
+```html
+<!-- The rest of the page is inert while this is open: not merely
+     covered, or a screen reader reads straight past the backdrop. -->
+<div aria-hidden="true"><!-- backdrop --></div>
+
+<div role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+  <h2 id="dlg-title">Delete order #1029?</h2>
+
+  <!-- Required. Escape and the backdrop are invisible affordances. -->
+  <button type="button" aria-label="Close Delete order #1029?">
+    <svg aria-hidden="true"><!-- glyph --></svg>
+  </button>
+
+  <p>This removes the order and its payment record.</p>
+
+  <!-- Focus lands here on open — never on the destructive action. -->
+  <button type="button">Cancel</button>
+  <button type="button">Delete order</button>
+</div>
+```
+
+Not visible in the markup, and required all the same: focus is
+trapped while open and returns to the trigger on close; the page
+behind does not scroll; Escape dismisses unless the dialog is the
+blocking variant; backdrop dismissal is off whenever the dialog holds
+unsaved input. The dialog is absent when closed, not hidden.
+
 ## Composition rules
 
 - **Glyphs**: every icon this spec names is drawn from the icon set
