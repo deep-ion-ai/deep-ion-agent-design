@@ -23,9 +23,11 @@
         "modal",
         "offcanvas",
         "pagination",
+        "sidebar",
         "stat-callout"
       ],
       "componentPatterns": [
+        "app-shell",
         "dashboard"
       ]
     }
