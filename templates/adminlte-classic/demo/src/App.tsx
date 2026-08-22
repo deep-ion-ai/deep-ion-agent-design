@@ -17,6 +17,8 @@ import { UiElements } from "./pages/UiElements";
 import { Forms } from "./pages/Forms";
 import { Auth, type AuthVariant } from "./pages/Auth";
 import { ErrorPage, type ErrorVariant } from "./pages/ErrorPage";
+import { Profile } from "./pages/Profile";
+import { Settings as SettingsPage } from "./pages/Settings";
 import type { SidebarItem } from "./components/Sidebar";
 
 /** patterns/auth.md renders with no shell — this is the one place that
@@ -80,6 +82,14 @@ const PAGES: Record<string, { title: string; description?: string; crumbs: strin
     title: "Forms",
     description: "The Forms primitive component set (#64), rendered from its specs.",
     crumbs: ["Home", "Design system", "Forms"],
+  },
+  profile: {
+    title: "Profile",
+    crumbs: ["Home", "Profile"],
+  },
+  settings: {
+    title: "Settings",
+    crumbs: ["Home", "Settings"],
   },
 };
 
@@ -150,8 +160,8 @@ export default function App() {
         name: "Jane Cooper",
         initials: "JC",
         items: [
-          { id: "profile", label: "Profile" },
-          { id: "prefs", label: "Preferences" },
+          { id: "profile", label: "Profile", onSelect: () => setCurrent("profile") },
+          { id: "prefs", label: "Preferences", onSelect: () => setCurrent("settings") },
           {
             id: "signout",
             label: "Sign out",
@@ -162,7 +172,17 @@ export default function App() {
         ],
       }}
     >
-      {current === "ui" ? <UiElements /> : current === "forms" ? <Forms /> : <Dashboard />}
+      {current === "ui" ? (
+        <UiElements />
+      ) : current === "forms" ? (
+        <Forms />
+      ) : current === "profile" ? (
+        <Profile onEditProfile={() => setCurrent("settings")} />
+      ) : current === "settings" ? (
+        <SettingsPage />
+      ) : (
+        <Dashboard />
+      )}
     </AppShell>
   );
 }

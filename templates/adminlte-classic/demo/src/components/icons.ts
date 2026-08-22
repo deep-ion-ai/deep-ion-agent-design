@@ -60,6 +60,8 @@ export {
   KeyRound,
   UserRound,
   Table2,
+  LogIn,
+  ShieldCheck,
 } from "lucide-react";
 
 /** Lighter than Lucide's default 2, so a glyph reads at the weight of the text beside it. */
