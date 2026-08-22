@@ -2,6 +2,7 @@ import { ChevronDown, ChevronUp, ChevronsUpDown, ICON_STROKE, iconSize } from ".
 import type { ReactNode } from "react";
 import { Pagination } from "./Pagination";
 import { Badge } from "./Badge";
+import { Tooltip } from "./Tooltip";
 
 // Visual reference implementation of templates/adminlte-classic/specs/data-table.md.
 // This is demo scaffolding only — a real project should regenerate this
@@ -179,6 +180,34 @@ export function DataTable<Row>({
         </div>
       )}
     </div>
+  );
+}
+
+/**
+ * A cell whose text overflows its column truncates with an ellipsis and
+ * gains a Tooltip revealing the full value — specs/data-table.md's Anatomy.
+ * The trigger is focusable (`tabIndex={0}`) so the tooltip is reachable by
+ * keyboard, not only by hovering the row.
+ *
+ * This demo always wraps `text` in the tooltip since the sample data is
+ * written long enough to genuinely overflow the columns it's used in — a
+ * real project measures whether truncation actually occurred and skips
+ * the tooltip otherwise, per that spec's rule against showing one on a
+ * cell that already fits.
+ */
+export function TruncatedCell({
+  text,
+  maxWidthClassName = "max-w-[10rem]",
+}: {
+  text: string;
+  maxWidthClassName?: string;
+}) {
+  return (
+    <Tooltip text={text}>
+      <span tabIndex={0} className={`block truncate ${maxWidthClassName}`}>
+        {text}
+      </span>
+    </Tooltip>
   );
 }
 

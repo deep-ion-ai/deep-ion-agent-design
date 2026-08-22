@@ -153,7 +153,7 @@ export function Forms() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <RangeSlider label="Volume" min={0} max={100} value={volume} onChange={setVolume} valueText={`${volume} percent`} />
           <ColorPicker label="Accent colour" value={color} onChange={setColor} />
-          <FileInput label="Attachment" />
+          <FileInput label="Attachment" simulateUpload />
         </div>
       </Section>
     </>
