@@ -108,7 +108,10 @@ export function GeoMapCard({
                   onBlur={() => setHovered(null)}
                   fill={t === null ? "var(--color-neutral-light)" : "var(--color-chart-series-1)"}
                   fillOpacity={t === null ? 1 : 0.25 + t * 0.75}
-                  stroke="var(--color-chart-grid)"
+                  stroke={
+                    t === null ? "var(--color-text-secondary)" : "var(--color-chart-grid)"
+                  }
+                  strokeDasharray={t === null ? "3 2" : undefined}
                   strokeWidth={1}
                   className="outline-none focus-visible:stroke-brand-primary focus-visible:stroke-2"
                 />
@@ -132,7 +135,10 @@ export function GeoMapCard({
           High
         </span>
         <span className="flex items-center gap-2">
-          <span aria-hidden className="inline-block h-3 w-3 border border-chart-grid bg-neutral-light" />
+          <span
+            aria-hidden
+            className="inline-block h-3 w-3 border border-dashed border-text-secondary bg-neutral-light"
+          />
           {/* Named in the legend, and NOT the lightest shade of the scale,
               which would read as a low value rather than as absent. */}
           No data

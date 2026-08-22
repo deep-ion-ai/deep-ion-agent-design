@@ -1,3 +1,13 @@
+import {
+  ChartPie,
+  Component,
+  LayoutDashboard,
+  Settings,
+  ShoppingCart,
+  Users,
+  ICON_STROKE,
+  iconSize,
+} from "./components/icons";
 import { useState } from "react";
 import { AppShell } from "./components/AppShell";
 import { Badge } from "./components/Badge";
@@ -5,13 +15,17 @@ import { Dashboard } from "./pages/Dashboard";
 import { UiElements } from "./pages/UiElements";
 import type { SidebarItem } from "./components/Sidebar";
 
+const icon = (Glyph: typeof LayoutDashboard) => (
+  <Glyph strokeWidth={ICON_STROKE} className={iconSize.md} />
+);
+
 const NAV: SidebarItem[] = [
-  { id: "dashboard", label: "Dashboard", icon: "▦" },
-  { id: "ui", label: "UI elements", icon: "◧" },
+  { id: "dashboard", label: "Dashboard", icon: icon(LayoutDashboard) },
+  { id: "ui", label: "UI elements", icon: icon(Component) },
   {
     id: "orders",
     label: "Orders",
-    icon: "▤",
+    icon: icon(ShoppingCart),
     badge: (
       <Badge accent="danger" shape="pill">
         3
@@ -22,9 +36,14 @@ const NAV: SidebarItem[] = [
       { id: "orders-archive", label: "Archive" },
     ],
   },
-  { id: "customers", label: "Customers", icon: "☺" },
-  { id: "reports", label: "Reports", icon: "◔", children: [{ id: "reports-sales", label: "Sales" }] },
-  { id: "settings", label: "Settings", icon: "⚙" },
+  { id: "customers", label: "Customers", icon: icon(Users) },
+  {
+    id: "reports",
+    label: "Reports",
+    icon: icon(ChartPie),
+    children: [{ id: "reports-sales", label: "Sales" }],
+  },
+  { id: "settings", label: "Settings", icon: icon(Settings) },
 ];
 
 const PAGES: Record<string, { title: string; description?: string; crumbs: string[] }> = {

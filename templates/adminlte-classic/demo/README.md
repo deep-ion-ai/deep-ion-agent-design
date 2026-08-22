@@ -62,6 +62,23 @@ npm run build    # production build to dist/
 npm run preview  # preview the production build locally
 ```
 
+## The libraries it depends on
+
+Per the template's `foundations/`, an interface is not
+framework-agnostic by depending on nothing. Three dependencies exist
+because the foundations require what they provide — each is a
+**demo-local choice**, not part of the template:
+
+| Dependency | Why | Foundation |
+|---|---|---|
+| `lucide-react` | one coherent, stroke-based icon family, rendered inline as SVG so it inherits `currentColor` | `foundations/iconography.md` |
+| `@fontsource-variable/source-sans-3` | ships the family the tokens name, self-hosted and versioned rather than assumed present | `foundations/typography.md` |
+| `@dicebear/core` + `/collection` | the demo has no real user photographs, so avatars are generated deterministically from each name rather than faked with a glyph | `foundations/imagery.md` |
+
+Icons are re-exported from `src/components/icons.ts`, so the set can
+be swapped in one place. No emoji or Unicode characters are used as
+icons anywhere — see the foundation for why that matters.
+
 ## Charts and the map
 
 The trend chart, sparklines and region map are drawn as inline SVG
@@ -88,6 +105,11 @@ A few behaviours are easier to check by hand than to read:
   *Delete order*; Escape closes it and focus returns to the trigger.
 - **Contrast** — the `warning` and `info` Stat Callouts render dark
   text, not white. White on those fills is 1.63:1 and 1.96:1.
+- **Typography** — the page is set in Source Sans 3, shipped with the
+  build. If it renders in the system sans, the font package did not
+  load and that is a bug, not a fallback working as intended.
+- **Avatars** — the account avatar is a generated portrait; the
+  contacts pane shows the initials fallback for anyone without one.
 - **Failure states** — "Simulate a map failure" on the Overview page
   replaces the map with a message, a retry, and the same data as a
   table.

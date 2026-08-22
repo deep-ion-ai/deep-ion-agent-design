@@ -1,3 +1,17 @@
+import {
+  Check,
+  CreditCard,
+  Download,
+  Info,
+  ShoppingCart,
+  Table2,
+  Ticket,
+  Trash2,
+  UserPlus,
+  X,
+  ICON_STROKE,
+  iconSize,
+} from "../components/icons";
 import { useMemo, useState } from "react";
 import { Card } from "../components/Card";
 import { StatCallout } from "../components/StatCallout";
@@ -53,13 +67,46 @@ const columns: Column<Order>[] = [
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+// A deliberately simplified, stylised world — see GeoMapCard.tsx and
+// foundations/imagery.md. Not cartographically accurate, and not a
+// mapping library: a real project supplies its own.
 const REGIONS = [
-  { id: "na", name: "North America", value: 4820, d: "M40,40 L120,32 L134,70 L96,104 L52,86 Z" },
-  { id: "sa", name: "South America", value: 2140, d: "M96,112 L124,108 L120,168 L96,176 L84,140 Z" },
-  { id: "eu", name: "Europe", value: 5310, d: "M182,38 L226,34 L232,62 L196,74 L178,58 Z" },
-  { id: "af", name: "Africa", value: 940, d: "M186,82 L232,80 L228,140 L200,152 L180,116 Z" },
-  { id: "as", name: "Asia", value: 6180, d: "M240,30 L330,36 L338,84 L272,100 L238,70 Z" },
-  { id: "oc", name: "Oceania", value: null, d: "M304,124 L346,120 L350,152 L310,158 Z" },
+  {
+    id: "na",
+    name: "North America",
+    value: 4820,
+    d: "M28,42 L92,26 L124,32 L120,54 L104,62 L98,80 L84,94 L72,74 L58,66 L40,58 Z",
+  },
+  {
+    id: "sa",
+    name: "South America",
+    value: 2140,
+    d: "M116,98 L142,92 L152,106 L146,126 L134,152 L122,156 L118,134 L110,116 Z",
+  },
+  {
+    id: "eu",
+    name: "Europe",
+    value: 5310,
+    d: "M186,34 L214,26 L234,34 L230,50 L212,58 L194,52 L184,44 Z",
+  },
+  {
+    id: "af",
+    name: "Africa",
+    value: 940,
+    d: "M186,64 L224,58 L248,68 L240,88 L226,112 L212,140 L200,132 L194,106 L188,84 Z",
+  },
+  {
+    id: "as",
+    name: "Asia",
+    value: 6180,
+    d: "M236,26 L302,18 L342,28 L360,46 L344,64 L316,72 L296,90 L272,84 L252,66 L238,48 Z",
+  },
+  {
+    id: "oc",
+    name: "Oceania",
+    value: null,
+    d: "M330,112 L362,106 L374,118 L364,136 L340,138 L328,126 Z",
+  },
 ];
 
 export function Dashboard() {
@@ -104,7 +151,7 @@ export function Dashboard() {
           value="1,204"
           label="Orders today"
           accent="primary"
-          glyph="🛒"
+          glyph={<ShoppingCart strokeWidth={1.5} className="h-20 w-20" />}
           trend={{ text: "up 12% versus last week", direction: "up" }}
           href="#orders"
         />
@@ -112,7 +159,7 @@ export function Dashboard() {
           value="$38,920"
           label="Revenue"
           accent="success"
-          glyph="＄"
+          glyph={<CreditCard strokeWidth={1.5} className="h-20 w-20" />}
           trend={{ text: "up 4% versus last week", direction: "up" }}
           href="#revenue"
         />
@@ -120,11 +167,17 @@ export function Dashboard() {
           value="17"
           label="Open tickets"
           accent="warning"
-          glyph="✉"
+          glyph={<Ticket strokeWidth={1.5} className="h-20 w-20" />}
           trend={{ text: "down 8% versus last week", direction: "down" }}
           href="#tickets"
         />
-        <StatCallout value="312" label="New users" accent="info" glyph="☺" href="#users" />
+        <StatCallout
+          value="312"
+          label="New users"
+          accent="info"
+          glyph={<UserPlus strokeWidth={1.5} className="h-20 w-20" />}
+          href="#users"
+        />
       </section>
 
       <section
@@ -263,7 +316,7 @@ export function Dashboard() {
                     dateTime: "2026-08-21T09:41",
                     timeLabel: "09:41",
                     accent: "success",
-                    glyph: "✓",
+                    glyph: <Check strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                     heading: "Order #1041 shipped",
                   },
                   {
@@ -271,7 +324,7 @@ export function Dashboard() {
                     dateTime: "2026-08-21T08:12",
                     timeLabel: "08:12",
                     accent: "danger",
-                    glyph: "✕",
+                    glyph: <X strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                     heading: "Payment failed for order #1029",
                   },
                 ],
@@ -285,7 +338,7 @@ export function Dashboard() {
                     dateTime: "2026-08-20T17:02",
                     timeLabel: "17:02",
                     accent: "info",
-                    glyph: "i",
+                    glyph: <Info strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                     heading: "Nightly import completed",
                   },
                 ],
@@ -303,9 +356,22 @@ export function Dashboard() {
           collapsible
           removable
           menuItems={[
-            { id: "export", label: "Export as CSV" },
-            { id: "columns", label: "Choose columns" },
-            { id: "clear", label: "Clear filters", destructive: true },
+            {
+              id: "export",
+              label: "Export as CSV",
+              icon: <Download strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+            },
+            {
+              id: "columns",
+              label: "Choose columns",
+              icon: <Table2 strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+            },
+            {
+              id: "clear",
+              label: "Clear filters",
+              icon: <Trash2 strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+              destructive: true,
+            },
           ]}
         >
           <div className="p-card-padding">

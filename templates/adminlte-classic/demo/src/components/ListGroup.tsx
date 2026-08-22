@@ -1,3 +1,4 @@
+import { ChevronRight, ICON_STROKE, iconSize } from "./icons";
 import type { ReactNode } from "react";
 import { focusRing } from "./accents";
 
@@ -107,9 +108,11 @@ export function NavListGroup({
               } ${current ? "border-l-4 border-l-brand-primary pl-3 font-medium" : ""}`}
             >
               <RowContent item={item} />
-              <span aria-hidden className="text-text-secondary">
-                ›
-              </span>
+              <ChevronRight
+                aria-hidden
+                strokeWidth={ICON_STROKE}
+                className={`text-text-secondary ${iconSize.sm}`}
+              />
             </a>
           </li>
         );

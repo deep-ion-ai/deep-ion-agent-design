@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronUp, EllipsisVertical, X, ICON_STROKE, iconSize } from "./icons";
 import { useId, useState, type ReactNode } from "react";
 import { IconButton } from "./Button";
 import { DropdownMenu, type MenuItem } from "./DropdownMenu";
@@ -26,7 +27,7 @@ export interface CardProps {
   headerBadge?: ReactNode;
   /** Component-specific toolbar controls — they sit at the LEADING end. */
   toolbarExtras?: ReactNode;
-  /** Contextual actions for the card, behind a "⋮" trigger. */
+  /** Contextual actions for the card, behind an overflow trigger. */
   menuItems?: MenuItem[];
   collapsible?: boolean;
   removable?: boolean;
@@ -146,9 +147,11 @@ export function Card(props: CardProps) {
 
       {title !== undefined && (
         <div className="flex items-center gap-2 border-b border-surface-border px-card-padding py-card-header-y">
-          <h3 className="text-lg font-medium text-text-primary">{title}</h3>
+          <h3 className="min-w-0 truncate text-lg font-medium text-text-primary">
+            {title}
+          </h3>
           {headerBadge}
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex shrink-0 items-center gap-1">
             {actions}
             {hasToolbar && (
               <>
@@ -167,7 +170,7 @@ export function Card(props: CardProps) {
                         aria-label={`Actions for ${name}`}
                         className="inline-flex h-8 w-8 items-center justify-center rounded text-text-secondary hover:bg-neutral-light hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
                       >
-                        <span aria-hidden>⋮</span>
+                        <EllipsisVertical aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
                       </button>
                     )}
                   />
@@ -183,14 +186,18 @@ export function Card(props: CardProps) {
                     onClick={() => setCollapsed((c) => !c)}
                     className="inline-flex h-8 w-8 items-center justify-center rounded text-text-secondary hover:bg-neutral-light hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
                   >
-                    <span aria-hidden>{collapsed ? "⌄" : "⌃"}</span>
+                    {collapsed ? (
+                      <ChevronDown aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
+                    ) : (
+                      <ChevronUp aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
+                    )}
                   </button>
                 )}
                 {removable && (
                   // Last, at the trailing end, away from collapse.
                   <IconButton
                     label={`Remove ${name}`}
-                    icon="×"
+                    icon={<X strokeWidth={ICON_STROKE} className={iconSize.md} />}
                     onClick={() => {
                       setRemoved(true);
                       onRemove?.();

@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronUp, ChevronsUpDown, ICON_STROKE, iconSize } from "./icons";
 import type { ReactNode } from "react";
 import { Pagination } from "./Pagination";
 import { Badge } from "./Badge";
@@ -36,9 +37,18 @@ export interface DataTableProps<Row> {
 }
 
 function SortIcon({ direction }: { direction: SortDirection }) {
-  if (direction === "ascending") return <span aria-hidden>▲</span>;
-  if (direction === "descending") return <span aria-hidden>▼</span>;
-  return <span aria-hidden className="opacity-0 group-hover:opacity-40">▲</span>;
+  const cls = `${iconSize.sm} shrink-0`;
+  if (direction === "ascending")
+    return <ChevronUp aria-hidden strokeWidth={ICON_STROKE} className={cls} />;
+  if (direction === "descending")
+    return <ChevronDown aria-hidden strokeWidth={ICON_STROKE} className={cls} />;
+  return (
+    <ChevronsUpDown
+      aria-hidden
+      strokeWidth={ICON_STROKE}
+      className={`${cls} opacity-0 transition-opacity group-hover:opacity-40`}
+    />
+  );
 }
 
 export function DataTable<Row>({

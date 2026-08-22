@@ -1,3 +1,5 @@
+import { BrandMark } from "./Avatar";
+import { ChevronDown, CircleHelp, ICON_STROKE, iconSize } from "./icons";
 import { useId, useState, type ReactNode } from "react";
 
 // Visual reference implementation of specs/sidebar.md.
@@ -6,6 +8,7 @@ import { useId, useState, type ReactNode } from "react";
 export interface SidebarItem {
   id: string;
   label: string;
+  /** From the set in foundations/iconography.md — see icons.ts. */
   icon: ReactNode;
   badge?: ReactNode;
   children?: { id: string; label: string }[];
@@ -15,7 +18,7 @@ export interface SidebarProps {
   items: SidebarItem[];
   currentId: string;
   onNavigate: (id: string) => void;
-  brand?: { name: string; mark: ReactNode };
+  brand?: { name: string };
   footerLink?: { label: string; href: string };
   /** Shown once the menu is long enough to warrant it. */
   filterable?: boolean;
@@ -27,7 +30,7 @@ export function Sidebar({
   items,
   currentId,
   onNavigate,
-  brand = { name: "Classic Admin", mark: "◆" },
+  brand = { name: "Classic Admin" },
   footerLink = { label: "Documentation", href: "#documentation" },
   filterable = false,
   fluid = false,
@@ -65,9 +68,7 @@ export function Sidebar({
         }}
         className="flex items-center gap-2 border-b border-white/10 px-sidebar-x py-4 text-chrome-sidebar-text-active"
       >
-        <span aria-hidden className="text-lg">
-          {brand.mark}
-        </span>
+        <BrandMark />
         <span className="text-sm font-medium">{brand.name}</span>
       </a>
 
@@ -120,7 +121,9 @@ export function Sidebar({
                         : "text-chrome-sidebar-text hover:bg-chrome-sidebar-item-hover-bg hover:text-chrome-sidebar-text-active"
                   }`}
                 >
-                  <span aria-hidden>{item.icon}</span>
+                  <span aria-hidden className="shrink-0">
+                    {item.icon}
+                  </span>
                   <span className="flex-1">{item.label}</span>
                   {item.badge}
                 </a>
@@ -139,9 +142,11 @@ export function Sidebar({
                     }
                     className="mr-1 rounded p-1 text-chrome-sidebar-text hover:bg-chrome-sidebar-item-hover-bg hover:text-chrome-sidebar-text-active focus:outline-none focus-visible:ring-2 focus-visible:ring-chrome-sidebar-text-active"
                   >
-                    <span aria-hidden className={groupOpen ? "inline-block rotate-180" : "inline-block"}>
-                      ⌄
-                    </span>
+                    <ChevronDown
+                      aria-hidden
+                      strokeWidth={ICON_STROKE}
+                      className={`transition-transform ${iconSize.md} ${groupOpen ? "rotate-180" : ""}`}
+                    />
                   </button>
                 )}
               </div>
@@ -182,7 +187,7 @@ export function Sidebar({
           href={footerLink.href}
           className={`${itemBase} text-chrome-sidebar-text hover:bg-chrome-sidebar-item-hover-bg hover:text-chrome-sidebar-text-active`}
         >
-          <span aria-hidden>?</span>
+          <CircleHelp aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
           {footerLink.label}
         </a>
       </div>

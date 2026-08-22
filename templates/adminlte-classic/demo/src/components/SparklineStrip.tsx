@@ -1,3 +1,4 @@
+import { TrendingDown, TrendingUp, ICON_STROKE, iconSize } from "./icons";
 // Visual reference implementation of specs/sparkline-strip.md.
 // Demo scaffolding only — see ../../README.md and /AGENTS.md.
 
@@ -58,13 +59,17 @@ export function SparklineStrip({ items, loading }: SparklineStripProps) {
             <p className="text-sm text-text-secondary">{item.label}</p>
             {item.delta && !loading && (
               <p
-                className={`text-xs ${
+                className={`flex items-center justify-center gap-1 text-xs ${
                   item.delta.direction === "up"
                     ? "text-text-accent-success"
                     : "text-text-accent-danger"
                 }`}
               >
-                <span aria-hidden>{item.delta.direction === "up" ? "↑" : "↓"}</span>{" "}
+                {item.delta.direction === "up" ? (
+                  <TrendingUp aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
+                ) : (
+                  <TrendingDown aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
+                )}
                 {item.delta.text}
               </p>
             )}

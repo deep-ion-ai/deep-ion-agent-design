@@ -1,3 +1,5 @@
+import { Avatar } from "./Avatar";
+import { Send, Users, ICON_STROKE, iconSize } from "./icons";
 import { useRef, useState, type FormEvent } from "react";
 import { Card } from "./Card";
 import { Badge } from "./Badge";
@@ -71,14 +73,13 @@ export function DirectChat({
         contacts.length > 0 ? (
           <IconButton
             label={`${paneOpen ? "Hide" : "Show"} contacts for ${title}`}
-            icon="👥"
+            icon={<Users strokeWidth={ICON_STROKE} className={iconSize.md} />}
             aria-expanded={paneOpen}
             onClick={() => setPaneOpen((p) => !p)}
           />
         ) : undefined
       }
       collapsible
-      removable
       flushBody
       footer={
         readOnly ? undefined : (
@@ -94,7 +95,12 @@ export function DirectChat({
               className={`flex-1 rounded border border-surface-border px-3 py-2 text-sm text-text-primary placeholder:text-text-secondary ${focusRing}`}
             />
             {/* A real button, operable by keyboard even though Enter also sends. */}
-            <Button type="submit" size="sm" aria-label={`Send message to ${title}`}>
+            <Button
+              type="submit"
+              size="sm"
+              aria-label={`Send message to ${title}`}
+              leadingIcon={<Send strokeWidth={ICON_STROKE} className={iconSize.sm} />}
+            >
               Send
             </Button>
           </form>
@@ -116,7 +122,8 @@ export function DirectChat({
           {messages.map((m) => (
             <li key={m.id} className={m.own ? "flex flex-col items-end" : "flex flex-col items-start"}>
               {/* Announced as one unit: author, time and text together. */}
-              <p className="mb-1 text-xs text-text-secondary">
+              <p className="mb-1 flex items-center gap-2 text-xs text-text-secondary">
+                {!m.own && <Avatar name={m.author} size="sm" />}
                 {m.author} ·{" "}
                 <time dateTime={m.dateTime}>{m.timeLabel}</time>
                 {m.status === "pending" && " · sending"}
@@ -155,12 +162,7 @@ export function DirectChat({
                     aria-label={`${c.name}${c.unread ? `, ${c.unread} unread` : ""}`}
                     className={`flex w-full items-center gap-2 px-4 py-3 text-left hover:bg-neutral-light ${focusRing}`}
                   >
-                    <span
-                      aria-hidden
-                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-pill bg-neutral-light text-xs"
-                    >
-                      {c.name.slice(0, 2)}
-                    </span>
+                    <Avatar name={c.name} size="md" />
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm text-text-primary">{c.name}</span>
                       <span className="block truncate text-xs text-text-secondary">

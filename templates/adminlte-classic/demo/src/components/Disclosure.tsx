@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronRight, ICON_STROKE, iconSize } from "./icons";
 import { useId, useRef, useState, type ReactNode } from "react";
 import { focusRing } from "./accents";
 
@@ -28,9 +29,11 @@ export function Collapse({ label, defaultOpen = false, children }: CollapseProps
         onClick={() => setOpen((o) => !o)}
         className={`inline-flex items-center gap-2 rounded px-2 py-1 text-sm font-medium text-text-accent-primary hover:bg-neutral-light ${focusRing}`}
       >
-        <span aria-hidden className={open ? "rotate-90 transition-transform" : "transition-transform"}>
-          ›
-        </span>
+        <ChevronRight
+          aria-hidden
+          strokeWidth={ICON_STROKE}
+          className={`transition-transform ${iconSize.sm} ${open ? "rotate-90" : ""}`}
+        />
         {label}
       </button>
       {/* Unmounted when closed: clipping would leave focusable content
@@ -97,9 +100,11 @@ export function Accordion({
                 className={`flex w-full items-center justify-between bg-neutral-light px-4 py-3 text-left text-sm font-medium text-text-primary hover:brightness-95 ${focusRing}`}
               >
                 {s.title}
-                <span aria-hidden className={open ? "rotate-180 transition-transform" : "transition-transform"}>
-                  ⌄
-                </span>
+                <ChevronDown
+                  aria-hidden
+                  strokeWidth={ICON_STROKE}
+                  className={`transition-transform ${iconSize.md} ${open ? "rotate-180" : ""}`}
+                />
               </button>
             </Heading>
             {open && (

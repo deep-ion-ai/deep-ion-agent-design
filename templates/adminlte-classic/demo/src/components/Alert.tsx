@@ -1,3 +1,4 @@
+import { CircleAlert, CircleCheck, Info, TriangleAlert, X, ICON_STROKE, iconSize } from "./icons";
 import { useState, type ReactNode } from "react";
 import { accentText, accentBorder, type Accent } from "./accents";
 import { IconButton } from "./Button";
@@ -17,12 +18,12 @@ export type AlertSeverity = "success" | "danger" | "warning" | "info" | "neutral
 export type AlertLiveness = "static" | "status" | "alert";
 
 // The icon SHAPE differs per severity: it is the non-colour carrier.
-const severityGlyph: Record<AlertSeverity, string> = {
-  success: "✓",
-  danger: "✕",
-  warning: "▲",
-  info: "i",
-  neutral: "•",
+const severityIcon: Record<AlertSeverity, typeof CircleCheck> = {
+  success: CircleCheck,
+  danger: CircleAlert,
+  warning: TriangleAlert,
+  info: Info,
+  neutral: Info,
 };
 
 // Tailwind's `/10` opacity modifier cannot be applied to a colour that is
@@ -71,6 +72,7 @@ export function Alert({
   const text = severity === "neutral" ? "text-text-secondary" : accentText[accent];
   const border =
     severity === "neutral" ? "border-surface-border" : accentBorder[accent];
+  const SeverityIcon = severityIcon[severity];
 
   return (
     <div
@@ -78,16 +80,22 @@ export function Alert({
       style={wash(severity)}
       className={`flex items-start gap-2 rounded border p-4 ${border} ${className}`}
     >
-      <span aria-hidden className={`mt-0.5 shrink-0 font-semibold ${text}`}>
-        {severityGlyph[severity]}
-      </span>
+      <SeverityIcon
+        aria-hidden
+        strokeWidth={ICON_STROKE}
+        className={`mt-0.5 shrink-0 ${iconSize.md} ${text}`}
+      />
       <div className="flex-1 text-sm leading-base text-text-primary">
         {title && <span className="font-semibold">{title}. </span>}
         {children}
         {action && <span className="ml-1">{action}</span>}
       </div>
       {onDismiss && (
-        <IconButton label={dismissLabel} icon="×" onClick={onDismiss} />
+        <IconButton
+          label={dismissLabel}
+          icon={<X strokeWidth={ICON_STROKE} className={iconSize.md} />}
+          onClick={onDismiss}
+        />
       )}
     </div>
   );

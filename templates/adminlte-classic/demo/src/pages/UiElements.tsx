@@ -1,3 +1,20 @@
+import {
+  Archive,
+  Check,
+  ChevronDown,
+  Copy,
+  CreditCard,
+  Info,
+  KeyRound,
+  Pencil,
+  RefreshCw,
+  Trash2,
+  TriangleAlert,
+  UserRound,
+  Users,
+  ICON_STROKE,
+  iconSize,
+} from "../components/icons";
 import { useRef, useState } from "react";
 import { Card } from "../components/Card";
 import { Button, ButtonGroup, IconButton, ToggleGroup } from "../components/Button";
@@ -93,7 +110,10 @@ export function UiElements() {
               ]}
             />
 
-            <IconButton label="Delete order #1029" icon="🗑" />
+            <IconButton
+              label="Delete order #1029"
+              icon={<Trash2 strokeWidth={ICON_STROKE} className={iconSize.md} />}
+            />
           </div>
         </div>
       </Section>
@@ -146,10 +166,29 @@ export function UiElements() {
           <DropdownMenu
             id="demo-menu"
             items={[
-              { id: "edit", label: "Edit order", icon: "✎" },
-              { id: "dup", label: "Duplicate", icon: "⧉", hint: "⌘D" },
-              { id: "archive", label: "Archive", disabled: true },
-              { id: "delete", label: "Delete order #1029", destructive: true },
+              {
+                id: "edit",
+                label: "Edit order",
+                icon: <Pencil strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+              },
+              {
+                id: "dup",
+                label: "Duplicate",
+                icon: <Copy strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+                hint: "⌘D",
+              },
+              {
+                id: "archive",
+                label: "Archive",
+                icon: <Archive strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+                disabled: true,
+              },
+              {
+                id: "delete",
+                label: "Delete order #1029",
+                icon: <Trash2 strokeWidth={ICON_STROKE} className={iconSize.sm} />,
+                destructive: true,
+              },
             ]}
             renderTrigger={(p) => (
               <button
@@ -157,7 +196,8 @@ export function UiElements() {
                 type="button"
                 className="inline-flex items-center gap-2 rounded border border-surface-border bg-surface-canvas px-4 py-2 text-sm font-medium text-text-primary hover:bg-neutral-light"
               >
-                Order actions <span aria-hidden>⌄</span>
+                Order actions
+                <ChevronDown aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
               </button>
             )}
           />
@@ -273,9 +313,24 @@ export function UiElements() {
             <p className="mb-2 text-sm font-medium text-text-primary">Static</p>
             <ListGroup
               items={[
-                { id: "1", primary: "Plan", secondary: "Business", leading: "▣" },
-                { id: "2", primary: "Seats", secondary: "12 of 20 used", leading: "☰" },
-                { id: "3", primary: "Renews", secondary: "1 September 2026", leading: "◷" },
+                {
+                  id: "1",
+                  primary: "Plan",
+                  secondary: "Business",
+                  leading: <CreditCard strokeWidth={ICON_STROKE} className={iconSize.md} />,
+                },
+                {
+                  id: "2",
+                  primary: "Seats",
+                  secondary: "12 of 20 used",
+                  leading: <Users strokeWidth={ICON_STROKE} className={iconSize.md} />,
+                },
+                {
+                  id: "3",
+                  primary: "Renews",
+                  secondary: "1 September 2026",
+                  leading: <RefreshCw strokeWidth={ICON_STROKE} className={iconSize.md} />,
+                },
               ]}
             />
           </div>
@@ -285,14 +340,23 @@ export function UiElements() {
               navLabel="Settings sections"
               currentId="billing"
               items={[
-                { id: "profile", primary: "Profile", leading: "☺" },
+                {
+                  id: "profile",
+                  primary: "Profile",
+                  leading: <UserRound strokeWidth={ICON_STROKE} className={iconSize.md} />,
+                },
                 {
                   id: "billing",
                   primary: "Billing",
-                  leading: "▤",
+                  leading: <CreditCard strokeWidth={ICON_STROKE} className={iconSize.md} />,
                   trailing: <Badge accent="danger" shape="pill">3</Badge>,
                 },
-                { id: "api", primary: "API keys", leading: "⚿", disabled: true },
+                {
+                  id: "api",
+                  primary: "API keys",
+                  leading: <KeyRound strokeWidth={ICON_STROKE} className={iconSize.md} />,
+                  disabled: true,
+                },
               ]}
             />
           </div>
@@ -326,7 +390,7 @@ export function UiElements() {
                   dateTime: "2026-08-20T09:02",
                   timeLabel: "09:02",
                   accent: "info",
-                  glyph: "i",
+                  glyph: <Info strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                   heading: "Order placed",
                   body: "Paid by card ending 4242.",
                 },
@@ -335,7 +399,7 @@ export function UiElements() {
                   dateTime: "2026-08-20T14:31",
                   timeLabel: "14:31",
                   accent: "warning",
-                  glyph: "▲",
+                  glyph: <TriangleAlert strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                   heading: "Address needs confirming",
                   body: "The courier could not match the postcode.",
                   actions: (
@@ -355,7 +419,7 @@ export function UiElements() {
                   dateTime: "2026-08-21T09:41",
                   timeLabel: "09:41",
                   accent: "success",
-                  glyph: "✓",
+                  glyph: <Check strokeWidth={ICON_STROKE} className={iconSize.sm} />,
                   heading: "Shipped",
                 },
               ],

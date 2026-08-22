@@ -1,3 +1,9 @@
+/* The template names Source Sans 3 in tokens/typography.json; per
+   foundations/typography.md, naming it is not enough — it is shipped
+   here as a self-hosted variable font package rather than assumed
+   present or fetched from a third party. */
+@import "@fontsource-variable/source-sans-3/index.css";
+
 /* tokens.generated.css is produced by `npm run build-tokens` from
    ../../tokens/*.json — it does not exist until that script has run. */
 @import "./tokens.generated.css";
@@ -9,4 +15,12 @@
 body {
   font-family: var(--font-family-base);
   color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Figures line up down a column, so a changing value does not shift
+   its neighbours (foundations/typography.md). */
+table,
+.tabular {
+  font-variant-numeric: tabular-nums;
 }

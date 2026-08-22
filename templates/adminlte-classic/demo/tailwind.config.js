@@ -119,6 +119,12 @@ export default {
         "sidebar-x": "var(--spacing-component-sidebar-padding-x)",
         "sidebar-w": "var(--spacing-component-sidebar-width)",
         "viz-h": "var(--spacing-component-viz-height)",
+        "icon-sm": "var(--spacing-component-icon-sm)",
+        "icon-md": "var(--spacing-component-icon-md)",
+        "icon-lg": "var(--spacing-component-icon-lg)",
+        "avatar-sm": "var(--spacing-component-avatar-sm)",
+        "avatar-md": "var(--spacing-component-avatar-md)",
+        "avatar-lg": "var(--spacing-component-avatar-lg)",
       },
       borderRadius: {
         none: "var(--radius-none)",

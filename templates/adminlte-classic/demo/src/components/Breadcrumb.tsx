@@ -1,3 +1,4 @@
+import { ChevronRight, ICON_STROKE, iconSize } from "./icons";
 import { focusRing } from "./accents";
 
 // Visual reference implementation of specs/breadcrumb.md.
@@ -24,9 +25,11 @@ export function Breadcrumb({ items }: { items: Crumb[] }) {
               {i > 0 && (
                 // Separators are drawn, never placed in the DOM as text —
                 // otherwise a screen reader says "Home slash Orders".
-                <span aria-hidden className="mx-2 text-text-secondary">
-                  ›
-                </span>
+                <ChevronRight
+                  aria-hidden
+                  strokeWidth={ICON_STROKE}
+                  className={`mx-1 text-text-secondary ${iconSize.sm}`}
+                />
               )}
               {last ? (
                 // Not a link: a link to the page already showing does nothing.

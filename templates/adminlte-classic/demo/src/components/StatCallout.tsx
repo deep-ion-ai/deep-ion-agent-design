@@ -1,3 +1,4 @@
+import { ArrowRight, TrendingDown, TrendingUp, ICON_STROKE, iconSize } from "./icons";
 import type { ReactNode } from "react";
 import { fillBg, onFillText, glyphOnFill, ringOnFill, type Accent } from "./accents";
 
@@ -62,10 +63,12 @@ export function StatCallout({
       className={`relative overflow-hidden rounded shadow-card ${fillBg[accent]} ${onFillText[accent]}`}
       aria-busy={loading || undefined}
     >
+      {/* Background texture, not content: several times the large icon
+          size, in a low-contrast overlay colour, aria-hidden. */}
       {glyph && (
         <span
           aria-hidden
-          className={`pointer-events-none absolute -right-2 top-1 select-none text-[5rem] leading-none ${glyphOnFill[accent]}`}
+          className={`pointer-events-none absolute -right-3 top-2 ${glyphOnFill[accent]}`}
         >
           {glyph}
         </span>
@@ -80,11 +83,17 @@ export function StatCallout({
         ) : (
           <>
             {/* Value and label are one unit: "Orders today, 1,204". */}
-            <p className="text-xl font-bold leading-dense">{empty ? "—" : value}</p>
+            <p className="tabular text-xl font-bold leading-dense">
+              {empty ? "—" : value}
+            </p>
             <p className="text-sm">{label}</p>
             {trend && !empty && (
-              <p className="mt-1 text-sm">
-                <span aria-hidden>{trend.direction === "up" ? "↑" : "↓"}</span>{" "}
+              <p className="mt-1 flex items-center gap-1 text-sm">
+                {trend.direction === "up" ? (
+                  <TrendingUp aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
+                ) : (
+                  <TrendingDown aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
+                )}
                 {trend.text}
               </p>
             )}
@@ -101,7 +110,7 @@ export function StatCallout({
           className={`flex items-center justify-center gap-1 bg-overlay-accent-shade px-card-padding py-3 text-sm hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset ${ringOnFill[accent]}`}
         >
           {linkLabel}
-          <span aria-hidden>→</span>
+          <ArrowRight aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
         </a>
       )}
     </div>

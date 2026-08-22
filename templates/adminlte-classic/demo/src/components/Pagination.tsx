@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight, ICON_STROKE, iconSize } from "./icons";
 import { focusRing } from "./accents";
 
 // Visual reference implementation of specs/pagination.md.
@@ -81,7 +82,7 @@ export function Pagination({
                 onClick={() => onPageChange(page - 1)}
                 className={`${stepper} ${focusRing}`}
               >
-                <span aria-hidden>‹</span>
+                <ChevronLeft aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
               </button>
             </li>
 
@@ -129,7 +130,7 @@ export function Pagination({
                 onClick={() => onPageChange(page + 1)}
                 className={`${stepper} ${focusRing}`}
               >
-                <span aria-hidden>›</span>
+                <ChevronRight aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
               </button>
             </li>
           </ol>

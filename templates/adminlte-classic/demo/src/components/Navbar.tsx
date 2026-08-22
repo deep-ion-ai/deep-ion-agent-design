@@ -1,3 +1,5 @@
+import { Avatar } from "./Avatar";
+import { Bell, Menu, Search, ICON_STROKE, iconSize } from "./icons";
 import { useId, type ReactNode } from "react";
 import { DropdownMenu, type MenuItem } from "./DropdownMenu";
 import { CountBadge } from "./Badge";
@@ -49,7 +51,7 @@ export function Navbar({
         onClick={onToggleSidebar}
         className={`${triggerClasses} ${focusRing}`}
       >
-        <span aria-hidden>☰</span>
+        <Menu aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
       </button>
 
       {pageContext && (
@@ -61,12 +63,19 @@ export function Navbar({
           <label htmlFor={searchId} className="sr-only">
             Search orders and customers
           </label>
-          <input
-            id={searchId}
-            type="search"
-            placeholder="Search orders and customers"
-            className={`w-full max-w-sm rounded border border-surface-border px-3 py-1.5 text-sm text-text-primary placeholder:text-text-secondary ${focusRing}`}
-          />
+          <div className="relative max-w-sm">
+            <Search
+              aria-hidden
+              strokeWidth={ICON_STROKE}
+              className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary ${iconSize.sm}`}
+            />
+            <input
+              id={searchId}
+              type="search"
+              placeholder="Search orders and customers"
+              className={`w-full rounded border border-surface-border py-1.5 pl-9 pr-3 text-sm text-text-primary placeholder:text-text-secondary ${focusRing}`}
+            />
+          </div>
         </div>
       )}
 
@@ -95,7 +104,7 @@ export function Navbar({
                 }
                 className={`${triggerClasses} ${focusRing}`}
               >
-                <span aria-hidden>🔔</span>
+                <Bell aria-hidden strokeWidth={ICON_STROKE} className={iconSize.md} />
                 <CountBadge count={unreadCount} />
               </button>
             )}
@@ -113,12 +122,7 @@ export function Navbar({
               aria-label="Account menu"
               className={`inline-flex items-center gap-2 rounded px-2 py-1 hover:bg-neutral-light ${focusRing}`}
             >
-              <span
-                aria-hidden
-                className="inline-flex h-7 w-7 items-center justify-center rounded-pill bg-brand-primary text-xs font-medium text-text-on-accent"
-              >
-                {account.initials}
-              </span>
+              <Avatar name={account.name} size="md" />
               <span className="hidden text-sm text-text-primary sm:inline">
                 {account.name}
               </span>

@@ -1,3 +1,4 @@
+import { Check, LoaderCircle, ICON_STROKE, iconSize } from "./icons";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import {
   fillBg,
@@ -51,9 +52,10 @@ export function buttonClasses(
 
 function Spinner() {
   return (
-    <span
+    <LoaderCircle
       aria-hidden
-      className="inline-block h-3 w-3 animate-spin rounded-pill border-2 border-current border-r-transparent"
+      strokeWidth={ICON_STROKE}
+      className={`animate-spin ${iconSize.sm}`}
     />
   );
 }
@@ -210,7 +212,9 @@ export function ToggleGroup<T extends string>({
             )}
           >
             {/* Selection is a shape change as well as a colour change. */}
-            {selected && <span aria-hidden>✓</span>}
+            {selected && (
+              <Check aria-hidden strokeWidth={ICON_STROKE} className={iconSize.sm} />
+            )}
             {o.label}
           </button>
         );
