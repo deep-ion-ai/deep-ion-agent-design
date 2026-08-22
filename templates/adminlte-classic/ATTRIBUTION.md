@@ -1,44 +1,43 @@
-# Atribuição — template "adminlte-classic" ("Classic Admin")
+# Attribution — "adminlte-classic" template ("Classic Admin")
 
-A identidade visual deste template foi inspirada no projeto open source
-AdminLTE (https://github.com/ColorlibHQ/AdminLTE), licenciado sob MIT.
-Nenhum código-fonte do AdminLTE foi copiado; os arquivos deste diretório
-são especificações originais derivadas por observação da identidade
-visual pública do projeto.
+The visual identity of this template was inspired by the open source
+project AdminLTE (https://github.com/ColorlibHQ/AdminLTE), licensed
+under MIT. No AdminLTE source code was copied; the files in this
+directory are original specifications derived by observing the
+project's public visual identity.
 
-## O que foi observado, e o que foi feito com isso
+## What was observed, and what was done with it
 
-Os valores em `tokens/*.json` (cores, tipografia, espaçamento, raios de
-borda, sombras, breakpoints) foram obtidos por engenharia reversa a
-partir de artefatos publicamente disponíveis do projeto AdminLTE
-(código-fonte SCSS público no repositório oficial, usado apenas como
-fonte de observação de valores — não copiado para este repositório) e
-redigidos do zero, com nomenclatura e formato próprios (W3C Design
-Tokens), neste repositório.
+The values in `tokens/*.json` (colors, typography, spacing, border
+radii, shadows, breakpoints) were obtained by reverse-engineering
+publicly available AdminLTE artifacts (the project's public SCSS
+source code, used only as a source for observing values — not copied
+into this repository) and were written from scratch, with our own
+naming and format (W3C Design Tokens), in this repository.
 
-Os arquivos em `specs/*.md` e `patterns/*.md` são texto 100% original,
-escrito por observação do comportamento e da anatomia dos componentes,
-sem copiar nenhum trecho de documentação ou código do AdminLTE.
+The files in `specs/*.md` and `patterns/*.md` are 100% original text,
+written by observing the behavior and anatomy of the components,
+without copying any excerpt of AdminLTE's documentation or code.
 
-O nome de exibição deste template é **"Classic Admin"**. O identificador
-técnico de pasta `adminlte-classic` é usado apenas internamente, como
-referência de proveniência, e não deve ser apresentado a usuários finais
-como se fosse o projeto AdminLTE ou tivesse associação oficial com ele,
-com a Colorlib ou com a AdminLTE.io.
+The display name of this template is **"Classic Admin"**. The
+technical folder identifier `adminlte-classic` is used only
+internally, as a provenance reference, and must not be presented to
+end users as if it were the AdminLTE project or had any official
+association with it, with Colorlib, or with AdminLTE.io.
 
-Nenhum ícone, imagem, fonte binária ou outro asset do AdminLTE foi
-reutilizado neste template. Caso seja necessário reutilizar qualquer
-asset binário do AdminLTE no futuro, isso exige checagem de licença
-separada antes de ser incorporado (alguns plugins de terceiros já
-embutidos historicamente no AdminLTE tiveram, no passado, licenças
-diferentes de MIT).
+No icon, image, binary font, or other AdminLTE asset was reused in
+this template. Should it become necessary to reuse any AdminLTE
+binary asset in the future, that requires a separate license check
+before being incorporated (some third-party plugins historically
+bundled with AdminLTE have, in the past, carried licenses other than
+MIT).
 
-## Licença original do AdminLTE
+## Original AdminLTE license
 
-O texto abaixo é a licença MIT original do projeto AdminLTE
-(ColorlibHQ), reproduzida na íntegra conforme exigido pelos termos da
-licença MIT, por preservar o aviso de copyright das partes cuja
-identidade visual foi observada para a criação deste template.
+The text below is the original MIT license of the AdminLTE project
+(ColorlibHQ), reproduced in full as required by the terms of the MIT
+license, to preserve the copyright notice of the parts whose visual
+identity was observed to create this template.
 
 ```
 MIT License
@@ -64,9 +63,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Licença do conteúdo deste diretório
+## License of this directory's content
 
-Todo o restante do conteúdo deste diretório (`tokens/*.json`,
-`specs/*.md`, `patterns/*.md`, `README.md`, o app de demonstração em
-`demo/`) é original, produzido pela deep-ion-ai, e está licenciado sob
-MIT — ver `/LICENSE` na raiz deste repositório.
+Everything else in this directory (`tokens/*.json`, `specs/*.md`,
+`patterns/*.md`, `README.md`, the demo app in `demo/`) is original,
+produced by deep-ion-ai, and is licensed under MIT — see `/LICENSE`
+at the root of this repository.

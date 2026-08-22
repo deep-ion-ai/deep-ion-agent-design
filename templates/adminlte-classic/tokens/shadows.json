@@ -1,5 +1,5 @@
 {
-  "$description": "Sombras/elevação do template 'adminlte-classic' (Classic Admin). Extraídas por observação da identidade visual pública do AdminLTE — sombras discretas de dupla camada (um contorno quase imperceptível + uma difusão suave), nunca sombras pesadas/dramáticas. Documento original — ver ATTRIBUTION.md.",
+  "$description": "Shadows/elevation for the 'adminlte-classic' template (Classic Admin). Obtained by observing the public visual identity of AdminLTE — discreet, two-layer shadows (an almost imperceptible outline plus a soft diffusion), never heavy/dramatic shadows. Original document — see ATTRIBUTION.md.",
   "shadow": {
     "none": { "$value": "none", "$type": "shadow" },
     "card": {
@@ -8,14 +8,14 @@
         { "offsetX": "0rem", "offsetY": "0.0625rem", "blur": "0.1875rem", "spread": "0rem", "color": "rgba(33, 37, 41, 0.2)" }
       ],
       "$type": "shadow",
-      "$description": "Elevação padrão de card e painel: contorno de 1px quase imperceptível (12.5% de opacidade) somado a uma difusão suave de 3px (20% de opacidade). Efeito é sutil, não dramático."
+      "$description": "Default elevation for cards and panels: an almost imperceptible 1px outline (12.5% opacity) combined with a soft 3px diffusion (20% opacity). The effect is subtle, not dramatic."
     },
     "raised": {
       "$value": [
         { "offsetX": "0rem", "offsetY": "0.25rem", "blur": "0.75rem", "spread": "0rem", "color": "rgba(33, 37, 41, 0.15)" }
       ],
       "$type": "shadow",
-      "$description": "Elevação para elementos flutuantes: dropdowns, popovers, menus de ações da tabela."
+      "$description": "Elevation for floating elements: dropdowns, popovers, table row action menus."
     }
   }
 }
