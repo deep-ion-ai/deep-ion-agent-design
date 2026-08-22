@@ -16,6 +16,9 @@ export interface StatCalloutProps {
   glyph?: ReactNode;
   /** A trend against a baseline. Its DIRECTION is spelled out in words. */
   trend?: { text: string; direction: "up" | "down" };
+  /** 0–100, for a metric that is itself a fraction of a bound. Mutually
+   *  exclusive with `trend` — see specs/stat-callout.md's Anatomy. */
+  progress?: number;
   href?: string;
   /** Falls back to a name that identifies the metric, not "More info". */
   linkLabel?: string;
@@ -32,6 +35,7 @@ export function StatCallout({
   accent = "primary",
   glyph,
   trend,
+  progress,
   href,
   linkLabel = "More info",
   loading,
@@ -99,6 +103,25 @@ export function StatCallout({
                 )}
                 {trend.text}
               </p>
+            )}
+            {progress !== undefined && !empty && !trend && (
+              // On-fill placement: the track uses overlay.accent-shade and the
+              // fill the same on-fill text colour, per specs/stat-callout.md's
+              // Variants — specs/progress-bar.md's own colour variants assume
+              // a surface.canvas background this callout does not have.
+              <div
+                role="progressbar"
+                aria-label={`${label}, progress`}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round(progress)}
+                className="mt-2 h-1.5 w-full overflow-hidden rounded-hairline bg-overlay-accent-shade"
+              >
+                <div
+                  className={`h-full rounded-hairline ${onFillText[accent] === "text-text-on-accent" ? "bg-text-on-accent" : "bg-text-on-accent-dark"}`}
+                  style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
+                />
+              </div>
             )}
           </>
         )}

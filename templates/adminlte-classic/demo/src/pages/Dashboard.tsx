@@ -15,7 +15,7 @@ import {
 import { useMemo, useState } from "react";
 import { Card } from "../components/Card";
 import { StatCallout } from "../components/StatCallout";
-import { DataTable, StatusBadge, type Column, type SortDirection } from "../components/DataTable";
+import { DataTable, StatusBadge, TruncatedCell, type Column, type SortDirection } from "../components/DataTable";
 import { TrendChartCard } from "../components/TrendChartCard";
 import { GeoMapCard } from "../components/GeoMapCard";
 import { SparklineStrip } from "../components/SparklineStrip";
@@ -33,7 +33,17 @@ interface Order {
   total: string;
   status: "active" | "inactive" | "pending";
   placedAt: string;
+  notes: string;
 }
+
+const NOTES = [
+  "Gift wrap requested, deliver after 5pm on weekdays only",
+  "Repeat customer",
+  "Address confirmed by phone, courier has building access code",
+  "",
+  "Split into two packages due to size",
+  "Awaiting customs clearance, may be delayed past estimate",
+];
 
 const ALL_ORDERS: Order[] = Array.from({ length: 42 }, (_, i) => ({
   id: 1000 + i,
@@ -48,6 +58,7 @@ const ALL_ORDERS: Order[] = Array.from({ length: 42 }, (_, i) => ({
   total: `$${(20 + i * 7.35).toFixed(2)}`,
   status: (["active", "pending", "inactive"] as const)[i % 3],
   placedAt: `2026-08-${String((i % 28) + 1).padStart(2, "0")}`,
+  notes: NOTES[i % NOTES.length],
 }));
 
 const PAGE_SIZE = 8;
@@ -63,6 +74,11 @@ const columns: Column<Order>[] = [
     render: (r) => <StatusBadge status={r.status} />,
   },
   { key: "placedAt", label: "Placed", sortable: true },
+  {
+    key: "notes",
+    label: "Notes",
+    render: (r) => (r.notes ? <TruncatedCell text={r.notes} /> : null),
+  },
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -151,6 +167,7 @@ export function Dashboard() {
           label="New users"
           accent="info"
           glyph={<UserPlus strokeWidth={1.5} className="h-20 w-20" />}
+          progress={62}
           href="#users"
         />
       </section>

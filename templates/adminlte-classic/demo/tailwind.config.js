@@ -138,6 +138,18 @@ export default {
         card: "var(--shadow-card)",
         raised: "var(--shadow-raised)",
       },
+      keyframes: {
+        "progress-sweep": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(300%)" },
+        },
+      },
+      animation: {
+        // specs/progress-bar.md's indeterminate variant: a segment sweeping
+        // the track. Reduced-motion readers get animate-pulse instead —
+        // see ProgressBar.tsx.
+        "progress-sweep": "progress-sweep 1.4s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

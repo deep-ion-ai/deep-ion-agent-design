@@ -1,7 +1,8 @@
 import { Upload, X, ICON_STROKE, iconSize } from "./icons";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { IconButton } from "./Button";
 import { focusRing } from "./accents";
+import { ProgressBar } from "./ProgressBar";
 
 // Visual reference implementation of specs/specialized-inputs.md.
 // Demo scaffolding only — see ../../README.md and /AGENTS.md.
@@ -75,16 +76,27 @@ export interface FileInputProps {
   label: string;
   multiple?: boolean;
   onChange?: (files: FileList | null) => void;
+  /** Demo-only: simulates a transfer so the Uploading state is visible.
+   *  A real project drives `uploadProgress` from its actual transfer. */
+  simulateUpload?: boolean;
 }
 
-export function FileInput({ label, multiple, onChange }: FileInputProps) {
+export function FileInput({ label, multiple, onChange, simulateUpload }: FileInputProps) {
   const id = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const [names, setNames] = useState<string[]>([]);
+  const [progress, setProgress] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (progress === null || progress >= 100) return;
+    const t = window.setTimeout(() => setProgress((p) => Math.min(100, (p ?? 0) + 20)), 300);
+    return () => window.clearTimeout(t);
+  }, [progress]);
 
   function handleChange(files: FileList | null) {
     setNames(files ? Array.from(files).map((f) => f.name) : []);
     onChange?.(files);
+    setProgress(files && files.length && simulateUpload ? 0 : null);
   }
 
   function clear() {
@@ -130,6 +142,16 @@ export function FileInput({ label, multiple, onChange }: FileInputProps) {
           <IconButton label="Clear selection" icon={<X strokeWidth={ICON_STROKE} className={iconSize.sm} />} onClick={clear} />
         )}
       </div>
+      {progress !== null && (
+        <div className="mt-2 max-w-xs">
+          <ProgressBar
+            label={`Uploading ${names[0] ?? "file"}`}
+            value={progress}
+            size="sm"
+            accent={progress >= 100 ? "success" : "primary"}
+          />
+        </div>
+      )}
     </div>
   );
 }

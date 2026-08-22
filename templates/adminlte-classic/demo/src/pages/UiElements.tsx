@@ -27,6 +27,8 @@ import { Accordion, Collapse, Tabs } from "../components/Disclosure";
 import { ListGroup, NavListGroup, SelectListGroup } from "../components/ListGroup";
 import { Timeline } from "../components/Timeline";
 import { Pagination } from "../components/Pagination";
+import { ProgressBar, ProgressBarInline } from "../components/ProgressBar";
+import { Tooltip } from "../components/Tooltip";
 import { ACCENTS } from "../components/accents";
 
 // A gallery of the primitive components, so the demo shows what the
@@ -110,10 +112,15 @@ export function UiElements() {
               ]}
             />
 
-            <IconButton
-              label="Delete order #1029"
-              icon={<Trash2 strokeWidth={ICON_STROKE} className={iconSize.md} />}
-            />
+            {/* The tooltip's text matches the icon-only button's aria-label —
+                a sighted mouse user gets the same information a screen
+                reader already has, per specs/tooltip.md's composition rule. */}
+            <Tooltip text="Delete order #1029">
+              <IconButton
+                label="Delete order #1029"
+                icon={<Trash2 strokeWidth={ICON_STROKE} className={iconSize.md} />}
+              />
+            </Tooltip>
           </div>
         </div>
       </Section>
@@ -448,6 +455,41 @@ export function UiElements() {
             label="Example compact pagination"
           />
         </div>
+      </Section>
+
+      <Section title="Progress bar">
+        <div className="max-w-md space-y-4">
+          <ProgressBar label="Photo upload" value={68} />
+          <ProgressBar label="Storage used" value={92} accent="danger" />
+          <div className="max-w-xs">
+            <ProgressBarInline label="Profile completeness" value={40} accent="info" />
+          </div>
+          <ProgressBar label="Preparing report" indeterminate statusText="Preparing report…" />
+          <div>
+            <p className="mb-1 text-sm font-medium text-text-primary">Onboarding, step 2 of 4</p>
+            <ProgressBar label="Onboarding progress" value={50} segments={4} showLabel={false} accent="success" />
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Tooltip">
+        <div className="flex flex-wrap items-center gap-8 py-6">
+          <Tooltip text="Opens above the trigger" placement="top">
+            <Button emphasis="outline" accent="secondary">Top</Button>
+          </Tooltip>
+          <Tooltip text="Opens below the trigger" placement="bottom">
+            <Button emphasis="outline" accent="secondary">Bottom</Button>
+          </Tooltip>
+          <Tooltip text="Opens to the left" placement="left">
+            <Button emphasis="outline" accent="secondary">Left</Button>
+          </Tooltip>
+          <Tooltip text="Opens to the right" placement="right">
+            <Button emphasis="outline" accent="secondary">Right</Button>
+          </Tooltip>
+        </div>
+        <p className="text-sm text-text-secondary">
+          Hover shows after a short delay; keyboard focus shows immediately. Escape dismisses without leaving the trigger.
+        </p>
       </Section>
 
       <Section title="Ribbons">
