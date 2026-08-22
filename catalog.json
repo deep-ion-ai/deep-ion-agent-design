@@ -12,8 +12,14 @@
       "readme": "templates/adminlte-classic/README.md",
       "attribution": "templates/adminlte-classic/ATTRIBUTION.md",
       "demo": "templates/adminlte-classic/demo",
-      "components": ["card", "data-table"],
-      "componentPatterns": ["dashboard"]
+      "components": [
+        "card",
+        "data-table",
+        "dropdown-menu"
+      ],
+      "componentPatterns": [
+        "dashboard"
+      ]
     }
   ]
 }
