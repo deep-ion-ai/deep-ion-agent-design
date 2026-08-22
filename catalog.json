@@ -26,6 +26,7 @@
         "offcanvas",
         "pagination",
         "sidebar",
+        "sparkline-strip",
         "stat-callout",
         "trend-chart-card"
       ],
