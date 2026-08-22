@@ -24,12 +24,20 @@ the tokens.
    `font.weight.semibold`) at the top of the content area, optionally
    with a one-line description below it in `color.text.secondary`.
    Page margins use `spacing.8` on the sides on large screens.
-3. **Metrics row** — a horizontal grid of 2 to 4 Summary/KPI-variant
-   Cards (see `specs/card.md`), one per key metric (e.g. "Orders
-   today", "Revenue", "New users", "Open tickets"). Cards in this row
-   share equal width and are spaced with `spacing.grid-gap`. On
-   screens below the `md` breakpoint, the grid collapses to a single
-   column, stacking the cards vertically.
+3. **Metrics row** — a horizontal grid of 2 to 4 blocks, one per key
+   metric (e.g. "Orders today", "Revenue", "New users", "Open
+   tickets"), sharing equal width and spaced with
+   `spacing.grid-gap`. On screens below the `md` breakpoint, the grid
+   collapses to a single column, stacking them vertically.
+
+   The row uses **either** Summary/KPI-variant Cards
+   (`specs/card.md`) **or** Stat Callouts (`specs/stat-callout.md`),
+   never a mix of the two — a row of white cards with one saturated
+   block in it reads as an error state rather than as a design
+   choice. Choose Cards for a page whose content below is itself
+   dense and colourful, and Stat Callouts when the page needs a
+   strong entry point and the colour can carry meaning about each
+   number.
 4. **Detail section** — below the metrics row, a single full-width
    Default-variant Card whose body contains a Data Table (see
    `specs/data-table.md`) listing the underlying records for the

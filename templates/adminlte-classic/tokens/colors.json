@@ -44,7 +44,10 @@
       "sparkline": { "$value": "#6c757d", "$type": "color", "$description": "Line and fill color of a compact sparkline that carries no axes or legend. Deliberately muted (matches text.secondary) so a strip of sparklines reads as supporting detail rather than competing with the primary chart on the same page." }
     },
     "overlay": {
-      "backdrop": { "$value": "rgba(33, 37, 41, 0.5)", "$type": "color", "$description": "Dimming layer painted behind a modal, offcanvas panel, or off-canvas sidebar. Built from neutral.dark at 50% opacity so page content stays faintly readable while clearly demoted; the overlay surface itself sits on surface.canvas above it." }
+      "backdrop": { "$value": "rgba(33, 37, 41, 0.5)", "$type": "color", "$description": "Dimming layer painted behind a modal, offcanvas panel, or off-canvas sidebar. Built from neutral.dark at 50% opacity so page content stays faintly readable while clearly demoted; the overlay surface itself sits on surface.canvas above it." },
+      "accent-shade": { "$value": "rgba(33, 37, 41, 0.15)", "$type": "color", "$description": "Darkening wash laid over a surface that is already filled with an accent colour, to separate a sub-area from the fill without introducing a second hue — e.g. a Stat Callout's footer strip, or the hover state of a control sitting on a filled surface. Works over both dark and light accents; never used on an unfilled (surface.canvas) background, where surface.border or neutral.light applies instead." },
+      "accent-glyph": { "$value": "rgba(255, 255, 255, 0.3)", "$type": "color", "$description": "Colour of an oversized DECORATIVE glyph sitting on a dark accent fill (brand.primary, brand.secondary, status.success, status.danger). Deliberately low-contrast: this is background texture, not content, and must be aria-hidden. Never use it for a glyph that carries meaning — that one takes text.on-accent." },
+      "accent-glyph-dark": { "$value": "rgba(33, 37, 41, 0.2)", "$type": "color", "$description": "The accent-glyph counterpart for LIGHT accent fills (status.warning, status.info, neutral.light), where a white glyph would be invisible. Same rule: decorative only, aria-hidden, never load-bearing." }
     }
   }
 }
