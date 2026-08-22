@@ -1,6 +1,7 @@
 import {
   ChartPie,
   Component,
+  FileText,
   LayoutDashboard,
   Settings,
   ShoppingCart,
@@ -13,6 +14,7 @@ import { AppShell } from "./components/AppShell";
 import { Badge } from "./components/Badge";
 import { Dashboard } from "./pages/Dashboard";
 import { UiElements } from "./pages/UiElements";
+import { Forms } from "./pages/Forms";
 import type { SidebarItem } from "./components/Sidebar";
 
 const icon = (Glyph: typeof LayoutDashboard) => (
@@ -22,6 +24,7 @@ const icon = (Glyph: typeof LayoutDashboard) => (
 const NAV: SidebarItem[] = [
   { id: "dashboard", label: "Dashboard", icon: icon(LayoutDashboard) },
   { id: "ui", label: "UI elements", icon: icon(Component) },
+  { id: "forms", label: "Forms", icon: icon(FileText) },
   {
     id: "orders",
     label: "Orders",
@@ -56,6 +59,11 @@ const PAGES: Record<string, { title: string; description?: string; crumbs: strin
     title: "UI elements",
     description: "Every primitive the template specifies, rendered from its spec.",
     crumbs: ["Home", "Design system", "UI elements"],
+  },
+  forms: {
+    title: "Forms",
+    description: "The Forms primitive component set (#64), rendered from its specs.",
+    crumbs: ["Home", "Design system", "Forms"],
   },
 };
 
@@ -94,7 +102,7 @@ export default function App() {
         ],
       }}
     >
-      {current === "ui" ? <UiElements /> : <Dashboard />}
+      {current === "ui" ? <UiElements /> : current === "forms" ? <Forms /> : <Dashboard />}
     </AppShell>
   );
 }
