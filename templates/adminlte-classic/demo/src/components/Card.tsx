@@ -101,9 +101,11 @@ export function Card(props: CardProps) {
 
   const name = titleText ?? (typeof title === "string" ? title : "this card");
   const accentClasses = accent ? `border-l-4 ${accentClassMap[accent]}` : "";
-  // overflow-hidden ONLY when a ribbon needs clipping: the card must not
-  // clip its own header dropdown panel, which floats outside the header.
-  const shell = `relative ${ribbon ? "overflow-hidden" : ""} bg-surface-canvas border border-surface-border rounded shadow-card ${accentClasses} ${
+  // Never overflow-hidden here, even with a ribbon: the card must not clip
+  // its own header Dropdown Menu panel, which floats past the header's
+  // edge. The Ribbon clips itself, inside its own corner box — see
+  // specs/ribbon.md and specs/card.md's Ribbon anatomy entry.
+  const shell = `relative bg-surface-canvas border border-surface-border rounded shadow-card ${accentClasses} ${
     clickableHref ? "transition-shadow duration-150 hover:shadow-raised" : ""
   } ${className}`;
 
