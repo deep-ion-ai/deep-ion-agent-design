@@ -26,7 +26,8 @@
         "offcanvas",
         "pagination",
         "sidebar",
-        "stat-callout"
+        "stat-callout",
+        "trend-chart-card"
       ],
       "componentPatterns": [
         "app-shell",
