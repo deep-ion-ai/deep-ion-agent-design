@@ -131,8 +131,8 @@ specifying:
   `specs/card.md` (header status badge), `specs/navbar.md` (unread
   counts on the notification and message triggers),
   `specs/sidebar.md` (item counts), `specs/disclosure.md` (counts on
-  tabs), and — once merged — `specs/direct-chat.md` (unread count in
-  the card header). Those specs choose the colour and the content;
+  tabs), `specs/direct-chat.md` (unread count in the card header).
+  Those specs choose the colour and the content;
   the shape, contrast pairing, and announcement rules are defined
   here. Add each consumer to this list as it merges.
 - Sits inside: a heading, a table cell, a card header, a button, a
