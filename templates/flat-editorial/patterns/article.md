@@ -31,7 +31,13 @@ Top to bottom:
      `font.tracking.tight`. Opened above by `spacing.24`.
    - **Standfirst** (optional) — one or two sentences at
      `font.size.lg` in `color.text.secondary`. Written as a lede,
-     not lifted from the first paragraph.
+     not lifted from the first paragraph. It is
+     `specs/prose.md`'s **Lede paragraph** variant under another
+     name, and it therefore takes `font.family.body` — the serif —
+     even though it sits in a header whose title and byline are set
+     in the sans. It is reading matter, and
+     `foundations/typography.md`'s split assigns the serif by that
+     test rather than by position on the page.
    - **Byline** — `specs/post-meta.md` in its Article variant.
 3. **Cover image** (optional) — a figure per
    `foundations/imagery.md`, at `font.measure.wide`, between the
