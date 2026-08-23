@@ -1,6 +1,6 @@
 ---
 component: card
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/dropdown-menu.md, specs/button.md, specs/badge.md, specs/ribbon.md, specs/list-group.md, specs/modal.md, specs/alert.md]
 ---
 
@@ -98,8 +98,8 @@ needs words belongs in the card footer or in the dropdown menu.
 
 - **Default** — `shadow.card` shadow, 1px `surface.border` border.
 - **Hover** (when the whole card is clickable/navigable) — the
-  shadow lifts slightly to `shadow.raised`; smooth transition
-  (~150ms). Non-clickable cards do not react to hover.
+  shadow lifts slightly to `shadow.raised`, over `duration.state`.
+  Non-clickable cards do not react to hover.
 - **Loading** — the body is replaced by skeleton placeholders
   (rectangles of `neutral.light` with a subtle pulse animation) in
   the same proportions as the final content, to avoid layout shift.
@@ -113,8 +113,8 @@ needs words belongs in the card footer or in the dropdown menu.
   collapsed, the body and footer are hidden and the header keeps its
   full width, radius and shadow, so the collapsed card still reads
   as a card rather than as a stray strip. The transition animates
-  the body's height over ~200ms and is skipped entirely under a
-  reduced-motion preference. Collapse state is presentational and
+  the body's height over `duration.layout`; reduced motion is
+  handled per `foundations/motion.md`. Collapse state is presentational and
   must never be used to hide content that has not loaded — a
   collapsed card whose body is empty and a collapsed card whose body
   failed to load are indistinguishable to the reader.

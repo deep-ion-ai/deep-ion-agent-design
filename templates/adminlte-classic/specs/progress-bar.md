@@ -1,6 +1,6 @@
 ---
 component: progress-bar
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/button.md, specs/stat-callout.md, specs/specialized-inputs.md]
 ---
 
@@ -92,8 +92,10 @@ Two neighbours it is not:
 
 Under a reduced-motion preference, the indeterminate sweep switches
 from a moving segment to a slow opacity pulse on the full track,
-per the same rule `specs/disclosure.md` states for its own
-animations.
+rather than stopping altogether: the reader still needs to know
+something is running. The general rule is in
+`foundations/motion.md`; this is one of the two components that
+needs to say more than it does.
 
 ## Accessibility rules
 

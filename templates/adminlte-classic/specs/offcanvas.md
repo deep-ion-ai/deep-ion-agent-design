@@ -1,6 +1,6 @@
 ---
 component: offcanvas
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/modal.md, specs/button.md, specs/alert.md, specs/dropdown-menu.md]
 ---
 
@@ -84,9 +84,10 @@ tree. Everything below is what differs.
 
 - **Closed** — not rendered, for the same reason as a modal: a
   hidden panel still holds its focusable content in the tab order.
-- **Opening** — the panel slides in from its edge over ~200ms while
-  the backdrop, if present, fades in. Skipped under a reduced-motion
-  preference, which replaces the slide with a plain fade.
+- **Opening** — the panel slides in from its edge over
+  `duration.layout` while the backdrop, if present, fades in.
+  Reduced motion is handled per `foundations/motion.md`: the panel
+  is simply present, with no slide and no fade standing in for it.
 - **Open** — the panel is visible and, in the blocking variant,
   holds focus.
 - **Closing** — the reverse, after which the panel unmounts and

@@ -1,6 +1,6 @@
 ---
 component: disclosure
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/button.md, specs/badge.md, specs/card.md]
 ---
 
@@ -108,10 +108,12 @@ expand in flow and push the page down. A **Modal**
 ## States
 
 - **Collapsed / expanded** (Collapse, Accordion sections) — the
-  panel's height animates over ~200ms; the chevron rotates. Both
-  are skipped under a reduced-motion preference, which switches to
-  an instant show/hide rather than a fade, since a fading height is
-  the part that causes discomfort.
+  panel's height animates over `duration.layout`; the chevron
+  rotates. Under reduced motion both are replaced by an instant
+  show/hide rather than a fade, since a fading height is the part
+  that causes discomfort — the general rule is in
+  `foundations/motion.md`; this is one of the two components that
+  needs to say more than it does.
 - **Trigger hover / focus / active** — per `specs/button.md`. In an
   Accordion, hover shades the whole section header, not just its
   label.

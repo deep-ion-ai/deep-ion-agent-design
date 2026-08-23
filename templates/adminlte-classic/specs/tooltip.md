@@ -1,6 +1,6 @@
 ---
 component: tooltip
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/button.md, specs/data-table.md, specs/dropdown-menu.md, specs/geo-map-card.md, specs/trend-chart-card.md]
 ---
 
@@ -58,9 +58,11 @@ Two neighbours it is not:
 ## States
 
 - **Hidden** — default; the panel is not rendered.
-- **Shown, via hover** — appears after a short delay (roughly
-  300–500ms) once the pointer rests on the trigger, so a pointer
-  merely passing over it does not flash a panel it never reaches.
+- **Shown, via hover** — appears after `duration.hover-intent` once
+  the pointer rests on the trigger, so a pointer merely passing over
+  it does not flash a panel it never reaches. That token is a delay,
+  not an animation, and is not affected by a reduced-motion
+  preference — see `foundations/motion.md`.
 - **Shown, via focus** — appears **immediately**, no delay. A
   keyboard user has already committed to this element by tabbing to
   it; making them wait reproduces the hover delay for no reason and
