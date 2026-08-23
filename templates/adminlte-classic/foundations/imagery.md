@@ -42,6 +42,34 @@ illustration is more noticeable than none at all.
 For generated avatars and image tooling, `foundations/libraries.md`
 lists starting points per ecosystem — suggestions, not requirements.
 
+## Where the assets come from: ask for them
+
+This foundation specifies how an image **behaves** — its shape, its
+fit, its fallback, how it loads and what happens when it does not. It
+never specifies **which image**. The brand mark, the illustration set
+and the avatars belong to the project, and no file in this template
+will ever supply one.
+
+So when a screen you are generating needs one and the project has not
+given it to you, **ask the user**. This is `/AGENTS.md` rule 6
+applied to assets: an agent cannot know what the product's mark looks
+like, which illustration set the project has licensed, or what it is
+allowed to redistribute.
+
+Ask for the files themselves at the largest size available, the alt
+text or the information each image carries, and any licence and
+credit terms that apply. For a brand mark, ask for the light and dark
+variants and the minimum clear space, since both are decisions
+somebody has already made.
+
+Until the answer arrives, use the empty case each rule below already
+requires: initials in place of an avatar, the product name set as
+text in place of a brand mark, and an empty state with its heading
+and its action but no illustration. Do not fill the gap with a grey
+box, a placeholder-image service URL, a hotlinked illustration from a
+stock set, or a generated image dressed as the real asset. A visible
+gap is honest and gets filled; a plausible stand-in ships.
+
 ## Avatars
 
 1. **Shape** — a circle (`radius.pill`). Squares are acceptable for
@@ -125,6 +153,9 @@ lists starting points per ecosystem — suggestions, not requirements.
   (message and contact avatars), `specs/data-table.md`
   (avatar + name cells), `specs/list-group.md` (leading avatars),
   and any component's empty state that uses an illustration.
+- **Must not**: invent, substitute or hotlink an asset the project
+  has not supplied — ask for it, per **Where the assets come from**
+  above.
 - **One illustration set, one avatar shape, one brand mark
   treatment** per project.
 - Imagery never carries status. Status is a Badge

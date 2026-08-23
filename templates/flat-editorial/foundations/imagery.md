@@ -29,6 +29,55 @@ Two sources, doing different jobs:
   missing, and may fail to load. Every fallback rule below exists for
   these.
 
+## Where the images come from: ask for them
+
+This foundation specifies how an image **behaves** — its aspect
+ratio, its corners, its caption, its alt text, its fallback, when it
+loads and what happens when it does not. It never specifies **which
+image**. The photographs belong to the publication, not to the visual
+identity, and no file in this template will ever supply one.
+
+So when a page you are generating calls for a photograph and the
+project has not given you one, **ask the user for it**. This is
+`/AGENTS.md` rule 6 applied to assets, and asking is the only correct
+move available: an agent cannot know what the article is about in the
+way a picture editor does, what the publication would actually run,
+or what it holds a licence to use.
+
+Ask for four things in one message, rather than one at a time:
+
+1. **The files** — or a path, a bucket, a CMS field, whatever the
+   build can read — at the largest size available, so they can be
+   resized down here instead of upscaled.
+2. **Alt text** for each, or the information each image carries so
+   that alt text can be drafted for the user to approve. See
+   **Accessibility** below for what makes it good.
+3. **Credit line and licence**, and where the credit has to appear
+   if it has to appear at all.
+4. **Which articles get one**, since a cover is optional by design
+   (see **Cover images**) and a publication that illustrates only
+   some of its articles is entirely normal.
+
+Until the answer arrives, **build the no-cover path** — the layout
+`specs/article-card.md` and `patterns/article.md` are already
+required to handle. Do not fill the gap with:
+
+- a grey box, a coloured block, a gradient or a blurred placeholder
+  shipped as though it were the image;
+- an abstract SVG standing in for a photograph the design asked for.
+  A drawing is a legitimate image where the content is genuinely
+  diagrammatic, and a poor substitute where it is not;
+- a hotlinked stock-photography URL, which puts a third party in the
+  page's critical path for the reasons `foundations/libraries.md`
+  gives about fonts, and is usually a licence breach besides;
+- a generated image presented as a photograph of something real.
+
+A visible gap is honest and gets filled. A plausible stand-in ships.
+
+**Nothing in this foundation limits what may be photographed, how
+many photographs a page may carry, or what they may be of.** Every
+rule below is about how an image sits on the page once it exists.
+
 ## Figures in an article
 
 1. **Width.** A figure may break out of `font.measure.prose` to
@@ -84,7 +133,10 @@ this template says so plainly rather than pretending otherwise:
 - **A diagram or screenshot with a white background WILL glare on a
   dark page.** The fix is a second asset, not a filter: author
   diagrams as SVG with `currentColor` where possible, or supply a
-  dark variant and select it with the theme.
+  dark variant and select it with the theme. This is a rule about
+  diagrams, not a reason to prefer them: it does not apply to a
+  photograph, and it is not licence to draw an abstract SVG where the
+  page called for a picture.
 - **A transparent PNG of dark line art disappears on a dark page.**
   Same fix.
 - **Never invert an image with a CSS filter.** It turns photographs
@@ -129,6 +181,9 @@ this template says so plainly rather than pretending otherwise:
 
 - **Used by**: `specs/prose.md` (figures), `specs/article-card.md`
   (thumbnail), `specs/post-meta.md` (author avatar).
+- **Must not**: invent, substitute or hotlink an image the project
+  has not supplied — ask for it, per **Where the images come from**
+  above.
 - **Must not**: place text over a photograph without a verified
   contrast treatment; this template has no such treatment defined and
   therefore no such component.
