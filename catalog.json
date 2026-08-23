@@ -14,6 +14,7 @@
       "attribution": "templates/adminlte-classic/ATTRIBUTION.md",
       "demo": "templates/adminlte-classic/demo",
       "foundationDocs": [
+        "bidirectionality",
         "iconography",
         "imagery",
         "libraries",

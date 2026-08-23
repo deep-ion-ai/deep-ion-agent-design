@@ -48,7 +48,7 @@ restate or modify the shell.
    `specs/data-table.md`) listing the underlying records for the
    metrics above (e.g. the list of recent orders). The Card header
    holds the section title (e.g. "Recent orders") and, optionally, a
-   filter or "view all" action aligned to the right.
+   filter or "view all" action aligned to the trailing edge.
 
 ## Composition rules
 

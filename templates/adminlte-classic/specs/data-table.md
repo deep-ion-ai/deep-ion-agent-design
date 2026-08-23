@@ -16,8 +16,8 @@ a dashboard.
 ## Anatomy
 
 1. **Toolbar** (optional, above the table) — may contain a
-   search/filter field on the left and bulk or export actions on the
-   right.
+   search/filter field at the leading edge and bulk or export actions
+   at the trailing edge.
 2. **Header row** — a row of column headers, with a background
    slightly differentiated from the table body. Sortable columns show
    a sort indicator (arrow) next to the label.

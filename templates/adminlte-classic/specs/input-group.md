@@ -96,8 +96,8 @@ group level:
   one object must not merge their accessible names or their tab
   stops — each field and each interactive addon remains an
   independent, separately focusable, separately labelled element in
-  the tab order, in reading order left to right (or top to bottom in
-  the textarea variant).
+  the tab order, in reading order from the leading edge to the
+  trailing edge (or top to bottom in the textarea variant).
 
 ## Composition rules
 

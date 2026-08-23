@@ -19,9 +19,10 @@ lives inside one or more cards.
 A card is made up of the following parts, all optional except the
 body:
 
-1. **Header** (optional) — a top strip with a short title on the
-   left and, optionally, a status Badge (`specs/badge.md`) beside
-   the title and a **header toolbar** on the right (see below).
+1. **Header** (optional) — a top strip with a short title at the
+   leading edge and, optionally, a status Badge (`specs/badge.md`)
+   beside the title and a **header toolbar** at the trailing edge
+   (see below).
    Separated from the body by a thin bottom border.
 2. **Body** (required) — the main content area. May contain text, a
    highlighted metric with a label, a list of items, or any other
@@ -31,7 +32,7 @@ body:
    action (e.g. a "view all" link) or metadata (e.g. "updated 5 min
    ago"). Separated from the body by a thin top border.
 4. **Side accent bar** (optional) — a thin strip of status color on
-   the card's left border, used to informally signal the nature of
+   the card's leading edge, used to informally signal the nature of
    the content (e.g. an alert card with a `status.danger` bar)
    without changing the entire card background.
 5. **Ribbon** (optional) — a diagonal corner banner labelling the
@@ -47,7 +48,7 @@ body:
 ### Header toolbar
 
 A cluster of icon-only buttons at the header's trailing edge,
-right-aligned, separated from the title by flexible space and from
+separated from the title by flexible space and from
 each other by `spacing.1`. Each is an icon-only Button
 (`specs/button.md`) at the small size. The toolbar holds at most
 four controls; past that, the overflow menu is where the rest
@@ -84,7 +85,7 @@ needs words belongs in the card footer or in the dropdown menu.
 - **Summary/KPI** — the body is reduced to a large number
   (`font.size.xl`, `font.weight.semibold`) with a short label below
   (`font.size.sm`, `text.secondary`) and, optionally, a themed icon
-  aligned to the right. Used in metric grids at the top of a
+  aligned to the trailing edge. Used in metric grids at the top of a
   dashboard.
 - **List** — the body contains a List Group
   (`specs/list-group.md`): a vertical column of single-column items

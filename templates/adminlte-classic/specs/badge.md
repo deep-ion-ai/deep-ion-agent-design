@@ -59,7 +59,7 @@ Its neighbours, and the test for telling them apart:
   fill value — is used for the text and a 1px border, with a
   `surface.canvas` fill instead of a solid one. Used where a row of solid badges would out-shout the
   data around them, e.g. a status column in a dense Data Table.
-- **Overflow count** — a pill badge positioned on the top-right
+- **Overflow count** — a pill badge positioned on the top trailing
   corner of a small parent element (an icon button, an avatar),
   overlapping it slightly. Counts above a defined ceiling are
   truncated with a plus ("99+") rather than allowed to widen the
