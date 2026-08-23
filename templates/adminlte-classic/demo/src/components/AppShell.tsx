@@ -25,6 +25,8 @@ export interface AppShellProps {
   notifications?: MenuItem[];
   unreadCount?: number;
   account: { name: string; initials: string; items: MenuItem[] };
+  /** Passed straight through to the Navbar — see foundations/theming.md. */
+  themeToggle?: ReactNode;
   children: ReactNode;
 }
 
@@ -39,6 +41,7 @@ export function AppShell({
   notifications,
   unreadCount,
   account,
+  themeToggle,
   children,
 }: AppShellProps) {
   const [wide, setWide] = useState(
@@ -114,6 +117,7 @@ export function AppShell({
           notifications={notifications}
           unreadCount={unreadCount}
           account={account}
+          themeToggle={themeToggle}
           search
         />
 

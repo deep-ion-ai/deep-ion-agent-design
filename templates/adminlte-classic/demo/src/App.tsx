@@ -19,6 +19,7 @@ import { Auth, type AuthVariant } from "./pages/Auth";
 import { ErrorPage, type ErrorVariant } from "./pages/ErrorPage";
 import { Profile } from "./pages/Profile";
 import { Settings as SettingsPage } from "./pages/Settings";
+import { ThemeToggle, useTheme } from "./components/ThemeToggle";
 import type { SidebarItem } from "./components/Sidebar";
 
 /** patterns/auth.md renders with no shell — this is the one place that
@@ -107,6 +108,10 @@ const ERROR_VARIANT: Record<string, ErrorVariant> = {
 export default function App() {
   const [current, setCurrent] = useState("dashboard");
   const hash = useHashRoute();
+  // Mounted above the shell/no-shell split so the theme survives a
+  // trip through Auth or an Error page, both of which render without
+  // the Navbar that holds the toggle.
+  const { theme, setTheme } = useTheme();
 
   if (hash in AUTH_VARIANT) {
     return (
@@ -156,6 +161,7 @@ export default function App() {
         { id: "n2", label: "Nightly import completed" },
         { id: "n3", label: "Ava Torres replied in support chat" },
       ]}
+      themeToggle={<ThemeToggle theme={theme} onChange={setTheme} />}
       account={{
         name: "Jane Cooper",
         initials: "JC",
