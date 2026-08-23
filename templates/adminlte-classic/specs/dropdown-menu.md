@@ -65,9 +65,9 @@ Do not confuse it with two neighbours:
   button-group section.
 - **Alignment: start / end** — the panel's edge that aligns to the
   trigger. Start-aligned by default; end-aligned when the trigger
-  sits at the right edge of its container (a card header toolbar, a
-  navbar's right cluster), so the panel opens inward rather than off
-  the viewport.
+  sits at the trailing edge of its container (a card header toolbar,
+  a navbar's trailing cluster), so the panel opens inward rather than
+  off the viewport.
 - **Placement: below / above** — below the trigger by default,
   flipping above it when there is not enough room beneath. This flip
   is automatic and positional, not an authoring choice.
