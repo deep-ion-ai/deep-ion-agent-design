@@ -1,0 +1,49 @@
+/* The three families tokens/typography.json names. Per
+   foundations/typography.md and foundations/libraries.md, naming them is
+   not enough — they are shipped here as self-hosted variable font
+   packages rather than assumed present or fetched from a third party. */
+@import "@fontsource-variable/source-serif-4/index.css";
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+
+/* tokens.generated.css is produced by `npm run build-tokens` from
+   ../../tokens/*.json — it does not exist until that script has run.
+   It carries the light block, the [data-theme="dark"] block, and the
+   prefers-color-scheme fallback. */
+@import "./tokens.generated.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-family-ui);
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* color.chrome.selection-bg — specified because on a long-form page
+   text selection is a frequent and visible state (specs/prose.md). */
+::selection {
+  background: var(--color-chrome-selection-bg);
+}
+
+/* Figures line up down a column, so a changing value does not shift its
+   neighbours (foundations/typography.md). */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* foundations/motion.md: every animation here is conditional on the
+   reader not having asked for less of it. Belt and braces — components
+   also honour it individually. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
