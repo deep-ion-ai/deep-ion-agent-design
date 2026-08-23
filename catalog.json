@@ -58,7 +58,8 @@
         "dashboard",
         "error-page",
         "profile",
-        "settings"
+        "settings",
+        "wizard"
       ]
     }
   ]

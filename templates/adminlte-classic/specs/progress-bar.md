@@ -134,8 +134,9 @@ needs to say more than it does.
   (`specs/specialized-inputs.md`) or a Button's loading state
   (`specs/button.md`) — see Purpose for the distinction each time.
 - **Referenced by**: `specs/specialized-inputs.md` (File Input's
-  upload-in-progress row) and `specs/stat-callout.md` (an optional
-  compact accessory beneath the value, using the `sm` size). Those
+  upload-in-progress row), `specs/stat-callout.md` (an optional
+  compact accessory beneath the value, using the `sm` size), and
+  `patterns/wizard.md` (the step indicator, Segmented variant). Those
   specs decide where a bar appears and at what size; everything
   about the bar itself is defined here. Add each consumer as it
   merges.

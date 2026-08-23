@@ -239,8 +239,9 @@ Three kinds, which behave differently and must not be conflated:
   actions in `specs/modal.md`, `specs/input-group.md` (button addon),
   `specs/specialized-inputs.md` (File Input's trigger),
   `patterns/auth.md` (the submit Button), `patterns/profile.md`
-  (the "Edit profile" Button), and `patterns/settings.md` (each
-  section Card's Save Button). Those
+  (the "Edit profile" Button), `patterns/settings.md` (each
+  section Card's Save Button), and `patterns/wizard.md` (the
+  Back/Next action row). Those
   specs choose which buttons appear and where; emphasis, size,
   states, and the rules above are defined here. Add each consumer as
   it merges.

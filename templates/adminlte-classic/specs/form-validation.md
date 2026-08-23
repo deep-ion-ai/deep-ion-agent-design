@@ -160,10 +160,11 @@ field already has helper text, its id is added alongside
 - **Referenced by**: `specs/text-input.md`, `specs/select.md`,
   `specs/checkbox-radio-switch.md`, `specs/input-group.md`,
   `specs/specialized-inputs.md`, `patterns/auth.md` (its
-  page-level authentication-failure banner), and `patterns/settings.md`
-  (each section Card's own save-failure summary) — each defers its
-  own Invalid/Valid state definition to this spec rather than
-  restating it.
+  page-level authentication-failure banner), `patterns/settings.md`
+  (each section Card's own save-failure summary), and
+  `patterns/wizard.md` (per-step validation on advancing) — each
+  defers its own Invalid/Valid state definition to this spec rather
+  than restating it.
 - Composes with `specs/alert.md` for the form-level summary variant.
 
 ## Tokens used
