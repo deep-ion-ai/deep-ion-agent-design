@@ -1,3 +1,4 @@
+import { Artwork, type ArtworkName } from "./Artwork";
 import { PostMeta } from "./PostMeta";
 import { TagRow, type TagProps } from "./Tag";
 import { focusRing } from "./focus";
@@ -17,29 +18,12 @@ export interface ArticleCardProps {
   readingTime?: string;
   /** Optional and must be: many good articles have no cover, and a feed
    *  that renders a placeholder rectangle for them looks broken. */
-  cover?: { hue: number; label: string };
+  cover?: ArtworkName;
   tags?: TagProps[];
   layout?: "stacked" | "horizontal";
   /** h2 under a page h1; h3 if the grid sits under a section heading. */
   headingLevel?: 2 | 3;
   onNavigate: (href: string) => void;
-}
-
-/** The demo ships no photographs, so covers are drawn as flat token-derived
- *  bands rather than faked with a stock image or a grey placeholder box.
- *  foundations/imagery.md requires real assets in a real project. */
-function Cover({ hue, label }: { hue: number; label: string }) {
-  return (
-    <div
-      aria-hidden
-      className="flex aspect-[16/9] items-end rounded-lg p-4"
-      style={{ background: `linear-gradient(0deg, hsl(${hue} 45% 88%), hsl(${hue} 55% 78%))` }}
-    >
-      <span className="font-ui text-xs font-medium uppercase tracking-wide text-[#16161A] opacity-70">
-        {label}
-      </span>
-    </div>
-  );
 }
 
 export function ArticleCard({
@@ -68,7 +52,10 @@ export function ArticleCard({
     >
       {cover && (
         <div className={horizontal ? "mb-4 md:mb-0 md:w-2/5 md:shrink-0" : "mb-4"}>
-          <Cover {...cover} />
+          {/* Decorative here: the headline beside it already names the
+              article, so announcing the artwork too would repeat it
+              (foundations/imagery.md). radius.lg per the card's Anatomy. */}
+          <Artwork name={cover} className="overflow-hidden rounded-lg" />
         </div>
       )}
 

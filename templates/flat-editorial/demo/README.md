@@ -117,14 +117,26 @@ Things easier to check by hand than to read:
 
 Worth stating so nothing here is mistaken for a template rule:
 
-- **The cover images are flat colour bands, not photographs.** The
-  demo ships no real imagery. `foundations/imagery.md` requires real
-  assets in a real project, and its rules — square corners, no frame,
-  no shadow, a required caption width — are what the bands are drawn
-  to demonstrate. They are `aria-hidden`, standing in for a
-  photograph; per that foundation a photograph is *not* dimmed or
-  filtered between themes, which is why they stay bright in the dark
-  theme.
+- **The images are original SVG specimen artwork, not photographs.**
+  See `src/components/Artwork.tsx`. This is not a shortcut around
+  shipping "real" images — it is what `foundations/imagery.md`
+  prescribes for anything diagrammatic: *"author diagrams as SVG with
+  `currentColor` where possible, or supply a dark variant and select
+  it with the theme."* Each piece is drawn from `currentColor` plus
+  the accent tokens, so it follows the theme with no second asset and
+  no CSS filter — the rule demonstrated rather than only asserted.
+
+  Each piece also depicts the article it belongs to: the measure
+  overrunning its boundary, flat planes separated by rules, a theme
+  inverting, underlined links. Watch the "Dark mode is not an
+  inversion" cover across a theme change — the light panel and the
+  dark panel swap, which is the article's argument and something a
+  stock photograph could not do.
+
+  A project using this template for a real publication would ship
+  photographs, and that foundation's rules for them still apply: a
+  photograph is *not* dimmed or filtered between themes, and a
+  diagram with a white background needs a dark variant.
 - **The articles are written for the demo.** Only the first has a
   body; the rest exist so the feed and the pagination have something
   real to lay out. They are about typography because a blog demo

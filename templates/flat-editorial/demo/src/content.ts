@@ -1,4 +1,5 @@
 import type { TagProps } from "./components/Tag";
+import type { ArtworkName } from "./components/Artwork";
 
 // Sample content for the demo feed. Demo scaffolding only — see
 // ../README.md and /AGENTS.md.
@@ -16,7 +17,9 @@ export interface FeedItem {
   dateTime: string;
   dateLabel: string;
   readingTime: string;
-  cover?: { hue: number; label: string };
+  /** Original specimen artwork — see components/Artwork.tsx for why
+   *  this demo draws rather than photographs. */
+  cover?: ArtworkName;
   tags: TagProps[];
 }
 
@@ -34,7 +37,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-03-14",
     dateLabel: "14 March 2026",
     readingTime: "7 min read",
-    cover: { hue: 264, label: "Typography" },
+    cover: "measure",
     tags: [tag("Typography"), tag("Reading")],
   },
   {
@@ -45,7 +48,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-02-27",
     dateLabel: "27 February 2026",
     readingTime: "5 min read",
-    cover: { hue: 190, label: "Design" },
+    cover: "layers",
     tags: [tag("Design")],
   },
   {
@@ -56,6 +59,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-02-11",
     dateLabel: "11 February 2026",
     readingTime: "6 min read",
+    cover: "invert",
     tags: [tag("Design"), tag("Accessibility")],
   },
   {
@@ -66,7 +70,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-01-30",
     dateLabel: "30 January 2026",
     readingTime: "3 min read",
-    cover: { hue: 24, label: "Accessibility" },
+    cover: "underline",
     tags: [tag("Accessibility")],
   },
   {
@@ -87,7 +91,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2025-12-19",
     dateLabel: "19 December 2025",
     readingTime: "3 min read",
-    cover: { hue: 140, label: "Typography" },
+    cover: "scale",
     tags: [tag("Typography"), tag("Design")],
   },
   {
@@ -108,7 +112,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2025-11-21",
     dateLabel: "21 November 2025",
     readingTime: "4 min read",
-    cover: { hue: 300, label: "Design" },
+    cover: "layers",
     tags: [tag("Design")],
   },
   {
