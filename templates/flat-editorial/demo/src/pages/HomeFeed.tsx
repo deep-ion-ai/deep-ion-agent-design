@@ -28,6 +28,7 @@ export function HomeFeed({ onNavigate }: { onNavigate: (href: string) => void })
         <div className="mb-12">
           <ArticleCard
             layout="horizontal"
+            priority
             title={lead.title}
             href={`#/articles/${lead.slug}`}
             excerpt={lead.excerpt}

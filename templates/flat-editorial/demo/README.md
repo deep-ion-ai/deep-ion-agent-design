@@ -103,9 +103,17 @@ Things easier to check by hand than to read:
   load, and an explicit choice beats it in both directions. Note that
   a tag flips from white-on-violet to near-black-on-pale-violet: the
   accent inverts in lightness, so `text.on-accent` inverts with it.
-- **The text-only card.** In the feed, the article with no cover sits
-  in the same grid as the rest and its date still lines up with its
-  neighbours' — no placeholder rectangle.
+- **The text-only cards.** In the feed, the two articles with no
+  cover sit in the same grid as the rest and their dates still line up
+  with their neighbours' — no placeholder rectangle. That is the state
+  to build in while you are waiting for a user to send the
+  photographs.
+- **The hairline around the deep-field cover.** It is the one
+  exception `foundations/imagery.md` allows to "no border": the
+  photograph is black to its edges and so is the dark canvas. One
+  token covers both themes — against the light page a pale rule beside
+  a black photograph is invisible; against the dark page the same
+  token is lighter than the background and separates.
 - **Keyboard.** Tab from the top hits "Skip to content" first.
   Activating a table-of-contents entry moves focus to the heading, not
   just the scroll position. Tab to a code block and it scrolls with
@@ -117,26 +125,29 @@ Things easier to check by hand than to read:
 
 Worth stating so nothing here is mistaken for a template rule:
 
-- **The images are original SVG specimen artwork, not photographs.**
-  See `src/components/Artwork.tsx`. This is not a shortcut around
-  shipping "real" images — it is what `foundations/imagery.md`
-  prescribes for anything diagrammatic: *"author diagrams as SVG with
-  `currentColor` where possible, or supply a dark variant and select
-  it with the theme."* Each piece is drawn from `currentColor` plus
-  the accent tokens, so it follows the theme with no second asset and
-  no CSS filter — the rule demonstrated rather than only asserted.
+- **The covers are real photographs, and they were asked for.**
+  `foundations/imagery.md` says a template never supplies the
+  pictures — an agent asks the user for them. This demo is the user
+  in that exchange, and `public/photos/` is what it supplied: seven
+  public-domain and CC0 photographs with a named photographer and a
+  named licence each, recorded in `public/photos/CREDITS.md`. Nothing
+  is generated, nothing is hotlinked, and nothing here is a coloured
+  rectangle standing in for a picture.
 
-  Each piece also depicts the article it belongs to: the measure
-  overrunning its boundary, flat planes separated by rules, a theme
-  inverting, underlined links. Watch the "Dark mode is not an
-  inversion" cover across a theme change — the light panel and the
-  dark panel swap, which is the article's argument and something a
-  stock photograph could not do.
+  They are stand-in editorial photography and mean nothing about the
+  articles they sit above. That is the point: the layout is built
+  against real photographs, with real aspect ratios, real dark corners
+  and real weight, rather than against shapes drawn to fit it.
 
-  A project using this template for a real publication would ship
-  photographs, and that foundation's rules for them still apply: a
-  photograph is *not* dimmed or filtered between themes, and a
-  diagram with a white background needs a dark variant.
+- **One image is still a drawing, and that is the rule, not an
+  exception.** The figure inside the article —
+  `src/components/Diagram.tsx` — has diagrammatic content: a text
+  column with a wider element cutting across it. So it follows the
+  foundation's other rule, *"author diagrams as SVG with
+  `currentColor` where possible"*, and inverts with the theme from one
+  asset and no filter. Toggle the theme and watch the two behave
+  differently: the photographs do not move at all, which is the whole
+  of what that foundation says about photographs and dark mode.
 - **The articles are written for the demo.** Only the first has a
   body; the rest exist so the feed and the pagination have something
   real to lay out. They are about typography because a blog demo

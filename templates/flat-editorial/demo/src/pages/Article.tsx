@@ -4,7 +4,8 @@ import { ArticleCard } from "../components/ArticleCard";
 import { TagRow } from "../components/Tag";
 import { Avatar } from "../components/Avatar";
 import { CodeBlock } from "../components/CodeBlock";
-import { Artwork } from "../components/Artwork";
+import { Photo } from "../components/Photo";
+import { Diagram } from "../components/Diagram";
 import {
   TableOfContentsInline,
   TableOfContentsSidebar,
@@ -75,11 +76,22 @@ export function Article({ onNavigate }: { onNavigate: (href: string) => void }) 
           </Measure>
         </header>
 
-        <div className="mt-12">
-          <Wide>
-            <Artwork name="measure" aspect="aspect-[21/9]" />
-          </Wide>
-        </div>
+        {/* The cover. Square corners and no frame, per
+            foundations/imagery.md, and eagerly loaded because it is
+            this page's largest contentful paint. */}
+        {meta.cover && (
+          <div className="mt-12">
+            <Wide>
+              <Photo
+                name={meta.cover}
+                aspect="21x9"
+                alt=""
+                priority
+                sizes="(min-width: 768px) 48rem, 100vw"
+              />
+            </Wide>
+          </div>
+        )}
 
         {/* The sidebar sits in the margin at lg and above WITHOUT
             narrowing the measure — the grid's centre column is the
@@ -189,8 +201,7 @@ export function Article({ onNavigate }: { onNavigate: (href: string) => void }) 
               </Measure>
 
               <Figure caption="The text column stays put; the figure widens around it. That alternation is one of the few structural rhythms a page with no shadows has.">
-                <Artwork
-                  name="breakout"
+                <Diagram
                   aspect="aspect-[16/7]"
                   // Informative, not decorative, so it states what it
                   // SHOWS. Note that the alt and the caption say
