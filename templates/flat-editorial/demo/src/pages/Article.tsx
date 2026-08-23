@@ -4,6 +4,7 @@ import { ArticleCard } from "../components/ArticleCard";
 import { TagRow } from "../components/Tag";
 import { Avatar } from "../components/Avatar";
 import { CodeBlock } from "../components/CodeBlock";
+import { Artwork } from "../components/Artwork";
 import {
   TableOfContentsInline,
   TableOfContentsSidebar,
@@ -45,19 +46,6 @@ const TOC: TocEntry[] = [
   { id: "where-this-goes-wrong", label: "Where this goes wrong", level: 2 },
 ];
 
-/** A flat, token-derived band standing in for the cover photograph this
- *  demo does not ship. foundations/imagery.md requires real assets in a
- *  real project — square corners, no frame, no shadow. */
-function CoverBand() {
-  return (
-    <div
-      aria-hidden
-      className="aspect-[21/9] w-full"
-      style={{ background: "linear-gradient(110deg, hsl(264 55% 82%), hsl(190 50% 84%))" }}
-    />
-  );
-}
-
 export function Article({ onNavigate }: { onNavigate: (href: string) => void }) {
   const meta = ARTICLES[0];
   const related = ARTICLES.slice(1, 4);
@@ -89,7 +77,7 @@ export function Article({ onNavigate }: { onNavigate: (href: string) => void }) 
 
         <div className="mt-12">
           <Wide>
-            <CoverBand />
+            <Artwork name="measure" aspect="aspect-[21/9]" />
           </Wide>
         </div>
 
@@ -201,10 +189,15 @@ export function Article({ onNavigate }: { onNavigate: (href: string) => void }) 
               </Measure>
 
               <Figure caption="The text column stays put; the figure widens around it. That alternation is one of the few structural rhythms a page with no shadows has.">
-                <div
-                  aria-hidden
-                  className="aspect-[16/7] w-full"
-                  style={{ background: "linear-gradient(75deg, hsl(190 45% 86%), hsl(264 45% 88%))" }}
+                <Artwork
+                  name="breakout"
+                  aspect="aspect-[16/7]"
+                  // Informative, not decorative, so it states what it
+                  // SHOWS. Note that the alt and the caption say
+                  // different things — the caption is about how the
+                  // figure behaves on the page, the alt about what is
+                  // drawn. foundations/imagery.md keeps the two apart.
+                  alt="A narrow column of text interrupted by a block running wider than the column on both sides."
                 />
               </Figure>
 

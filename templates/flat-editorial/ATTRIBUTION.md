@@ -53,14 +53,32 @@ The fallback stacks additionally name system and licensed faces
 fallbacks. Naming a font in a fallback stack neither copies nor
 redistributes it.
 
-## No other third-party assets
+## No third-party assets
 
-No icon, image, illustration or other binary asset is included in
-this template. `foundations/iconography.md` and
+No icon, image, illustration or other asset from a third party is
+included in this template. `foundations/iconography.md` and
 `foundations/libraries.md` suggest icon libraries by name without
 bundling any of them, and each carries its own licence — most
 commonly MIT or ISC — which a consuming project should check before
 adopting.
+
+### The demo's artwork is original
+
+`demo/src/components/Artwork.tsx` contains illustrations — the
+specimen pieces used as article covers and figures in the visual
+reference app. They are **original work**, authored here as inline SVG
+and licensed under MIT with the rest of the repository. No stock
+photograph, no third-party illustration set, and no binary image file
+is bundled anywhere in this template.
+
+They are drawn from `currentColor` and the accent tokens rather than
+shipped as raster images, which is what `foundations/imagery.md`
+prescribes for diagrammatic imagery — so the demo demonstrates that
+rule rather than only stating it.
+
+A project using this template for a real publication will ship
+photographs of its own and is responsible for their licensing. This
+template neither supplies nor requires any.
 
 Should it become necessary to include any binary asset in this
 template in future, that requires a separate licence check and an
