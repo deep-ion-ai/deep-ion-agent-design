@@ -1,6 +1,6 @@
 ---
 component: alert
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/button.md]
 ---
 
@@ -77,9 +77,10 @@ its neighbours:
 ## States
 
 - **Visible** — the default and, for most alerts, the only state.
-- **Dismissing** — a short (~150ms) fade and height collapse before
-  removal, so the surrounding content does not jump. Skipped
-  entirely under a reduced-motion preference.
+- **Dismissing** — a `duration.state` fade and height collapse before
+  removal, using `easing.exit` since the element is leaving the page
+  entirely, so the surrounding content does not jump. Reduced motion
+  is handled per `foundations/motion.md`.
 - **Dismissed** — the element is removed from the DOM, not hidden.
   A hidden-but-present alert stays in the accessibility tree and
   keeps being announced.

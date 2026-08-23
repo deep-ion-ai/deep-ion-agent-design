@@ -12,7 +12,16 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const problems = [];
 const fail = (file, msg) => problems.push({ file, msg });
 
-const TOKEN_ROOTS = ["color", "spacing", "radius", "shadow", "font", "breakpoint"];
+const TOKEN_ROOTS = [
+  "color",
+  "spacing",
+  "radius",
+  "shadow",
+  "font",
+  "breakpoint",
+  "duration",
+  "easing",
+];
 
 // Front matter is a deliberately small YAML subset — scalars, inline
 // lists, and maps nested two deep — so this repository needs no

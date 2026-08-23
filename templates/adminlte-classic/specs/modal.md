@@ -1,6 +1,6 @@
 ---
 component: modal
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 references: [specs/button.md, specs/alert.md, specs/dropdown-menu.md]
 ---
 
@@ -89,7 +89,8 @@ rules rather than restating them, so the two cannot drift apart.
 - **Closed** — not rendered. Not merely hidden: a display-hidden
   dialog still holds focusable content in the tab order.
 - **Opening** — the backdrop fades in and the dialog fades and rises
-  slightly over ~150ms. Skipped under a reduced-motion preference.
+  slightly over `duration.state`. Reduced motion is handled per
+  `foundations/motion.md`.
 - **Open** — the dialog holds focus, the page behind it does not
   scroll, and no element outside the dialog is reachable.
 - **Closing** — the reverse transition, after which the dialog

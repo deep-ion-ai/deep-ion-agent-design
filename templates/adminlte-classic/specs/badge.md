@@ -1,6 +1,6 @@
 ---
 component: badge
-requires: [foundations/iconography.md]
+requires: [foundations/iconography.md, foundations/motion.md]
 ---
 
 # Component: Badge
@@ -74,10 +74,10 @@ reflects the state of something else. Two behaviors are still worth
 specifying:
 
 - **Value change** — when a count changes while the page is open,
-  the badge updates in place. It may use a brief (~150ms) scale or
+  the badge updates in place. It may use a `duration.state` scale or
   fade transition to draw the eye, but must not animate on every
-  render or loop indefinitely; motion that repeats becomes noise and
-  must respect a reduced-motion preference.
+  render or loop indefinitely; motion that repeats becomes noise.
+  Reduced motion is handled per `foundations/motion.md`.
 - **Zero / absent** — a count badge showing zero is removed from the
   layout, not rendered as "0". A badge that always shows stops being
   a signal.

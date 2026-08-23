@@ -1,6 +1,6 @@
 ---
 component: sidebar
-requires: [foundations/iconography.md, foundations/imagery.md]
+requires: [foundations/iconography.md, foundations/imagery.md, foundations/motion.md]
 references: [specs/offcanvas.md, specs/badge.md, specs/navbar.md]
 ---
 
@@ -87,9 +87,9 @@ the third is a menu, and belongs in the Navbar
   version of the active treatment, so the reader can see where they
   are without opening every group.
 - **Submenu collapsed / expanded** — the chevron rotates and the
-  child list animates open over ~200ms, skipped under a
-  reduced-motion preference. A submenu containing the current page
-  is expanded on load.
+  child list animates open over `duration.layout`; reduced motion is
+  handled per `foundations/motion.md`. A submenu containing the
+  current page is expanded on load.
 - **Off-canvas closed / open** (below `breakpoint.lg`) — the column
   leaves the layout entirely and is reached through the Navbar's
   toggle (`specs/navbar.md`). Open, it is the blocking variant of

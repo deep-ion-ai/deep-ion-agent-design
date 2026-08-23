@@ -1,0 +1,32 @@
+{
+  "$description": "Motion for the 'adminlte-classic' template (Classic Admin). Obtained by observing the public visual identity of AdminLTE — transitions are short and functional, never decorative, and there is no motion whose only job is to be seen. The two durations below were not invented for this file: they are the two values the component specs had already converged on independently (a ~150ms group and a ~200ms group), named here so a spec can state a job instead of a number. See foundations/motion.md for when each applies and for the reduced-motion rule that governs all of them. Original document — see ATTRIBUTION.md.",
+  "duration": {
+    "state": {
+      "$value": "150ms",
+      "$type": "duration",
+      "$description": "A property changing in place: a hover colour, a shadow lifting, an opacity fade, a small scale on a value that updated. Nothing moves and nothing resizes, so the change can afford to be quick — long enough to be perceived as a transition rather than a jump, short enough not to lag the pointer."
+    },
+    "layout": {
+      "$value": "200ms",
+      "$type": "duration",
+      "$description": "Something changing size or position: a panel's height opening, a drawer sliding in from an edge, a card body collapsing. Slower than duration.state because the eye is tracking an edge across a distance rather than registering a colour, and because these are the transitions that reflow the content around them."
+    },
+    "hover-intent": {
+      "$value": "400ms",
+      "$type": "duration",
+      "$description": "NOT an animation duration — the delay before a hover-triggered surface appears, so a pointer merely crossing an element does not flash something it never meant to open (specs/tooltip.md). It is listed here because it is the other time value a component picks, and because it must NOT be shortened to a duration value by mistake. It has no reduced-motion behaviour: a delay is not motion."
+    }
+  },
+  "easing": {
+    "standard": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$type": "cubicBezier",
+      "$description": "The default for both durations above: accelerates out of rest and decelerates into it. Used for anything that starts and ends on screen."
+    },
+    "exit": {
+      "$value": "cubic-bezier(0.4, 0, 1, 1)",
+      "$type": "cubicBezier",
+      "$description": "For something leaving the screen entirely — a dismissed Alert, a closing drawer. It accelerates away and never decelerates, because there is no arrival to land: easing into a resting position the element does not reach reads as hesitation."
+    }
+  }
+}
