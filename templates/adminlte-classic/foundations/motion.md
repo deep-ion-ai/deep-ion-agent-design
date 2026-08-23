@@ -1,6 +1,6 @@
 ---
 foundation: motion
-references: [foundations/libraries.md]
+references: [foundations/libraries.md, foundations/theming.md]
 ---
 
 # Foundation: Motion
@@ -99,7 +99,7 @@ that currently need to say more than it does.
   the message easier to miss.
 - **A switch between themes.** A full-page colour transition is
   large-area motion, and it delays exactly the thing that was asked
-  for.
+  for. See `foundations/theming.md`.
 - **Content arriving in a list or table.** Rows that animate in on
   every render make a data-dense page unreadable, and a page built
   from this template is data-dense by design.

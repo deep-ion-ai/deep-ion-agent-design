@@ -16,6 +16,24 @@
       ],
       "$type": "shadow",
       "$description": "Elevation for floating elements: dropdowns, popovers, table row action menus."
+    },
+    "dark": {
+      "$description": "Dark-theme counterparts, mirroring shadow.card and shadow.raised the way tokens/colors-dark.json mirrors the palette. A shadow is a darkening, and darkening a near-black surface does almost nothing — so in this theme elevation is carried mainly by the step between color.dark.surface.muted and color.dark.surface.canvas, with these shadows only reinforcing it. See foundations/theming.md. shadow.none needs no counterpart: it is the same absence in either theme.",
+      "card": {
+        "$value": [
+          { "offsetX": "0rem", "offsetY": "0rem", "blur": "0.0625rem", "spread": "0rem", "color": "rgba(0, 0, 0, 0.4)" },
+          { "offsetX": "0rem", "offsetY": "0.0625rem", "blur": "0.1875rem", "spread": "0rem", "color": "rgba(0, 0, 0, 0.5)" }
+        ],
+        "$type": "shadow",
+        "$description": "Default card elevation. Same geometry as shadow.card, built from black at a much higher opacity — the light theme's rgba(33, 37, 41, 0.125) is very nearly the colour of the dark page itself and would be invisible. Even at these opacities it reads as a faint seam rather than a lift, which is expected: on this theme the surface step does the work."
+      },
+      "raised": {
+        "$value": [
+          { "offsetX": "0rem", "offsetY": "0.25rem", "blur": "0.75rem", "spread": "0rem", "color": "rgba(0, 0, 0, 0.6)" }
+        ],
+        "$type": "shadow",
+        "$description": "Floating elements: dropdown panels, tooltips, row action menus. This is the one case where a dark-theme shadow still earns its place — a floating panel shares its background with the surface it covers, so without a shadow its edge is the only thing separating them. Pair it with a 1px color.dark.surface.border, which the light theme could get away with treating as optional."
+      }
     }
   }
 }
