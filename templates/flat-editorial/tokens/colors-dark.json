@@ -1,0 +1,49 @@
+{
+  "$description": "Dark-theme colour values for the 'flat-editorial' template (Flat Editorial). This file mirrors tokens/colors.json: for every light value at color.<path> there is a dark value at color.dark.<path>, and nothing else. The light palette remains the DEFAULT; this is the override set. Every value was measured against the three dark surfaces and chosen against the worst of them — which, in this theme, is surface.sunken, for the reason given on that token. See foundations/theming.md.",
+  "color": {
+    "dark": {
+      "accent": {
+        "base": {
+          "$value": "#A78BFA",
+          "$type": "color",
+          "$description": "The accent INVERTS in lightness between themes, and does so specifically to preserve the property that makes this template's accent unusual: one value serving both roles. It is 6.57:1 as text on surface.canvas (5.88:1 at the worst surface) and 6.57:1 as a fill under text.on-accent. Keeping the light theme's #6D28D9 here would have worked arithmetically — white on it is still 7.10:1 — but a deep violet fill on a near-black page reads as muddy, and the same value as TEXT would have been unreadable. Note the consequence, which is the same one 'adminlte-classic' documents for its neutral pair: because this fill is now light, text.on-accent flips from white to near-black."
+        },
+        "strong": {
+          "$value": "#C4B5FD",
+          "$type": "color",
+          "$description": "One step further from the page, for the hover and active states of an accent fill — the opposite direction from the light theme's accent.strong, which goes deeper. 'Stronger' means 'further from the surface', and which way that is depends on the surface. 9.68:1 / 8.67:1 worst as text."
+        },
+        "wash": {
+          "$value": "#241D3A",
+          "$type": "color",
+          "$description": "The accent at the faintest tint that still reads as tinted, on a dark page: a blockquote fill, a highlighted callout. text.primary on it is 13.70:1."
+        }
+      },
+      "status": {
+        "success": { "$value": "#4ADE80", "$type": "color", "$description": "10.26:1 / 9.19:1 worst as text. Light, like every accent in this theme, and therefore paired with text.on-accent on the rare occasion it is used as a fill." },
+        "danger": { "$value": "#FF8A80", "$type": "color", "$description": "7.83:1 / 7.01:1 worst as text. Still unmistakably red against the violet accent — the separation that made the accent violet in the first place holds in both themes." },
+        "warning": { "$value": "#F0B429", "$type": "color", "$description": "9.59:1 / 8.59:1 worst as text. Where the light theme needed a heavily darkened #8A5A00 to make amber legible on white, a near-raw amber is one of the most legible values in this theme — the pairing that fails in one theme is often the one that works in the other." },
+        "info": { "$value": "#6BB6F5", "$type": "color", "$description": "8.20:1 / 7.35:1 worst as text." }
+      },
+      "surface": {
+        "canvas": { "$value": "#17171B", "$type": "color", "$description": "The reading surface — an article's background. Carries the same faint cool cast the light theme's text.primary does, so the two themes read as the same identity inverted rather than as two different products." },
+        "muted": { "$value": "#0F0F12", "$type": "color", "$description": "The site background behind a feed, one step away from canvas — as in the light theme, where surface.muted is also the step away from the reading surface. The DARKEST surface in this theme." },
+        "sunken": { "$value": "#212127", "$type": "color", "$description": "A surface set apart from the reading surface — a table header, a pull quote, the footer. Note the role inversion: in the light theme this is the darkest of the three surfaces; here it is the LIGHTEST. 'Sunken' names a relationship, not a direction, and on a page this close to black there is no room left to go down — a recessed panel has to be rendered by stepping up. This is also why it is the worst case every text colour in this file was verified against: being the lightest dark surface, it gives light text the least contrast." },
+        "rule": { "$value": "#2E2E36", "$type": "color", "$description": "The hairline. 1.33:1 against surface.canvas — the same decorative weight the light theme's rule has (1.29:1), so the identity's reliance on rules rather than shadows survives the theme change at the same visual strength." }
+      },
+      "text": {
+        "primary": { "$value": "#EDEDF0", "$type": "color", "$description": "Body copy and headlines. 15.30:1 on surface.canvas, 13.70:1 at the worst surface. Deliberately not pure white, for the same halation reason the light theme's text.primary is not pure black — and it matters more here, since bright text on a dark field is where halation is worst." },
+        "secondary": { "$value": "#9B9AA3", "$type": "color", "$description": "Bylines, dates, captions, footer text. 6.42:1 / 6.88:1 / 5.75:1 across the three surfaces; chosen against the 5.75:1 on surface.sunken. Slightly cool, mirroring the light theme's warm secondary — each is tuned to its own paper." },
+        "on-accent": { "$value": "#17171B", "$type": "color", "$description": "Text and icons on an accent or status fill. FLIPPED from the light theme's white, because every accent in this theme is a light value — see accent.base. 6.57:1 over accent.base. A dark theme that keeps white here produces an unreadable button, and it is the single most common way a dark palette is got wrong." }
+      },
+      "chrome": {
+        "header-bg": { "$value": "#17171B", "$type": "color", "$description": "Matches surface.canvas, as in the light theme: the header is separated by a rule, never by a colour change or a shadow." },
+        "code-bg": { "$value": "#0F0F12", "$type": "color", "$description": "A code block's background. Matches surface.muted, mirroring the light theme's relationship — a code block recedes from the prose around it." },
+        "selection-bg": { "$value": "#3B2E63", "$type": "color", "$description": "Text selection highlight, built from the accent. text.primary on it is 10.23:1." }
+      },
+      "overlay": {
+        "backdrop": { "$value": "rgba(0, 0, 0, 0.6)", "$type": "color", "$description": "Built from black rather than from text.primary, which has inverted to a near-white value in this theme and would brighten the page instead of dimming it. Raised from the light theme's 0.4 because a dim over an already-dark page has less room to work with." }
+      }
+    }
+  }
+}

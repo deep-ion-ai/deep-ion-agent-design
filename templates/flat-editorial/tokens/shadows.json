@@ -1,0 +1,27 @@
+{
+  "$description": "Elevation for the 'flat-editorial' template (Flat Editorial). This file is deliberately almost empty, and that is the identity: this template is FLAT, meaning it does not use shadow to express depth. A card is separated from the page by a 1px color.surface.rule and by whitespace; a recessed panel is separated by a step to color.surface.muted or color.surface.sunken. Compare 'adminlte-classic', where shadow.card sits on nearly every surface — that is the clearest single difference between the two identities. Dark-theme counterparts live at shadow.dark.*, mirroring the shape tokens/colors-dark.json uses. Original document; see ATTRIBUTION.md.",
+  "shadow": {
+    "none": {
+      "$value": "none",
+      "$type": "shadow",
+      "$description": "The default for every surface in this template: cards, the site header, form fields, images, tables, code blocks, buttons. If a component's spec does not explicitly name shadow.overlay, it takes this."
+    },
+    "overlay": {
+      "$value": [
+        { "offsetX": "0rem", "offsetY": "0.5rem", "blur": "1.5rem", "spread": "0rem", "color": "rgba(22, 22, 26, 0.16)" }
+      ],
+      "$type": "shadow",
+      "$description": "The single exception, and it is allowed for one reason only: a surface that genuinely floats OVER other content and shares its background colour — the mobile navigation panel. There, the shadow is not decoration but the only thing distinguishing the panel's edge from the page beneath it, and a rule alone cannot do it because the panel moves. Do not reach for this to make a card look raised; a card that needs to look raised in this template is a card that needs more whitespace around it."
+    },
+    "dark": {
+      "$description": "Dark-theme counterparts. shadow.none needs no entry — it is the same absence in either theme.",
+      "overlay": {
+        "$value": [
+          { "offsetX": "0rem", "offsetY": "0.5rem", "blur": "1.5rem", "spread": "0rem", "color": "rgba(0, 0, 0, 0.6)" }
+        ],
+        "$type": "shadow",
+        "$description": "Built from black at a much higher opacity: the light theme's rgba(22, 22, 26, 0.16) is close to the colour of the dark page itself and would be invisible. Even at this strength the panel's own 1px color.dark.surface.rule does much of the separating — see foundations/theming.md on why a shadow carries less in a dark theme."
+      }
+    }
+  }
+}

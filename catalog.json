@@ -62,6 +62,43 @@
         "settings",
         "wizard"
       ]
+    },
+    {
+      "id": "flat-editorial",
+      "displayName": "Flat Editorial",
+      "description": "A type-led, genuinely flat blog and publishing identity: a serif reading column at a capped measure on warm off-white, a tight sans for headlines and chrome, a single violet accent, and no shadows at all — depth comes from hairline rules, background steps and whitespace. Good for blogs, newsletters, changelogs, and documentation-shaped writing.",
+      "path": "templates/flat-editorial",
+      "tokens": "templates/flat-editorial/tokens",
+      "specs": "templates/flat-editorial/specs",
+      "foundations": "templates/flat-editorial/foundations",
+      "patterns": "templates/flat-editorial/patterns",
+      "readme": "templates/flat-editorial/README.md",
+      "attribution": "templates/flat-editorial/ATTRIBUTION.md",
+      "foundationDocs": [
+        "iconography",
+        "imagery",
+        "libraries",
+        "motion",
+        "theming",
+        "typography"
+      ],
+      "components": [
+        "article-card",
+        "button",
+        "code-block",
+        "pagination",
+        "post-meta",
+        "prose",
+        "site-footer",
+        "site-header",
+        "subscribe-form",
+        "table-of-contents",
+        "tag"
+      ],
+      "componentPatterns": [
+        "article",
+        "home-feed"
+      ]
     }
   ]
 }

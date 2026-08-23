@@ -1,0 +1,10 @@
+{
+  "$description": "Border radii for the 'flat-editorial' template (Flat Editorial). Small by design: a flat identity is not obliged to be square, but heavy rounding reads as soft and app-like, which is the opposite of what an editorial page wants. The default is 4px, and the largest value in the set is reserved for the one shape that has to read as a pill. Original document; see ATTRIBUTION.md.",
+  "radius": {
+    "none": { "$value": "0rem", "$type": "dimension", "$description": "Used more often here than in most templates: a full-width figure, a code block, a table and a pull quote all take square corners, because a rounded corner on a large block draws attention to the container rather than to what it holds." },
+    "sm": { "$value": "0.125rem", "$type": "dimension", "$description": "2px — an inline code span, a small tag." },
+    "base": { "$value": "0.25rem", "$type": "dimension", "$description": "4px — the default: buttons, form fields, cards." },
+    "lg": { "$value": "0.5rem", "$type": "dimension", "$description": "8px — the mobile navigation panel, and an image inside a card." },
+    "pill": { "$value": "50rem", "$type": "dimension", "$description": "Fully rounded — tags and the avatar. The only place this template rounds heavily, and it is doing semantic work: a pill says 'this is a label you can press', which is exactly what a tag is." }
+  }
+}

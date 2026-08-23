@@ -52,6 +52,11 @@ without hand-pasting design values into every prompt.
 | Template | Display name | Description |
 |---|---|---|
 | `adminlte-classic` | **Classic Admin** | Dense, data-forward admin dashboard identity: dark side navigation, clean white cards on a soft blue-gray background, subtle shadows, compact data tables. |
+| `flat-editorial` | **Flat Editorial** | Type-led, genuinely flat blog and publishing identity: a serif reading column at a capped measure on warm off-white, a tight sans for headlines and chrome, one violet accent, and no shadows at all. |
+
+The two are deliberately opposite in most respects — one is chrome-heavy
+and data-dense, the other is type-led and quiet — so that "which
+template" is a real choice rather than a matter of taste.
 
 See `catalog.json` for the machine-readable version of this list, and
 each template's own `README.md` for its full personality description
@@ -63,7 +68,9 @@ and guidance on when to use it.
    intended use case.
 2. Optionally, run that template's `demo/` app locally to see it
    rendered (see that template's `demo/README.md` for instructions —
-   it's a visual preview only, not something to copy code from).
+   it's a visual preview only, not something to copy code from). Not
+   every template has one: a template is complete and usable without
+   a demo, which exists purely for humans.
 3. Once you've picked one, tell your AI coding agent which template
    to use (see below).
 

@@ -1,0 +1,28 @@
+{
+  "$description": "Spacing scale for the 'flat-editorial' template (Flat Editorial). Built on a 4px grid like most scales, but weighted toward the larger end: this template's flatness means whitespace is doing the job a shadow or a border does elsewhere, so the gaps are bigger than an application UI's and the scale runs further. The 'component' group holds values tied to a specific component or to the vertical rhythm of prose. Original document; see ATTRIBUTION.md.",
+  "spacing": {
+    "0": { "$value": "0rem", "$type": "dimension" },
+    "1": { "$value": "0.25rem", "$type": "dimension", "$description": "4px — between a glyph and adjacent text." },
+    "2": { "$value": "0.5rem", "$type": "dimension", "$description": "8px — inner padding of a tag, gap between tags." },
+    "3": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — form field padding, gap between byline items." },
+    "4": { "$value": "1rem", "$type": "dimension", "$description": "16px — base unit. Gap between elements within a group." },
+    "6": { "$value": "1.5rem", "$type": "dimension", "$description": "24px — padding inside a card, gap between a heading and the text under it." },
+    "8": { "$value": "2rem", "$type": "dimension", "$description": "32px — gap between feed items, padding of a code block." },
+    "12": { "$value": "3rem", "$type": "dimension", "$description": "48px — gap between major blocks within a page." },
+    "16": { "$value": "4rem", "$type": "dimension", "$description": "64px — space above a section heading in a long article; separation between a page's regions." },
+    "24": { "$value": "6rem", "$type": "dimension", "$description": "96px — the space that opens an article page above its title, and closes it below the last paragraph. Deliberately generous: on a flat page with no shadows and few rules, this is what tells a reader a region has ended." },
+    "component": {
+      "prose-block": { "$value": "1.5rem", "$type": "dimension", "$description": "The vertical gap between two block elements inside prose — paragraph to paragraph, paragraph to list, list to paragraph. Set once here because a consistent block rhythm is most of what makes long-form text feel edited rather than assembled. See foundations/typography.md." },
+      "prose-heading-top": { "$value": "3rem", "$type": "dimension", "$description": "The space ABOVE a heading inside prose. Deliberately much larger than prose-block and much larger than the space below the heading: a heading belongs to the text that follows it, and asymmetric spacing is what makes that grouping visible without a rule or a colour change." },
+      "prose-heading-bottom": { "$value": "0.75rem", "$type": "dimension", "$description": "The space BELOW a heading inside prose. See prose-heading-top for why the two differ." },
+      "card-padding": { "$value": "1.5rem", "$type": "dimension", "$description": "Inner padding of a card or panel." },
+      "header-height": { "$value": "4.5rem", "$type": "dimension", "$description": "72px — the site header's height. Taller than an application's toolbar, because it holds a wordmark set in display type rather than a dense row of controls." },
+      "icon-sm": { "$value": "1rem", "$type": "dimension", "$description": "Icon box beside font.size.xs or sm text. See foundations/iconography.md." },
+      "icon-md": { "$value": "1.25rem", "$type": "dimension", "$description": "Default icon box, paired with font.size.base." },
+      "icon-lg": { "$value": "1.5rem", "$type": "dimension", "$description": "Icon box beside font.size.lg or a heading." },
+      "avatar-sm": { "$value": "1.75rem", "$type": "dimension", "$description": "Author avatar in a byline. See foundations/imagery.md." },
+      "avatar-lg": { "$value": "3.5rem", "$type": "dimension", "$description": "Author avatar in an article's author block or on an author page." },
+      "tap-target": { "$value": "2.75rem", "$type": "dimension", "$description": "44px — the minimum pressable area on touch platforms. Named here because this template's controls are visually small and flat, and the hit area must be padded out beyond the visible box rather than the box being inflated to meet it." }
+    }
+  }
+}
