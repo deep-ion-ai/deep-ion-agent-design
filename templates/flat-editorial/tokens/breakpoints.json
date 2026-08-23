@@ -1,0 +1,9 @@
+{
+  "$description": "Breakpoints for the 'flat-editorial' template (Flat Editorial). Fewer than an application template needs: an article is a single column at every size, so most of this template has no layout to rearrange. The two that matter are where the feed grid gains columns and where the site navigation stops fitting on one line. Original document; see ATTRIBUTION.md.",
+  "breakpoint": {
+    "sm": { "$value": "40rem", "$type": "dimension", "$description": "640px — below this, an article's horizontal padding tightens and its title steps down from font.heading.display to font.heading.h1." },
+    "md": { "$value": "48rem", "$type": "dimension", "$description": "768px — the site navigation collapses to a menu button below this, and the feed grid drops to a single column." },
+    "lg": { "$value": "64rem", "$type": "dimension", "$description": "1024px — the feed grid reaches its full column count, and an article's figures may begin to break out past font.measure.prose toward font.measure.wide." },
+    "xl": { "$value": "80rem", "$type": "dimension", "$description": "1280px — the widest layout step; beyond it the page stops growing and centres within font.measure.page." }
+  }
+}

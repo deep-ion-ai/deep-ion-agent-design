@@ -1,0 +1,47 @@
+{
+  "$description": "Colour palette for the 'flat-editorial' template (Flat Editorial). An ORIGINAL palette — this template's identity was designed for this repository rather than reverse-engineered from an existing project; see ATTRIBUTION.md. Every value below was measured against the three surfaces this template puts content on (surface.canvas, surface.muted, surface.sunken) and chosen against the WORST of them, not the most flattering. The dark counterpart lives in tokens/colors-dark.json at color.dark.*; see foundations/theming.md.",
+  "color": {
+    "accent": {
+      "base": {
+        "$value": "#6D28D9",
+        "$type": "color",
+        "$description": "The template's single accent: links, the primary button fill, the active navigation mark, a tag's hover. Unusually, ONE value serves both roles here — 7.10:1 as text on surface.canvas (6.07:1 at the worst surface) and 7.10:1 as a fill under white text — so this template needs no darkened text-only counterpart of the kind an accent normally requires. Violet rather than blue is deliberate: the 'adminlte-classic' template already owns blue, and two templates whose accent reads the same colour weaken the catalogue. A vermilion (#C4451C) was tried first and rejected on two counts — it failed as text on surface.sunken at 4.26:1, and it sat close enough to status.danger that an error message risked reading as ordinary accent text."
+      },
+      "strong": {
+        "$value": "#5B21B6",
+        "$type": "color",
+        "$description": "The accent one step deeper, for the hover and active states of a solid accent fill. 8.98:1 as text, so it is also the safe choice where an accent word sits on surface.sunken and the extra headroom is wanted."
+      },
+      "wash": {
+        "$value": "#F3EEFD",
+        "$type": "color",
+        "$description": "The accent at the lightest tint that still reads as tinted: a selected tag, a highlighted prose callout's background, a blockquote's fill. Text on it uses text.primary or accent.strong, never accent.base at small sizes."
+      }
+    },
+    "status": {
+      "success": { "$value": "#136A33", "$type": "color", "$description": "Confirmation — a completed newsletter subscription, a copied code block. 6.69:1 as text on surface.canvas, 5.72:1 at the worst surface, and 6.69:1 as a fill under white. Darker than the obvious #15803D, which measures 4.29:1 on surface.sunken and fails there." },
+      "danger": { "$value": "#C2261D", "$type": "color", "$description": "Error — a failed form submission, an invalid field. 5.85:1 / 5.00:1 worst as text; 5.85:1 as a fill under white. Kept clearly redder than accent.base so the two are never confusable, which is why the accent is violet." },
+      "warning": { "$value": "#8A5A00", "$type": "color", "$description": "A caution callout in prose. 5.93:1 / 5.07:1 worst as text. This is already the darkened, text-safe value — there is no raw amber in this palette, because this template uses status colours almost exclusively AS TEXT (callouts, form messages) and never as a large fill, so a bright fill value would be a token nothing could legally use." },
+      "info": { "$value": "#1D5FA8", "$type": "color", "$description": "A note callout in prose. 6.45:1 / 5.52:1 worst as text. Same reasoning as warning: text-safe by construction." }
+    },
+    "surface": {
+      "canvas": { "$value": "#FFFFFF", "$type": "color", "$description": "The reading surface — an article's background, and the page's default. Pure white rather than tinted: the warmth in this identity comes from surface.muted and from the rule colour, and a tinted reading surface fights the photographs and figures an article carries." },
+      "muted": { "$value": "#F7F6F3", "$type": "color", "$description": "A warm off-white, one step down from canvas: the site background behind a feed, a subscribe block, a code block's fill. The warmth is the identity's signature — it separates this template from the cool blue-grays of 'adminlte-classic' at a glance." },
+      "sunken": { "$value": "#EFEDE8", "$type": "color", "$description": "One step further down, for a surface that must read as recessed against surface.muted — a table header row, a pull-quote's fill, the footer. This is the darkest light surface, and therefore the one every text colour in this file was verified against." },
+      "rule": { "$value": "#E4E2DD", "$type": "color", "$description": "The hairline. This template has almost no shadows (see tokens/shadows.json), so a 1px rule in this colour is the primary way one region is separated from another: a card's edge, a divider between feed items, the underline beneath a section heading. 1.29:1 against surface.canvas — a divider is decoration, and the 3:1 non-text obligation lands on focus rings and on any border that alone identifies a control." }
+    },
+    "text": {
+      "primary": { "$value": "#16161A", "$type": "color", "$description": "Body copy and headlines. 18.04:1 on surface.canvas, 15.42:1 at the worst surface. Near-black with a faint cool cast rather than pure #000: at the reading size this template sets, full black on white produces enough halation to tire a reader over a long article." },
+      "secondary": { "$value": "#5C5A55", "$type": "color", "$description": "Bylines, dates, reading time, captions, footer text. A WARM gray, tuned to the paper rather than to the ink — a cool gray on this warm off-white reads as slightly dirty. 6.89:1 / 6.37:1 / 5.89:1 across the three surfaces; chosen against the 5.89:1." },
+      "on-accent": { "$value": "#FFFFFF", "$type": "color", "$description": "Text and icons on an accent or status fill. Valid over accent.base (7.10:1), accent.strong (8.98:1), status.success (6.69:1) and status.danger (5.85:1). Unlike 'adminlte-classic', this template needs no on-accent-dark counterpart, because it has no light fills — status.warning and status.info exist here only as text." }
+    },
+    "chrome": {
+      "header-bg": { "$value": "#FFFFFF", "$type": "color", "$description": "The site header's background. Matches surface.canvas: this template's header is separated from the content by a single rule, not by a colour change or a shadow — the flattest possible treatment, and a deliberate contrast with 'adminlte-classic''s dark chrome." },
+      "code-bg": { "$value": "#F7F6F3", "$type": "color", "$description": "A code block's background. Matches surface.muted so a code block reads as a recessed panel in the flow of prose rather than as a separate object with its own colour." },
+      "selection-bg": { "$value": "#E5DBFB", "$type": "color", "$description": "Text selection highlight. Built from the accent rather than the browser default, because on a long-form page selection is a visible and frequent state. text.primary on it is 12.30:1." }
+    },
+    "overlay": {
+      "backdrop": { "$value": "rgba(22, 22, 26, 0.4)", "$type": "color", "$description": "The dimming layer behind the mobile navigation panel — the only overlay this template has. Built from text.primary at 40%; lighter than a typical modal backdrop because what it covers is an article the reader is mid-way through, and it should read as set aside rather than dismissed." }
+    }
+  }
+}

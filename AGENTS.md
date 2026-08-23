@@ -30,6 +30,21 @@ repository. It lists every available template with:
 Do not assume a template exists or guess its contents — read the
 catalog first, every time.
 
+### When the user has not named a template
+
+If the request names a template, use it. If it does not, and the
+catalog holds more than one, **pick the one whose `description` and
+`README.md` match the thing being built, and say which you picked and
+why in one sentence** before generating anything. The choice is
+usually obvious from the surface: an admin panel, a dashboard or an
+internal tool is one kind of identity; a blog, a changelog or
+documentation is another.
+
+Ask the user only when the request genuinely fits more than one — a
+"content management screen" could be either. Do not mix two templates
+in one project, and do not fall back to the first entry in the
+catalog because it is first.
+
 ## 2. Read the chosen template's own files
 
 Once a template is selected, read, in this order:

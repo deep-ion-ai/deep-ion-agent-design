@@ -1,0 +1,58 @@
+{
+  "$description": "Typographic scale for the 'flat-editorial' template (Flat Editorial). This is the template's most important token file: in a blog the type IS the design, and every other decision here is subordinate to keeping a long article comfortable to read. Two families do different jobs — a serif for reading, a sans for chrome — and the scale below is larger and more widely spaced than an application UI's, because it is set for continuous reading rather than for scanning. Original document; see ATTRIBUTION.md.",
+  "font": {
+    "family": {
+      "body": {
+        "$value": "'Source Serif 4 Variable', 'Source Serif 4', Charter, 'Bitstream Charter', Georgia, 'Times New Roman', serif",
+        "$type": "fontFamily",
+        "$description": "The reading face, used for article prose and for nothing else. A transitional serif with a large x-height and open counters, which is what keeps it legible at a screen's resolution. The serif/sans split is the identity's central typographic decision: prose gets the serif, every piece of interface chrome around it gets the sans, so a reader can tell at a glance what is the article and what is the site. The fallbacks are all real reading serifs rather than a generic `serif`, so an unloaded font degrades to something with the same job."
+      },
+      "ui": {
+        "$value": "'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "The chrome face: site navigation, headlines, bylines, tags, buttons, captions, form labels. A neo-grotesque sans with tight default spacing, which is what gives the identity its flat, contemporary feel against the warmth of the serif. Headlines take this rather than the serif deliberately — a sans headline over serif body is the arrangement that makes the split legible instead of merely decorative."
+      },
+      "mono": {
+        "$value": "'JetBrains Mono Variable', 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+        "$type": "fontFamily",
+        "$description": "Code blocks, inline code, and any value where character alignment matters. A blog that publishes code needs this to be a real choice rather than whatever the platform supplies."
+      }
+    },
+    "size": {
+      "xs": { "$value": "0.8125rem", "$type": "dimension", "$description": "13px — tags, timestamps, footnote markers, table captions. The smallest size this template permits; anything below it is unreadable on the warm surfaces this palette uses." },
+      "sm": { "$value": "0.9375rem", "$type": "dimension", "$description": "15px — bylines, figure captions, form labels, footer text, navigation items." },
+      "base": { "$value": "1rem", "$type": "dimension", "$description": "16px — the UI baseline: buttons, form fields, card excerpts. NOT the prose size; see font.size.prose, which is deliberately larger." },
+      "prose": { "$value": "1.1875rem", "$type": "dimension", "$description": "19px — the size article body copy is set at, and the number this whole file is built around. An application UI sets 16px because it is scanned; a page of continuous prose is read, and at a typical viewing distance 19px is where a serif stops feeling cramped. Every other size here was chosen in relation to this one, not the other way round." },
+      "lg": { "$value": "1.375rem", "$type": "dimension", "$description": "22px — an article's standfirst/lede paragraph, and a pull quote." }
+    },
+    "heading": {
+      "display": { "$value": "3.5rem", "$type": "dimension", "$description": "56px — an article title on a wide viewport, and the only genuinely large type in the template. It is a size, not a level: see foundations/typography.md on choosing a heading LEVEL by document position and its SIZE from this scale." },
+      "h1": { "$value": "2.5rem", "$type": "dimension", "$description": "40px — a page title (a feed's, an archive's), and an article title once the viewport is too narrow for display." },
+      "h2": { "$value": "1.875rem", "$type": "dimension", "$description": "30px — a section heading inside an article. The step down from h1 is large on purpose: in long prose the reader needs to feel a section boundary without stopping to compare two similar sizes." },
+      "h3": { "$value": "1.4375rem", "$type": "dimension", "$description": "23px — a subsection heading." },
+      "h4": { "$value": "1.1875rem", "$type": "dimension", "$description": "19px — the deepest heading this template styles. It matches font.size.prose and is distinguished from body copy by weight and by taking the UI family, not by size. An article that needs a fifth level needs to be two articles." }
+    },
+    "weight": {
+      "regular": { "$value": "400", "$type": "fontWeight", "$description": "Body prose. The serif is set at its normal weight and never lighter — a light-weight serif at reading size loses its thin strokes on a low-density display." },
+      "medium": { "$value": "500", "$type": "fontWeight", "$description": "Navigation items, form labels, tags, button labels." },
+      "semibold": { "$value": "600", "$type": "fontWeight", "$description": "Headings h2 through h4, and the emphasised half of a byline." },
+      "bold": { "$value": "700", "$type": "fontWeight", "$description": "Article titles at display and h1 size, and `strong` within prose." }
+    },
+    "lineHeight": {
+      "prose": { "$value": "1.7", "$type": "number", "$description": "Article body copy. Looser than an application UI's 1.5, and the second most consequential number in this file after font.size.prose: at a 68-character measure, tighter leading makes a reader's eye lose its place returning to the start of the next line." },
+      "base": { "$value": "1.5", "$type": "number", "$description": "UI text: card excerpts, form fields, footer copy." },
+      "tight": { "$value": "1.2", "$type": "number", "$description": "Headings at h2 and below." },
+      "display": { "$value": "1.08", "$type": "number", "$description": "Article titles at display and h1 size. Large type needs proportionally less leading; at 1.2 a two-line headline reads as two separate lines rather than as one phrase." }
+    },
+    "tracking": {
+      "tight": { "$value": "-0.02em", "$type": "dimension", "$description": "Applied to the UI family at display and h1 sizes. A neo-grotesque sans is spaced for text sizes; left alone at 56px it looks loose. This single adjustment is most of what makes the headlines in this template look deliberately set." },
+      "normal": { "$value": "0em", "$type": "dimension", "$description": "Everything else, including all prose. Never track body copy." },
+      "wide": { "$value": "0.06em", "$type": "dimension", "$description": "Small uppercase labels only — a section eyebrow, a tag. Uppercase text loses the word-shape a reader navigates by, and extra spacing is what partly compensates; it is never applied to sentence-case text." }
+    },
+    "measure": {
+      "prose": { "$value": "34rem", "$type": "dimension", "$description": "544px — roughly 68 characters at font.size.prose, and the width an article's text column is capped at no matter how wide the viewport gets. This token has no counterpart in 'adminlte-classic' and is the clearest expression of what separates the two templates: a dashboard fills the width it is given, and an article must not. Lines materially longer than this are the single most common reason a blog is uncomfortable to read." },
+      "wide": { "$value": "48rem", "$type": "dimension", "$description": "768px — the width a full-bleed-within-content element may reach: a figure, a code block, a table. These are SCANNED rather than read line by line, so the measure constraint does not apply, and letting them break out of the text column is what gives an article page its rhythm." },
+      "page": { "$value": "72rem", "$type": "dimension", "$description": "1152px — the outer content width for a feed or an archive grid, and the maximum width of the site header's contents." }
+    }
+  }
+}

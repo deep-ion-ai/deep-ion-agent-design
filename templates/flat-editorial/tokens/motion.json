@@ -1,0 +1,27 @@
+{
+  "$description": "Motion for the 'flat-editorial' template (Flat Editorial). A reading page should be still. This template animates less than an application template does — there is no data arriving, nothing to reflow, and a transition competing with a paragraph is a transition that should not exist. The two durations mirror the vocabulary established elsewhere in this repository so the names mean the same thing in both templates, but the values here are shorter. Original document; see ATTRIBUTION.md.",
+  "duration": {
+    "state": {
+      "$value": "120ms",
+      "$type": "duration",
+      "$description": "A property changing in place: a link's underline appearing, a button's fill deepening, a tag's background on hover. Shorter than the 150ms an application template uses, because these are pointer-following feedback on a page where the pointer is mostly at rest, and any lag reads as sluggishness rather than as polish."
+    },
+    "layout": {
+      "$value": "200ms",
+      "$type": "duration",
+      "$description": "Something changing size or position. In this template that is one thing only: the mobile navigation panel opening. There is no accordion, no collapsing card, and no animated height anywhere in an article."
+    }
+  },
+  "easing": {
+    "standard": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$type": "cubicBezier",
+      "$description": "The default for both durations: accelerates out of rest and decelerates into it."
+    },
+    "exit": {
+      "$value": "cubic-bezier(0.4, 0, 1, 1)",
+      "$type": "cubicBezier",
+      "$description": "For something leaving the screen entirely — the navigation panel closing. Accelerates away without decelerating, because there is no arrival to land."
+    }
+  }
+}
