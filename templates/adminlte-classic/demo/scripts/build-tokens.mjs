@@ -33,16 +33,31 @@ function isTokenLeaf(node) {
   return node && typeof node === "object" && "$value" in node;
 }
 
-function walk(node, prefixParts, lines) {
+// tokens/colors-dark.json and shadows.json's `dark` group hold the dark
+// theme as a mirror at color.dark.<path> / shadow.dark.<path> (see
+// foundations/theming.md). Both themes must drive the SAME custom
+// property, so the `dark` segment is stripped and the value routed to a
+// separate block — `color.dark.surface.canvas` and
+// `color.surface.canvas` both become `--color-surface-canvas`.
+//
+// Only position 1 counts: `color.neutral.dark` is a light-theme token
+// that happens to be named "dark", and stays where it is.
+function isDarkThemeToken(parts) {
+  return parts.length > 2 && parts[1] === "dark" && (parts[0] === "color" || parts[0] === "shadow");
+}
+
+function walk(node, prefixParts, lines, darkLines) {
   for (const [key, value] of Object.entries(node)) {
     if (key.startsWith("$")) continue;
     if (!value || typeof value !== "object") continue;
 
     const parts = [...prefixParts, toKebab(key)];
     if (isTokenLeaf(value)) {
-      lines.push(`  --${parts.join("-")}: ${tokenValueToCss(value)};`);
+      const dark = isDarkThemeToken(parts);
+      const name = dark ? [parts[0], ...parts.slice(2)] : parts;
+      (dark ? darkLines : lines).push(`  --${name.join("-")}: ${tokenValueToCss(value)};`);
     } else {
-      walk(value, parts, lines);
+      walk(value, parts, lines, darkLines);
     }
   }
 }
@@ -50,11 +65,12 @@ function walk(node, prefixParts, lines) {
 async function main() {
   const files = (await readdir(tokensDir)).filter((f) => f.endsWith(".json"));
   const lines = [];
+  const darkLines = [];
 
   for (const file of files) {
     const raw = await readFile(path.join(tokensDir, file), "utf8");
     const json = JSON.parse(raw);
-    walk(json, [], lines);
+    walk(json, [], lines, darkLines);
   }
 
   const css = [
@@ -62,14 +78,32 @@ async function main() {
     " * Produced by scripts/build-tokens.mjs from ../../tokens/*.json.",
     " * Run `npm run build-tokens` after changing the source token files. */",
     ":root {",
+    "  color-scheme: light;",
     ...lines,
+    "}",
+    "",
+    "/* The dark theme, per foundations/theming.md: an explicit choice wins",
+    " * in BOTH directions, and the system preference applies when no",
+    " * explicit choice has been made. */",
+    '[data-theme="dark"] {',
+    "  color-scheme: dark;",
+    ...darkLines,
+    "}",
+    "",
+    "@media (prefers-color-scheme: dark) {",
+    '  :root:not([data-theme="light"]) {',
+    "    color-scheme: dark;",
+    ...darkLines.map((l) => `  ${l}`),
+    "  }",
     "}",
     "",
   ].join("\n");
 
   await mkdir(path.dirname(outFile), { recursive: true });
   await writeFile(outFile, css, "utf8");
-  console.log(`Wrote ${lines.length} CSS custom properties to ${path.relative(process.cwd(), outFile)}`);
+  console.log(
+    `Wrote ${lines.length} light + ${darkLines.length} dark CSS custom properties to ${path.relative(process.cwd(), outFile)}`,
+  );
 }
 
 main().catch((err) => {

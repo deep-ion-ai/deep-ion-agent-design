@@ -23,6 +23,10 @@ export interface NavbarProps {
   account: { name: string; initials: string; items: MenuItem[] };
   search?: boolean;
   pageContext?: ReactNode;
+  /** The theme switch, per foundations/theming.md. Rendered here
+   *  because the bar acts on the session, and the theme is a property
+   *  of this reader rather than of the page. */
+  themeToggle?: ReactNode;
 }
 
 const triggerClasses =
@@ -37,6 +41,7 @@ export function Navbar({
   account,
   search = false,
   pageContext,
+  themeToggle,
 }: NavbarProps) {
   const searchId = useId();
   const notifId = useId();
@@ -82,6 +87,7 @@ export function Navbar({
       )}
 
       <nav aria-label="Account and notifications" className="ml-auto flex items-center gap-2">
+        {themeToggle}
         {notifications.length >= 0 && (
           <DropdownMenu
             id={notifId}
