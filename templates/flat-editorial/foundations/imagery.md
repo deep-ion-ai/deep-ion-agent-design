@@ -88,9 +88,14 @@ rule below is about how an image sits on the page once it exists.
    large image draws attention to the container rather than to the
    photograph.
 3. **No shadow, no border, no frame.** The image sits on the page.
-   The one exception: an image whose own edges are near-white on the
-   light theme may take a 1px `color.surface.rule` so it does not
-   bleed into the page.
+   The one exception: an image whose own edges come close to the page
+   behind it may take a 1px `color.surface.rule` so it does not bleed
+   into it. That happens at both ends — a near-white edge on the
+   light theme, a near-black one on the dark theme — and a
+   photograph can need it on one theme and not the other, which is
+   why the exception belongs to the container and its token rather
+   than to the file. It is still a hairline separating two surfaces,
+   never a frame around a picture.
 4. **Caption** (optional) — directly beneath, in
    `font.family.ui` at `font.size.sm`, `color.text.secondary`, at
    the *text column's* width even when the image is wider. A caption
