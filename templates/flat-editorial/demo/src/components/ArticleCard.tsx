@@ -1,4 +1,4 @@
-import { Artwork, type ArtworkName } from "./Artwork";
+import { Photo, type PhotoName } from "./Photo";
 import { PostMeta } from "./PostMeta";
 import { TagRow, type TagProps } from "./Tag";
 import { focusRing } from "./focus";
@@ -18,9 +18,12 @@ export interface ArticleCardProps {
   readingTime?: string;
   /** Optional and must be: many good articles have no cover, and a feed
    *  that renders a placeholder rectangle for them looks broken. */
-  cover?: ArtworkName;
+  cover?: PhotoName;
   tags?: TagProps[];
   layout?: "stacked" | "horizontal";
+  /** The feed's lead card is above the fold, so its photograph is the
+   *  one in the grid that must not be lazy-loaded. */
+  priority?: boolean;
   /** h2 under a page h1; h3 if the grid sits under a section heading. */
   headingLevel?: 2 | 3;
   onNavigate: (href: string) => void;
@@ -36,6 +39,7 @@ export function ArticleCard({
   cover,
   tags,
   layout = "stacked",
+  priority = false,
   headingLevel = 2,
   onNavigate,
 }: ArticleCardProps) {
@@ -53,9 +57,22 @@ export function ArticleCard({
       {cover && (
         <div className={horizontal ? "mb-4 md:mb-0 md:w-2/5 md:shrink-0" : "mb-4"}>
           {/* Decorative here: the headline beside it already names the
-              article, so announcing the artwork too would repeat it
-              (foundations/imagery.md). radius.lg per the card's Anatomy. */}
-          <Artwork name={cover} className="overflow-hidden rounded-lg" />
+              article, so announcing the photograph too would read the
+              reader the same thing twice (foundations/imagery.md).
+              radius.lg per the card's Anatomy. */}
+          <Photo
+            name={cover}
+            alt=""
+            priority={priority}
+            // The box this renders into, at each breakpoint, so the
+            // browser fetches the right file rather than the largest.
+            sizes={
+              horizontal
+                ? "(min-width: 768px) 26rem, 92vw"
+                : "(min-width: 1024px) 21rem, (min-width: 640px) 45vw, 92vw"
+            }
+            className="rounded-lg"
+          />
         </div>
       )}
 

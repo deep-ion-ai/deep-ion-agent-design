@@ -1,5 +1,5 @@
 import type { TagProps } from "./components/Tag";
-import type { ArtworkName } from "./components/Artwork";
+import type { PhotoName } from "./components/Photo";
 
 // Sample content for the demo feed. Demo scaffolding only — see
 // ../README.md and /AGENTS.md.
@@ -17,9 +17,9 @@ export interface FeedItem {
   dateTime: string;
   dateLabel: string;
   readingTime: string;
-  /** Original specimen artwork — see components/Artwork.tsx for why
-   *  this demo draws rather than photographs. */
-  cover?: ArtworkName;
+  /** Optional and must be: specs/article-card.md renders without one,
+   *  and three of the entries below have none on purpose. */
+  cover?: PhotoName;
   tags: TagProps[];
 }
 
@@ -37,7 +37,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-03-14",
     dateLabel: "14 March 2026",
     readingTime: "7 min read",
-    cover: "measure",
+    cover: "deep-field",
     tags: [tag("Typography"), tag("Reading")],
   },
   {
@@ -48,7 +48,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-02-27",
     dateLabel: "27 February 2026",
     readingTime: "5 min read",
-    cover: "layers",
+    cover: "brick-wall",
     tags: [tag("Design")],
   },
   {
@@ -59,7 +59,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-02-11",
     dateLabel: "11 February 2026",
     readingTime: "6 min read",
-    cover: "invert",
+    cover: "launch-pad",
     tags: [tag("Design"), tag("Accessibility")],
   },
   {
@@ -70,7 +70,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2026-01-30",
     dateLabel: "30 January 2026",
     readingTime: "3 min read",
-    cover: "underline",
+    cover: "greek-coins",
     tags: [tag("Accessibility")],
   },
   {
@@ -91,7 +91,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2025-12-19",
     dateLabel: "19 December 2025",
     readingTime: "3 min read",
-    cover: "scale",
+    cover: "gravel",
     tags: [tag("Typography"), tag("Design")],
   },
   {
@@ -112,7 +112,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2025-11-21",
     dateLabel: "21 November 2025",
     readingTime: "4 min read",
-    cover: "layers",
+    cover: "espresso",
     tags: [tag("Design")],
   },
   {
@@ -123,6 +123,7 @@ export const ARTICLES: FeedItem[] = [
     dateTime: "2025-11-07",
     dateLabel: "7 November 2025",
     readingTime: "3 min read",
+    cover: "cat",
     tags: [tag("Design"), tag("Accessibility")],
   },
 ];

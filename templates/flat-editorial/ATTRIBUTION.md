@@ -53,33 +53,57 @@ The fallback stacks additionally name system and licensed faces
 fallbacks. Naming a font in a fallback stack neither copies nor
 redistributes it.
 
-## No third-party assets
+## No third-party assets in the template itself
 
 No icon, image, illustration or other asset from a third party is
-included in this template. `foundations/iconography.md` and
-`foundations/libraries.md` suggest icon libraries by name without
-bundling any of them, and each carries its own licence — most
-commonly MIT or ISC — which a consuming project should check before
-adopting.
+included in the specification side of this template — `tokens/`,
+`foundations/`, `specs/` and `patterns/` bundle nothing.
+`foundations/iconography.md` and `foundations/libraries.md` suggest
+icon libraries by name without shipping any of them, and each carries
+its own licence — most commonly MIT or ISC — which a consuming project
+should check before adopting.
 
-### The demo's artwork is original
+The template **specifies no photograph and supplies none**.
+`foundations/imagery.md` is explicit that the pictures belong to the
+publication and that an agent asks the user for them; a project using
+this template for a real publication ships its own and is responsible
+for their licensing.
 
-`demo/src/components/Artwork.tsx` contains illustrations — the
-specimen pieces used as article covers and figures in the visual
-reference app. They are **original work**, authored here as inline SVG
-and licensed under MIT with the rest of the repository. No stock
-photograph, no third-party illustration set, and no binary image file
-is bundled anywhere in this template.
+### The demo bundles photographs, and they are credited
 
-They are drawn from `currentColor` and the accent tokens rather than
-shipped as raster images, which is what `foundations/imagery.md`
-prescribes for diagrammatic imagery — so the demo demonstrates that
-rule rather than only stating it.
+`demo/public/photos/` holds sixteen JPEG files — seven photographs at
+two widths each, plus a second crop of one of them at two widths. They are there because
+the demo is the "user" in the exchange `foundations/imagery.md`
+describes, and a visual reference app built against drawings would not
+show what this identity does with a real picture.
 
-A project using this template for a real publication will ship
-photographs of its own and is responsible for their licensing. This
-template neither supplies nor requires any.
+**Every one is in the public domain or released under CC0**, with a
+named photographer or issuing body:
 
-Should it become necessary to include any binary asset in this
-template in future, that requires a separate licence check and an
-update to this file.
+- **NASA / ESA** and **SpaceX** — released into the public domain.
+- **Rachel Michetti**, **Stefan van der Walt**, and **ambientCG**
+  (two textures) — CC0.
+- **Brooklyn Museum** — no known copyright restrictions.
+
+All seven reached this repository through the sample-data set bundled
+with scikit-image, whose source records the photographer, the licence
+and the original URL for each — the provenance is written down at the
+source rather than asserted here.
+`demo/public/photos/CREDITS.md` carries the full table, the original
+links, and exactly what was done to each file (a centre crop, a
+downscale, and a JPEG encode; no upscaling, no colour work).
+
+These are demo assets and carry no permission beyond their own
+licences. They are not part of the template, and a project adopting
+the template does not inherit them.
+
+### The demo's one drawing is original
+
+`demo/src/components/Diagram.tsx` is **original work**, authored here
+as inline SVG and licensed under MIT with the rest of the repository.
+It stays a drawing because its content is diagrammatic, which is what
+`foundations/imagery.md` prescribes for that case — so the demo
+demonstrates the rule rather than only stating it.
+
+Should it become necessary to bundle any further third-party asset,
+that requires a separate licence check and an update to this file.
