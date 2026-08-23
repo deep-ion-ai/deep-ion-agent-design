@@ -3,6 +3,7 @@ import {
   Component,
   FileText,
   LayoutDashboard,
+  ListChecks,
   Settings,
   ShoppingCart,
   Users,
@@ -20,6 +21,7 @@ import { ErrorPage, type ErrorVariant } from "./pages/ErrorPage";
 import { Profile } from "./pages/Profile";
 import { Settings as SettingsPage } from "./pages/Settings";
 import { ThemeToggle, useTheme } from "./components/ThemeToggle";
+import { Wizard } from "./pages/Wizard";
 import type { SidebarItem } from "./components/Sidebar";
 
 /** patterns/auth.md renders with no shell — this is the one place that
@@ -44,6 +46,7 @@ const NAV: SidebarItem[] = [
   { id: "dashboard", label: "Dashboard", icon: icon(LayoutDashboard) },
   { id: "ui", label: "UI elements", icon: icon(Component) },
   { id: "forms", label: "Forms", icon: icon(FileText) },
+  { id: "wizard", label: "Setup", icon: icon(ListChecks) },
   {
     id: "orders",
     label: "Orders",
@@ -91,6 +94,11 @@ const PAGES: Record<string, { title: string; description?: string; crumbs: strin
   settings: {
     title: "Settings",
     crumbs: ["Home", "Settings"],
+  },
+  wizard: {
+    title: "Set up your workspace",
+    description: "The multi-step form pattern, rendered from its spec.",
+    crumbs: ["Home", "Setup"],
   },
 };
 
@@ -186,6 +194,8 @@ export default function App() {
         <Profile onEditProfile={() => setCurrent("settings")} />
       ) : current === "settings" ? (
         <SettingsPage />
+      ) : current === "wizard" ? (
+        <Wizard onFinish={() => setCurrent("dashboard")} />
       ) : (
         <Dashboard />
       )}
