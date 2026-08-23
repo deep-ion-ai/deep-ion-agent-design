@@ -154,6 +154,33 @@ code. Consistency across different projects using the same template
 is the entire point of this repository — silent improvisation
 undermines it.
 
+### Assets are content, not specification — ask for them
+
+A template tells you how an image *behaves*: its aspect ratio, its
+corners, its caption, its alt text, its fallback, when it loads and
+what happens when it does not. **No template in this repository will
+ever tell you which image**, because photographs, logos, illustration
+sets and avatars belong to the project, not to a visual identity.
+
+Their absence from a spec is therefore not a gap to fill — it is the
+one thing every spec is guaranteed to leave to the user. When a
+pattern calls for an image and the project has not supplied one, ask
+for it: the files at the largest size available, the alt text or the
+information each image carries, and the licence and credit terms if
+any apply. Ask once, for everything, rather than a question per
+screen.
+
+Then keep building. Every template's `foundations/imagery.md` defines
+a working case for the image that is not there — a card with no
+cover, initials in place of an avatar, an empty state with no
+illustration — so the layout can be finished and reviewed while you
+wait. What you must not do is close the gap yourself with a
+grey box, a coloured block, a placeholder-image service, a hotlinked
+stock URL, a generated image passed off as a photograph, or an
+abstract SVG standing in for a picture the design asked for. All six
+look finished, which is exactly the problem: a visible gap gets
+filled, and a plausible stand-in ships.
+
 ## 7. A spec's front matter is its dependency graph
 
 Every spec, pattern and foundation opens with a small YAML block
